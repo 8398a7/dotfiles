@@ -31,3 +31,4 @@ homebrew:
     - neovim/neovim/neovim
 recipies:
   - ./cookbooks/darwin/homebrew/default.rb
+  - anyenv::users
