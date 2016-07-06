@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'yaml'
 
 nodes_dir_path = File.expand_path(File.dirname(__FILE__) << '/../../nodes')
-node = YAML.load_file("#{nodes_dir_path}/osx.yml")
+node = YAML.load_file("#{nodes_dir_path}/darwin.yml")
 
 describe command 'test $(which brew)' do
   its(:exit_status) { should eq 0 }
