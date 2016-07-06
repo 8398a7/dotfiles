@@ -1,0 +1,19 @@
+snippet     componentDidMount
+abbr        componentDidMount: ->(...)
+options     word
+  componentDidMount: ->
+
+snippet     componentWillUnmount
+abbr        componentWillUnmount: ->(...)
+options     word
+  componentWillUnmount: ->
+
+snippet     es6
+abbr        class React extends React.Component(...)
+options     word
+  class ${1:ClassName} extends React.Component
+    constructor: ->
+    componentDidMount: ->
+    componentWillUnmount: ->
+    render: ->
+  module.exports = $1
