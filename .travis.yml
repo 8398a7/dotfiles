@@ -1,5 +1,5 @@
 os:
   - osx
 script:
-  - bundle exec itamae local recipies/brew.rb -y nodes/osx.yml -l debug
+  - bundle exec itamae local entrypoint.rb -y nodes/darwin.yml -l debug
   - bundle exec rake spec

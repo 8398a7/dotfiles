@@ -5,3 +5,8 @@ gem 'itamae'
 gem 'itamae-plugin-recipe-anyenv'
 gem 'rake'
 gem 'serverspec'
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-byebug'
+end

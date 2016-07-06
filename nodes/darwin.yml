@@ -1,53 +1,33 @@
-brew:
-  enable_update: false
-  enable_upgrade: false
-  add_repositories:
+user: husq
+anyenv:
+  users:
+    husq:
+      envs:
+        rbenv:
+          - 2.3.1
+homebrew:
+  repositories:
+    - homebrew/core
     - homebrew/dupes
     - homebrew/versions
-    - homebrew/binary
-    - peco/peco
-    - motemen/ghq
-  install_packages:
-    - brew-cask
-    - coreutils
-    - findutils
-    - zsh
-    - bash
-    - vim
-    - tmux
+    - homebrew/x11
+  packages:
     - git
-    - hub
-    - tig
-    - ghq
+    - docker
+    - carthage
+    - cmake
     - imagemagick
-    - wget
-    - rsync
-    - curl
-    - tree
-    - openssl
-    - libyaml
-    - readline
-    - markdown
     - jq
+    - mysql
+    - nginx
     - peco
-    - ctags
-    - z
-    - rbenv
-    - ruby-build
-  install_apps:
-    - atom
-    - alfred
-    - google-chrome
-    - iterm2
-    - skype
-    - slack
-    - virtualbox
-    - vagrant
-    - vagrant-manager
-    - google-japanese-ime
-    - dash
-    - github
-    - dropbox
-    - xtrafinder
-    - appcleaner
-    - caffeine
+    - phantomjs
+    - postgresql
+    - redis
+    - tmux
+    - vim --with-lua
+    - wget
+    - zsh
+    - neovim/neovim/neovim
+recipies:
+  - ./cookbooks/darwin/homebrew/default.rb
