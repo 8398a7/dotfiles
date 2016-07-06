@@ -3,4 +3,4 @@ os:
 before_install:
   - brew update
 script:
-  - rake
+  - bundle exec rake
