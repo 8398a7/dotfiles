@@ -1,6 +1,5 @@
 os:
   - osx
-before_install:
-  - brew update
 script:
-  - bundle exec rake
+  - bundle exec itamae local recipies/brew.rb -y nodes/osx.yml -l debug
+  - bundle exec rake spec

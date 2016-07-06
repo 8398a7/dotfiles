@@ -1,0 +1,53 @@
+brew:
+  enable_update: false
+  enable_upgrade: false
+  add_repositories:
+    - homebrew/dupes
+    - homebrew/versions
+    - homebrew/binary
+    - peco/peco
+    - motemen/ghq
+  install_packages:
+    - brew-cask
+    - coreutils
+    - findutils
+    - zsh
+    - bash
+    - vim
+    - tmux
+    - git
+    - hub
+    - tig
+    - ghq
+    - imagemagick
+    - wget
+    - rsync
+    - curl
+    - tree
+    - openssl
+    - libyaml
+    - readline
+    - markdown
+    - jq
+    - peco
+    - ctags
+    - z
+    - rbenv
+    - ruby-build
+  install_apps:
+    - atom
+    - alfred
+    - google-chrome
+    - iterm2
+    - skype
+    - slack
+    - virtualbox
+    - vagrant
+    - vagrant-manager
+    - google-japanese-ime
+    - dash
+    - github
+    - dropbox
+    - xtrafinder
+    - appcleaner
+    - caffeine
