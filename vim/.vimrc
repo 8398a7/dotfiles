@@ -7,7 +7,6 @@
 "                ###   ## ##    ##  ##     ## ##    ##  ##    ##
 "                ###    ###    #### ##     ## ##     ##  ######
 "
-
 " startup time {{{
 if has('vim_starting') && has('reltime')
   let s:startuptime = reltime()
@@ -372,7 +371,9 @@ set backspace=indent,eol,start
 " 1行に200文字までしかsyntax highlightを有効にしない
 set synmaxcol=200
 
+" 括弧入力時に対応する括弧を表示
 set showmatch
+
 set shiftwidth=2
 set ignorecase
 set nobackup
