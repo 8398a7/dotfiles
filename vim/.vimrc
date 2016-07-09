@@ -62,7 +62,6 @@ Plug 'thinca/vim-quickrun'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-pathogen'
 Plug 'derekwyatt/vim-scala'
 Plug 'wakatime/vim-wakatime'
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -506,9 +505,6 @@ colorscheme theme
 
 " sudoつけ忘れ用
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
-
-" bundle以下のディレクトリも自動で読み込み
-execute pathogen#infect()
 
 " ステータス行に現在のgitブランチを表示する
 set statusline+=%{fugitive#statusline()}
