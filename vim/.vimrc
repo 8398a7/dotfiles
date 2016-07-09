@@ -42,6 +42,7 @@ Plug 'lervag/vimtex'
 Plug 'lervag/vim-latex'
 Plug 'markcornick/vim-berks'
 Plug 'mattn/emmet-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'othree/yajs.vim'
