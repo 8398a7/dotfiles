@@ -54,6 +54,7 @@ Plug 'scrooloose/syntastic'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neocomplete'
+Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
