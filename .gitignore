@@ -1,2 +1,5 @@
 /vendor/bundle
 .bundle
+Vagrantfile
+.vagrant
+capitan.box
