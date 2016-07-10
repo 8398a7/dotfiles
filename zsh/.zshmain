@@ -1,0 +1,251 @@
+#=================================================
+#  Basic Configure
+#=================================================
+
+# keybind
+bindkey -e
+
+# 256色対応
+export TERM=xterm-256color
+
+# エディタの設定
+export EDITOR=vim
+
+# 言語・文字コード設定
+export LANG=ja_JP.UTF-8
+
+# ビープ音を鳴らさない
+setopt NO_BEEP
+
+# 最近行ったディレクトリを記憶
+setopt AUTO_PUSHD
+
+# pushdの履歴を残さない
+setopt PUSHD_IGNORE_DUPS
+
+# リンクへ移動するとき実際のディレクトリへ移動
+setopt CHASE_LINKS
+
+# 大文字小文字を区別しない
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# 補完強化
+fpath=(zsh-completions/src $fpath)
+
+#=================================================
+#  Color
+#=================================================
+
+# 色設定
+# $fg[色名]/$bg[色名]$reset_color で色表示
+autoload -U colors && colors
+
+# 色定数
+GREEN="%{$fg[green]%}"
+GREEN_B="%{$fg_bold[green]%}"
+BLUE="%{$fg[blue]%}"
+BLUE_B="%{$fg_bold[blue]%}"
+RED="%{$fg[red]%}"
+RED_B="%{$fg_bold[red]%}"
+CYAN="%{$fg[cyan]%}"
+CYAN_B="%{$fg_bold[cyan]%}"
+YELLOW="%{$fg[yellow]%}"
+YELLOW_B="%{$fg_bold[yellow]%}"
+MAGENTA="%{$fg[magenta]%}"
+MAGENTA_B="%{$fg_bold[magenta]%}"
+RESET="%{$reset_color%}"
+
+#=================================================
+#  Complement
+#=================================================
+
+# コマンドの補完
+autoload -U compinit && compinit
+
+# 補完機能の拡張
+setopt EXTENDED_GLOB
+
+# TAB1回でリスト表示
+setopt AUTO_LIST
+
+# TAB連打でメニュー表示
+setopt AUTO_MENU
+
+# ドットファイルも対象に含める
+setopt GLOBDOTS
+
+# 語の途中でもカーソル位置で補完
+setopt COMPLETE_IN_WORD
+
+# =の後のパス名なども補完
+setopt MAGIC_EQUAL_SUBST
+
+# 補完候補を詰めて表示
+setopt LIST_PACKED
+
+# 候補一覧選択を横進みにする
+setopt LIST_ROWS_FIRST
+
+# 補完候補を色付きで表示
+# .dircolorsの反映
+eval `dircolors ~/.zsh/myconf/.dir_colors -b`
+zstyle ':completion:*:default' list-colors ${LS_COLORS}
+
+# 補完対象の一覧を上下左右に移動できる
+zstyle ':completion:*:default' menu select=2
+
+#=================================================
+#  History
+#=================================================
+
+# ヒストリファイルの指定
+HISTFILE="$HOME/.zsh_histfile"
+
+# 履歴件数の指定
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+# 重複した履歴を保存しない
+setopt HIST_IGNORE_DUPS
+
+# 履歴を共有
+setopt SHARE_HISTORY
+
+# 余分な空白を削除して履歴を保存
+setopt HIST_REDUCE_BLANKS
+
+# 入力の途中でもヒストリ検索
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+
+#=================================================
+#  Alias
+#=================================================
+
+alias ls="ls -F --color"
+alias ll="ls -l"
+alias la="ls -a"
+alias lla="ls -al"
+alias lr="ls -R"
+alias rb="ruby"
+alias gst="git status"
+alias gch="git checkout"
+alias gbr="git branch"
+alias glg="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
+alias gla="git log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
+alias at="tmux attach -t"
+alias ks="tmux kill-session -t"
+alias tls="tmux ls"
+alias trs="tmux rename -t"
+alias be="bundle exec"
+alias rs="rails s -b 0.0.0.0"
+alias rc="rails c"
+alias pdep="bundle exec cap production deploy"
+alias sdep="bundle exec cap staging deploy"
+alias nv="nvim"
+
+#------------------------------------------------
+#  branch名の取得
+#------------------------------------------------
+
+git-current-branch() {
+  local name st color gitdir action
+  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+    return
+  fi
+  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+  if [[ -z $name ]]; then
+    return
+  fi
+
+  gitdir=`git rev-parse --git-dir 2> /dev/null`
+  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+
+  st=`git status 2> /dev/null`
+  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
+    color=${GREEN}
+  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
+    color=${YELLOW}
+  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
+    color=${RED_B}
+  else
+    color=${RED}
+  fi
+  echo "${color} \uE0A0 ${name}${action}${RESET}"
+}
+
+#=================================================
+#  Prompt
+#=================================================
+
+source ~/.zsh/.zshprompt
+
+#------------------------------------------------
+#  git current shortcut
+#------------------------------------------------
+
+function git_current_branch_name()
+{
+  git branch | grep '^\*' | sed 's/^\* *//'
+}
+alias -g B='"$(git_current_branch_name)"'
+alias gpl='git pull origin "$(git_current_branch_name)"'
+alias gps='git push origin "$(git_current_branch_name)"'
+
+#------------------------------------------------
+#  peco history
+#------------------------------------------------
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+function peco-z-search
+{
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Please install peco and z"
+    return 1
+  fi
+  local res=$(z | sort -rn | cut -c 12- | peco)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
+}
+zle -N peco-z-search
+bindkey '^j' peco-z-search
+
+code () {
+    if [[ $# = 0 ]]
+    then
+        open -a "Visual Studio Code"
+    else
+        [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
+        open -a "Visual Studio Code" --args "$F"
+    fi
+}
+
+#------------------------------------------------
+#  fzf
+#------------------------------------------------
+
+export FZF_COMPLETION_TRIGGER='**'
+export FZF_COMPLETION_OPTS='-x'
