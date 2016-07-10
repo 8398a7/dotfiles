@@ -317,13 +317,16 @@ nnoremap ,rsp :<C-u>Unite rails/spec<CR>
 nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 " grep検索結果の再呼出
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+nnoremap <silent> ,r :<C-u>UniteResume search-buffer<CR>
 
 " ファイル検索
-nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> ,e :<C-u>Unite file_rec/async:!<CR>
 
 " grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,g :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" buffer検索
+nnoremap <silent> ,b :<C-u>Unite file_mru<CR>
 
 " }}}
 " NERDTree {{{
