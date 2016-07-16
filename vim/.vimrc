@@ -400,7 +400,7 @@ nmap <C-B> :tabnew<CR>
 " }}}
 " insert mode {{{
 " jjでEscape
-imap jj <ESC>
+imap <C-j> <ESC>
 
 " 挿入モードでのカーソル移動
 imap <C-n> <Down>
