@@ -14,6 +14,7 @@ alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 # other
 alias py='python'
 alias tailf='tail -f'
+alias n='nvim'
 
 # added by travis gem
 [ -f /Users/husq/.travis/travis.sh ] && source /Users/husq/.travis/travis.sh
