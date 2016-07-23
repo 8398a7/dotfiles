@@ -224,8 +224,8 @@ nnoremap <Space> <PageDown>
 " tabnew
 nnoremap <C-B> :tabnew<CR>
 
-" jjでEscape
-inoremap jj <ESC>
+" <C-j>でEscape
+inoremap <C-j> <ESC>
 
 " 挿入モードでのカーソル移動
 inoremap <C-j> <Down>
