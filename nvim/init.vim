@@ -225,13 +225,13 @@ nnoremap <Space> <PageDown>
 nnoremap <C-B> :tabnew<CR>
 
 " <C-j>でEscape
-inoremap <C-j> <ESC>
+imap <C-j> <ESC>
 
 " 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-" inoremap <C-k> <Up>
-" inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+inoremap <C-n> <Down>
+" inoremap <C-p> <Up>
+" inoremap <C-b> <Left>
+inoremap <C-f> <Right>
 " }}}
 " command {{{
 " vim-rails
