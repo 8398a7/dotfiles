@@ -11,6 +11,9 @@ if has('vim_starting') && has('reltime')
 endif
 " }}}
 " vim-plug {{{
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-coffee-script', { 'for': 'coffee' }
 Plug 'basyura/unite-rails'
@@ -38,7 +41,7 @@ Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'Rip-Rip/clang_complete'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/unite.vim'
