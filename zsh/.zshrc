@@ -14,7 +14,7 @@ alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 # other
 alias py='python'
 alias tailf='tail -f'
-alias n='nvim'
+alias vim='nvim'
 
 # added by travis gem
 [ -f /Users/husq/.travis/travis.sh ] && source /Users/husq/.travis/travis.sh
@@ -40,3 +40,6 @@ source '/Users/husq/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/husq/google-cloud-sdk/completion.zsh.inc'
+
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
