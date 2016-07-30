@@ -218,23 +218,25 @@ set errorformat=%m\ in\ %f\ on\ line\ %l
 " }}}
 " map {{{
 " 移動関係
-nnoremap j gj
-nnoremap k gk
-nnoremap <Down> gj
-nnoremap <Up> gk
-nnoremap <Space> <PageDown>
+nmap j gj
+nmap k gk
+nmap <Down> gj
+nmap <Up> gk
+nmap <Space> <PageDown>
 
 " tabnew
-nnoremap <C-B> :tabnew<CR>
+nmap <C-b> :tabnew<CR>
 
 " <C-j>でEscape
 imap <C-j> <ESC>
 
 " 挿入モードでのカーソル移動
-inoremap <C-n> <Down>
-" inoremap <C-p> <Up>
-" inoremap <C-b> <Left>
-inoremap <C-f> <Right>
+imap <C-n> <Down>
+imap <C-p> <Up>
+imap <C-b> <Left>
+imap <C-f> <Right>
+imap <C-a> <Home>
+imap <C-e> <End>
 " }}}
 " command {{{
 " vim-rails
