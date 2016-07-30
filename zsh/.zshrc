@@ -22,8 +22,11 @@ case ${OSTYPE} in
     # The next line updates PATH for the Google Cloud SDK.
     source '/Users/husq/google-cloud-sdk/path.zsh.inc'
 
-    # The next line enables shell command completion for gcloud.
+    # # The next line enables shell command completion for gcloud.
+    source ~/.zsh/.zshmain
+    # required zshmain
     source '/Users/husq/google-cloud-sdk/completion.zsh.inc'
+
     alias vim='nvim'
 
     export GOPATH="$HOME/go"
@@ -32,16 +35,14 @@ case ${OSTYPE} in
     ;;
   linux*)
     source ~/.zsh.d/z/z.sh
+    source ~/.zsh/.zshmain
     ;;
 esac
-
-source ~/.zsh/.zshmain
 
 # other
 alias py='python'
 alias tailf='tail -f'
 
 # z command
-function _Z_precmd {
-z --add "$(pwd -P)" 61 }
+function _Z_precmd { z --add "$(pwd -P)" 61 }
 precmd_functions=($precmd_functions _Z_precmd)
