@@ -28,8 +28,10 @@ case ${OSTYPE} in
 
     export GOPATH="$HOME/go"
     export PATH="$GOPATH/bin:$PATH"
+    . /usr/local/etc/profile.d/z.sh
     ;;
   linux*)
+    source ~/.zsh.d/z/z.sh
     ;;
 esac
 
@@ -40,7 +42,6 @@ alias py='python'
 alias tailf='tail -f'
 
 # z command
-. /usr/local/etc/profile.d/z.sh
 function _Z_precmd {
-  z --add "$(pwd -P)" 61 }
+z --add "$(pwd -P)" 61 }
 precmd_functions=($precmd_functions _Z_precmd)
