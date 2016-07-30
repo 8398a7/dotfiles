@@ -27,8 +27,6 @@ case ${OSTYPE} in
     # required zshmain
     source '/Users/husq/google-cloud-sdk/completion.zsh.inc'
 
-    alias vim='nvim'
-
     export GOPATH="$HOME/go"
     export PATH="$GOPATH/bin:$PATH"
     . /usr/local/etc/profile.d/z.sh
@@ -40,6 +38,7 @@ case ${OSTYPE} in
 esac
 
 # other
+alias vim='nvim'
 alias py='python'
 alias tailf='tail -f'
 
