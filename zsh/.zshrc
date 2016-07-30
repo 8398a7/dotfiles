@@ -31,6 +31,8 @@ case ${OSTYPE} in
     ;;
   linux*)
     ;;
+esac
+
 source ~/.zsh/.zshmain
 
 # other
