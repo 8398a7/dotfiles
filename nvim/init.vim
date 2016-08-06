@@ -31,6 +31,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'lervag/vimtex'
 Plug 'lervag/vim-latex'
 Plug 'mattn/emmet-vim'
+Plug 'markcornick/vim-berks'
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 " Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
 Plug 'nathanaelkane/vim-indent-guides'
