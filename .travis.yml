@@ -1,5 +1,0 @@
-os:
-  - osx
-script:
-  - bundle exec itamae local entrypoint.rb -y nodes/darwin.yml -l debug
-  - bundle exec rake spec
