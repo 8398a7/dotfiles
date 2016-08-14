@@ -318,8 +318,8 @@ syntax on
 " 行数のオンオフ
 nnoremap <silent> <C-n> :setlocal number! relativenumber!<CR>
 
-" pasteモード切り替え
-set clipboard+=unnamed
+" yankをosのclipboardにcopy
+set clipboard+=unnamedplus
 
 " 保存時に末尾の空白を除去
 autocmd BufWritePre * :%s/\s\+$//ge
