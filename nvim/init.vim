@@ -319,7 +319,6 @@ syntax on
 nnoremap <silent> <C-n> :setlocal number! relativenumber!<CR>
 
 " pasteモード切り替え
-set pastetoggle=<C-a>
 set clipboard+=unnamed
 
 " 保存時に末尾の空白を除去
