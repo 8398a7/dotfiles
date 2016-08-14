@@ -41,6 +41,7 @@ esac
 alias vim='nvim'
 alias py='python'
 alias tailf='tail -f'
+alias rmdocker="docker rm $(docker ps -aq)"
 
 # z command
 function _Z_precmd { z --add "$(pwd -P)" 61 }
