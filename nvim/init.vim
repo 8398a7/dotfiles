@@ -32,10 +32,9 @@ Plug 'lervag/vimtex'
 Plug 'lervag/vim-latex'
 Plug 'mattn/emmet-vim'
 Plug 'markcornick/vim-berks'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
-Plug 'neomake/neomake'
+" Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neomake/neomake'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'rhysd/clever-f.vim'
@@ -131,28 +130,29 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 " }}}
 " linter {{{
-augroup neomake_run
+aug neomake_run
   " 保存時とenter時にlintする
-  autocmd! BufWritePost,BufEnter * Neomake
+  au! BufWritePost,BufEnter * Neomake
 
   " インサートモードを抜けた時もlint
-  autocmd! InsertLeave * Neomake
+  au! InsertLeave * Neomake
 
   " vim終了時にeslint_dを終了
-  " autocmd! VimLeave *.js  !eslint_d stop
-augroup END
-let g:neomake_ruby_enabled_makers = ['rubocop']
-" }}}
-" coffee {{{
-" *.coffeeを保存するたびに自動で-cbオプションコンパイル
-" autocmd BufWritePost *.coffee silent make!
+  au! VimLeave *.js  !eslint_d stop
+  au! VimLeave *.jsx  !eslint_d stop
+aug END
 
-" js 拡張子でも有効にする
-let g:jsx_ext_required = 0
-" @jsx React.DOM プラグマがある場合のみ有効にする
-let g:jsx_pragma_required = 1
-let g:syntastic_javascript_checkers=['jsxhint']
-let g:syntastic_coffee_checkers = ['jsxhint']
+let g:neomake_javascript_enabled_makers = ['eslint_d']
+let g:neomake_javascript_eslint_maker = {
+    \ 'exe': 'eslint_d',
+    \ 'args': ['-f', 'compact'],
+    \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+    \ '%W%f: line %l\, col %c\, Warning - %m'
+    \ }
+
+let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_logfile = '/tmp/neomake_error.log'
+" let g:neomake_verbose = 3
 " }}}
 " incsearch {{{
 function! s:config_easyfuzzymotion(...) abort
