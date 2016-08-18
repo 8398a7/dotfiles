@@ -38,7 +38,8 @@ case ${OSTYPE} in
 esac
 
 # other
-alias vim='nvim'
+alias vi=/usr/local/bin/vim
+alias vim=nvim
 alias py='python'
 alias tailf='tail -f'
 alias rmdocker="docker rm $(docker ps -aq)"
