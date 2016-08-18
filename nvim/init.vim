@@ -160,6 +160,8 @@ let g:neomake_ruby_rubocop_maker = {
     \ 'exe': 'rubocop',
     \ 'args': ['--auto-correct'],
     \ }
+
+let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_logfile = '/tmp/neomake_error.log'
 " let g:neomake_verbose = 3
 " }}}
