@@ -34,6 +34,7 @@ Plug 'mattn/emmet-vim'
 Plug 'markcornick/vim-berks'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
+Plug 'neomake/neomake'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
@@ -41,7 +42,6 @@ Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'Rip-Rip/clang_complete'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
 Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -130,10 +130,18 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 " }}}
-" rubocop {{{
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['ruby'],'passive_filetypes': ['tex'] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+" linter {{{
+augroup neomake_run
+  " 保存時とenter時にlintする
+  autocmd! BufWritePost,BufEnter * Neomake
+
+  " インサートモードを抜けた時もlint
+  autocmd! InsertLeave * Neomake
+
+  " vim終了時にeslint_dを終了
+  " autocmd! VimLeave *.js  !eslint_d stop
+augroup END
+let g:neomake_ruby_enabled_makers = ['rubocop']
 " }}}
 " coffee {{{
 " *.coffeeを保存するたびに自動で-cbオプションコンパイル
