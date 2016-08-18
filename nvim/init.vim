@@ -140,6 +140,11 @@ aug neomake_run
   " vim終了時にeslint_dを終了
   au! VimLeave *.js  !eslint_d stop
   au! VimLeave *.jsx  !eslint_d stop
+
+  au BufWritePost * call neomake#Make(1, [], function('s:Neomake_callback'))
+  function! s:Neomake_callback(options)
+    e
+  endf
 aug END
 
 let g:neomake_javascript_enabled_makers = ['eslint_d']
@@ -151,6 +156,10 @@ let g:neomake_javascript_eslint_maker = {
     \ }
 
 let g:neomake_ruby_enabled_makers = ['rubocop']
+let g:neomake_ruby_rubocop_maker = {
+    \ 'exe': 'rubocop',
+    \ 'args': ['--auto-correct'],
+    \ }
 let g:neomake_logfile = '/tmp/neomake_error.log'
 " let g:neomake_verbose = 3
 " }}}
