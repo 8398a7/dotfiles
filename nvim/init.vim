@@ -26,6 +26,7 @@ Plug 'haya14busa/incsearch-migemo.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'itmammoth/run-rspec.vim'
 Plug 'jvirtanen/vim-cocoapods'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
@@ -159,6 +160,13 @@ command! Tmigrate :T rake db:migrate
 
 " Git commands
 command! -nargs=+ Tg :T git <args>
+" }}}
+" run-rspec {{{
+let g:run_rspec_bin = 'bundle exec rspec'
+nmap <leader>r :RunSpec<CR>
+nmap <leader>l :RunSpecLine<CR>
+nmap <leader>e :RunSpecLastRun<CR>
+nmap <leader>cr :RunSpecCloseResult<CR>
 " }}}
 " linter {{{
 aug neomake_run
