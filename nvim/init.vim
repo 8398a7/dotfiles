@@ -181,25 +181,25 @@ aug neomake_run
   au! VimLeave *.js  !eslint_d stop
   au! VimLeave *.jsx  !eslint_d stop
 
-  au BufWritePost * call neomake#Make(1, [], function('s:Neomake_callback'))
-  function! s:Neomake_callback(options)
-    e
-  endf
+  " au BufWritePost * call neomake#Make(1, [], function('s:Neomake_callback'))
+  " function! s:Neomake_callback(options)
+  "   e
+  " endf
 aug END
 
 let g:neomake_javascript_enabled_makers = ['eslint_d']
-let g:neomake_javascript_eslint_maker = {
-    \ 'exe': 'eslint_d',
-    \ 'args': ['-f', 'compact'],
-    \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-    \ '%W%f: line %l\, col %c\, Warning - %m'
-    \ }
+" let g:neomake_javascript_eslint_maker = {
+"     \ 'exe': 'eslint_d',
+"     \ 'args': ['-f', 'compact'],
+"     \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+"     \ '%W%f: line %l\, col %c\, Warning - %m'
+"     \ }
 
 let g:neomake_ruby_enabled_makers = ['rubocop']
-let g:neomake_ruby_rubocop_maker = {
-    \ 'exe': 'rubocop',
-    \ 'args': ['--auto-correct'],
-    \ }
+" let g:neomake_ruby_rubocop_maker = {
+"     \ 'exe': 'rubocop',
+"     \ 'args': ['-a'],
+"     \ }
 
 let g:neomake_slim_enabled_makers = ['slimlint']
 let g:neomake_logfile = '/tmp/neomake_error.log'
