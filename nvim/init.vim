@@ -37,6 +37,7 @@ Plug 'markcornick/vim-berks'
 " Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
+Plug 'osyo-manga/unite-quickfix'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'rhysd/clever-f.vim'
@@ -99,7 +100,6 @@ if executable('hw')
   let g:unite_source_grep_recursive_opt = ''
 endif
 " }}}
-
 " unite-rails key-mappings {{{
 nnoremap ,rc :<C-u>Unite rails/controller<CR>
 nnoremap ,rm :<C-u>Unite rails/model<CR>
@@ -110,19 +110,20 @@ nnoremap ,rj :<C-u>Unite rails/javascript<CR>
 nnoremap ,rg :<C-u>Unite rails/gemfile<CR>
 nnoremap ,rd :<C-u>Unite rails/db<CR>
 " }}}
-
 " カーソル位置の単語をgrep検索
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+nmap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 " grep検索結果の再呼出
-nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
+nmap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 
 " ファイル検索
-nnoremap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
+nmap <silent> ,e  :<C-u>Unite file_rec/async:!<CR>
 
 " grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nmap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
+" location_list
+nmap <silent>,l :<C-u>Unite location_list<CR>
 " }}}
 " golang {{{
 let g:go_highlight_functions = 1
@@ -168,7 +169,7 @@ nmap <leader>l :RunSpecLine<CR>
 nmap <leader>e :RunSpecLastRun<CR>
 nmap <leader>cr :RunSpecCloseResult<CR>
 " }}}
-" linter {{{
+" neomake {{{
 aug neomake_run
   " 保存時とenter時にlintする
   au! BufWritePost,BufEnter * Neomake
