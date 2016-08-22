@@ -18,6 +18,10 @@ jenv_version() {
   jenv version 2>/dev/null | awk '{print $1}'
 }
 
+exenv_version() {
+  exenv version 2>/dev/null | awk '{print $1}'
+}
+
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
@@ -37,10 +41,11 @@ CRENV="c:$(crenv_version)"
 GOENV="g:$(goenv_version)"
 NDENV="n:$(ndenv_version)"
 JENV="j:$(jenv_version)"
+EXENV="e:$(exenv_version)"
 
 USER_HOST="$(fg256 075 '%n')${YELLOW_B}@${RESET}$(fg256 120 '%m')"
 PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
 
 PROMPT="
-${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} $(fg256 169 ${RBENV}) $(fg256 003 ${CRENV}) $(fg256 222 ${GOENV}) $(fg256 047 ${NDENV}) $(fg256 012 ${JENV})
+${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} $(fg256 169 ${RBENV}) $(fg256 003 ${CRENV}) $(fg256 063 ${EXENV}) $(fg256 222 ${GOENV}) $(fg256 047 ${NDENV}) $(fg256 012 ${JENV})
 ${PROMPT_ROLE} "
