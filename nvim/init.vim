@@ -16,10 +16,11 @@ function! DoRemote(arg)
 endfunction
 call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-coffee-script', { 'for': 'coffee' }
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'basyura/unite-rails'
 Plug 'chase/vim-ansible-yaml'
 Plug 'easymotion/vim-easymotion'
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-migemo.vim'
@@ -52,6 +53,7 @@ Plug 'Shougo/vimproc', { 'dir': '~/.vim/plugged/vimproc.vim', 'do': 'make' }
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'soramugi/auto-ctags.vim'
 Plug 'thinca/vim-quickrun'
+Plug 'thinca/vim-ref'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
