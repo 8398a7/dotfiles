@@ -114,6 +114,7 @@ nnoremap ,rd :<C-u>Unite rails/db<CR>
 let ignorepattern = 'bundle/\|node_modules/\|bower_components/'
 call unite#custom#source('file_rec/async', 'ignore_pattern', ignorepattern)
 call unite#custom#source('file_rec/neovim', 'ignore_pattern', ignorepattern)
+call unite#custom#source('file_rec/git', 'ignore_pattern', ignorepattern)
 " カーソル位置の単語をgrep検索
 nmap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 " grep検索結果の再呼出
@@ -122,6 +123,8 @@ nmap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 nmap <silent> ,e  :<C-u>Unite file_rec/async<CR>
 " neovim検索
 nmap <silent> ,n  :<C-u>Unite file_rec/neovim<CR>
+" git検索
+nmap <silent> ,i  :<C-u>Unite file_rec/git:--cached:--others:--exclude-standard<CR>
 " grep検索
 nmap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " location_list
