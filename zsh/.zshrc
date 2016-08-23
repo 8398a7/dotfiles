@@ -1,14 +1,14 @@
 case ${OSTYPE} in
   darwin*)
-    source ~/.zsh/.zshosx
-    source ~/.zsh/.zshmain
+    source $HOME/.zsh/.zshosx
+    source $HOME/.zsh/.zshmain
     # # The next line enables shell command completion for gcloud.
     # required zshmain
-    source '/Users/husq/google-cloud-sdk/completion.zsh.inc'
+    source $HOME/google-cloud-sdk/completion.zsh.inc
     ;;
   linux*)
-    source ~/.zsh.d/z/z.sh
-    source ~/.zsh/.zshmain
+    source $HOME/.zsh.d/z/z.sh
+    source $HOME/.zsh/.zshmain
     ;;
 esac
 
