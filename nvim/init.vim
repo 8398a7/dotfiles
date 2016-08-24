@@ -19,6 +19,7 @@ Plug 'vim-coffee-script', { 'for': 'coffee' }
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'basyura/unite-rails'
 Plug 'chase/vim-ansible-yaml'
+Plug 'dag/vim-fish'
 Plug 'easymotion/vim-easymotion'
 Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go', { 'for': 'go' }
