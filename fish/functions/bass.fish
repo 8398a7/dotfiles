@@ -1,0 +1,1 @@
+/Users/husq/.config/fisherman/bass/functions/bass.fish

@@ -1,2 +1,2 @@
-rm ~/.vim ~/.vimrc ~/.zsh ~/.zshrc ~/.tmux ~/.tmux.conf ~/.config/nvim
+rm $HOME/.vim $HOME/.vimrc $HOME/.zsh $HOME/.zshrc $HOME/.tmux $HOME/.tmux.conf $HOME/.config/nvim $HOME/.config/fish
 exec $SHELL -l
