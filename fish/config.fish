@@ -4,11 +4,12 @@ eval (command dircolors -c $HOME/dotfiles/fish/.dir_colors)
 switch (uname)
 case Darwin
   source $HOME/.config/fish/conf.d/darwin.fish
+case Linux
+end
+
+if [ -e $HOME/google-cloud-sdk ]
   bass source "$HOME/google-cloud-sdk/path.bash.inc"
   bass source "$HOME/google-cloud-sdk/completion.bash.inc"
-case Linux
-  source $HOME/.zsh.d/z/z.sh
-  source $HOME/.zsh/.zshmain
 end
 
 # alias {{{
@@ -20,7 +21,6 @@ alias rmdocker 'docker rm (docker ps -aq)'
 
 alias lr 'ls -R'
 alias rb 'ruby'
-
 # git {{{
 alias gst 'git status'
 alias gch 'git checkout'
