@@ -15,6 +15,8 @@ function git_current_branch
     set_color yellow
   else if echo $st | grep -q -E 'modified'
     set_color red
+  else if echo $st | grep -q -E 'deleted'
+    set_color red
   end
   printf " $name"
 end
