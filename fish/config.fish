@@ -1,9 +1,10 @@
 set fish_greeting
-
 switch (uname)
 case Darwin
   source $HOME/.config/fish/conf.d/darwin.fish
+  eval (command gdircolors -c "$HOME/dotfiles/fish/.dir_colors")
 case Linux
+  eval (command dircolors -c "$HOME/dotfiles/fish/.dir_colors")
 end
 
 if [ -e $HOME/google-cloud-sdk ]
