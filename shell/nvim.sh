@@ -1,1 +1,2 @@
-ln -s ~/dotfiles/nvim ~/.config/nvim
+rm $HOME/.config/nvim
+ln -s $HOME/dotfiles/nvim $HOME/.config/nvim
