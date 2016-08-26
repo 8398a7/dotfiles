@@ -18,9 +18,3 @@ alias vim=nvim
 alias py='python'
 alias tailf='tail -f'
 alias rmdocker="docker rm (docker ps -aq)"
-
-# z command
-function _Z_precmd
-  z --add "(pwd -P)" 61
-end
-# precmd_functions=($precmd_functions _Z_precmd)
