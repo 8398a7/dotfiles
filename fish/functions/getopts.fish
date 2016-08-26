@@ -1,0 +1,1 @@
+/Users/husq/.config/fisherman/getopts/getopts.fish

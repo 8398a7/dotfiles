@@ -31,7 +31,13 @@ function fish_prompt
   printf ' n:%s' (nodenv_version)
 
   set_color normal
-  echo (__fish_git_prompt)
+  printf '%s' (__fish_git_prompt)
+  if test $last_status -eq 0
+    set_color green
+  else
+    set_color red
+  end
+  echo ' status'
 
   set_color cyan
   echo -n '$ > '

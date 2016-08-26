@@ -1,0 +1,1 @@
+/Users/husq/.config/fisherman/z/functions/__z.fish
