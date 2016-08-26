@@ -1,5 +1,4 @@
 set fish_greeting
-eval (command dircolors -c $HOME/dotfiles/fish/.dir_colors)
 
 switch (uname)
 case Darwin
@@ -11,7 +10,6 @@ if [ -e $HOME/google-cloud-sdk ]
   bass source "$HOME/google-cloud-sdk/path.bash.inc"
   bass source "$HOME/google-cloud-sdk/completion.bash.inc"
 end
-
 # alias {{{
 alias vi /usr/local/bin/vim
 alias vim nvim

@@ -1,12 +1,13 @@
 # PATH {{{
 set PATH $PATH $HOME/.anyenv/bin
 status --is-interactive; and source (anyenv init - | psub)
-# TODO: brew uninstall coreutils
+set PATH $PATH /usr/local/opt/coreutils/libexec/gnubin
 set PATH $PATH /usr/local/sbin
 set PATH $PATH /usr/local/opt/go/libexec/bin
 ### Added by the Heroku Toolbelt
 set PATH $PATH /usr/local/heroku/bin
 # }}}
+
 # alias ctags="`brew --prefix`/bin/ctags"
 # # postgres
 # set -x PGDATA=/usr/local/var/postgres
