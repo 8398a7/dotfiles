@@ -21,7 +21,7 @@ function fish_prompt
   end
   echo ' status'
 
-  set_color cyan
+  set_color cyan --bold
   echo -n '$ > '
 
   set_color normal
