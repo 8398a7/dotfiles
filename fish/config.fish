@@ -1,9 +1,10 @@
 set fish_greeting
-set -x OS_TYPE (uname | tr '[:upper:]' '[:lower:]')
-if string match -q $OS_TYPE 'darwin'
-  source $HOME/.config/fish/conf.d/darwin.fish
+
+switch (uname)
+case Darwin
+  source $HOME/.config/fish/conf.d/uname/Darwin.fish
   eval (command gdircolors -c "$HOME/dotfiles/fish/.dir_colors")
-else if string match -q $OS_TYPE 'linux'
+case Linux
   eval (command dircolors -c "$HOME/dotfiles/fish/.dir_colors")
 end
 
