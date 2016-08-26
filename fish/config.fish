@@ -2,7 +2,7 @@ set fish_greeting
 
 switch (uname)
 case Darwin
-  source $HOME/.config/fish/darwin.fish
+  source $HOME/.config/fish/conf.d/darwin.fish
 #  source $HOME/.zsh/.zshmain
 #  # # The next line enables shell command completion for gcloud.
 #  # required zshmain
