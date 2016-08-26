@@ -13,6 +13,6 @@ function _peco_z_search
 end
 function peco_z_search
   begin
-    sort -r -t '|' -k 1 ~/.z | sed -e 's/\|.*//'
+    sort -nr -t '|' -k 2 ~/.z | sed -e 's/\|.*//'
   end | sed -e 's/\/$//' | awk '!a[$0]++' | _peco_z_search $argv
 end
