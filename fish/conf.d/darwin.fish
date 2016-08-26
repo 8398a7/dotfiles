@@ -6,20 +6,19 @@ set PATH $PATH /usr/local/opt/go/libexec/bin
 set PATH $PATH /usr/local/heroku/bin
 
 alias ls 'gls -F --color'
-# alias ctags="`brew --prefix`/bin/ctags"
+alias ctags /usr/local/bin/ctags
 # # postgres
-# set -x PGDATA=/usr/local/var/postgres
-# alias psqlstart='pg_ctl -l /usr/local/var/postgres/server.log start'
-# alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+set -x PGDATA /usr/local/var/postgres
+alias psqlstart 'pg_ctl -l /usr/local/var/postgres/server.log start'
+alias psqlstop 'pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 # # added by travis gem
-# [ -f $HOME/.travis/travis.sh ] and source $HOME/.travis/travis.sh
+if [ -f $HOME/.travis/travis.sh ]
+  bass source "$HOME/.travis/travis.sh"
+end
 # # show hidden-files
-# alias hfon="defaults write com.apple.finder AppleShowAllFiles true|killall Finder"
+alias hfon 'defaults write com.apple.finder AppleShowAllFiles true|killall Finder'
 # # # hidden hidden-files
-# alias hfoff="defaults write com.apple.finder AppleShowAllFiles false|killall Finder"
+alias hfoff 'defaults write com.apple.finder AppleShowAllFiles false|killall Finder'
 
-# # The next line updates PATH for the Google Cloud SDK.
-# source $HOME/google-cloud-sdk/path.zsh.inc
-# set -x GOPATH $HOME/go
-# set -x PATH $GOPATH/bin $PATH
-# . /usr/local/etc/profile.d/z.sh
+set -x GOPATH $HOME/go
+set -x PATH $GOPATH/bin $PATH
