@@ -1,1 +1,0 @@
-/Users/husq/.config/fisherman/z/functions/zadd.awk
