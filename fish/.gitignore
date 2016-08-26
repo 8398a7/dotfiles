@@ -3,10 +3,12 @@ functions/fisher.fish
 
 # symlinks
 conf.d/z.fish
+functions/__bass.py
 functions/__z.fish
 functions/__z_add.fish
 functions/__z_complete.fish
 functions/__zo.fish
+functions/bass.fish
 functions/getopts.fish
 functions/z.awk
 functions/zadd.awk

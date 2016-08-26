@@ -4,10 +4,8 @@ eval (command dircolors -c $HOME/dotfiles/fish/.dir_colors)
 switch (uname)
 case Darwin
   source $HOME/.config/fish/conf.d/darwin.fish
-#  source $HOME/.zsh/.zshmain
-#  # # The next line enables shell command completion for gcloud.
-#  # required zshmain
-#  source $HOME/google-cloud-sdk/completion.zsh.inc
+  bass source "$HOME/google-cloud-sdk/path.bash.inc"
+  bass source "$HOME/google-cloud-sdk/completion.bash.inc"
 case Linux
   source $HOME/.zsh.d/z/z.sh
   source $HOME/.zsh/.zshmain
