@@ -1,4 +1,5 @@
 set fish_greeting
+eval (command dircolors -c $HOME/dotfiles/fish/.dir_colors)
 
 switch (uname)
 case Darwin
