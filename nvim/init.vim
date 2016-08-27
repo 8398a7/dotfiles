@@ -90,13 +90,16 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 " }}}
-" Unite {{{
+" Unite & fzf {{{
 " insert modeで開始
 let g:unite_enable_start_insert = 1
 
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
+
+" fzfの上に表示する
+let g:fzf_layout = { 'up': '~40%' }
 " unite grepにhw(highway)を使う {{{
 if executable('hw')
   let g:unite_source_grep_command = 'hw'
@@ -127,7 +130,7 @@ nmap <silent> ,e  :<C-u>Unite file_rec/async<CR>
 " neovim検索
 nmap <silent> ,n  :<C-u>Unite file_rec/neovim<CR>
 " git検索
-nmap <silent> ,i  :<C-u>Unite file_rec/git:--cached:--others:--exclude-standard<CR>
+nmap <silent> ,i  :<C-u>GFiles<CR>
 " grep検索
 nmap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 " location_list
@@ -402,7 +405,6 @@ execute pathogen#infect()
 
 " ステータス行に現在のgitブランチを表示する
 set statusline+=%{fugitive#statusline()}
-
 " jq {{{
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
