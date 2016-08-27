@@ -29,6 +29,8 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itmammoth/run-rspec.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'jvirtanen/vim-cocoapods'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }

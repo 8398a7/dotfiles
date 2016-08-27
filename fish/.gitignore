@@ -2,13 +2,25 @@ fishd.*
 functions/fisher.fish
 
 # symlinks
+conf.d/__fzf_check.fish
 conf.d/z.fish
 functions/__bass.py
+functions/__fzf_alt_c.fish
+functions/__fzf_ctrl_r.fish
+functions/__fzf_ctrl_t.fish
+functions/__fzf_ctrl_x.fish
+functions/__fzf_install.fish
+functions/__fzf_uninstall.fish
+functions/__fzf_update.fish
+functions/__fzfcmd.fish
+functions/__fzfescape.fish
 functions/__z.fish
 functions/__z_add.fish
 functions/__z_complete.fish
 functions/__zo.fish
+functions/await.fish
 functions/bass.fish
 functions/getopts.fish
+functions/last_job_id.fish
 functions/z.awk
 functions/zadd.awk
