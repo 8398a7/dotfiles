@@ -5,6 +5,7 @@ case Darwin
   source $HOME/.config/fish/conf.d/uname/Darwin.fish
   eval (command gdircolors -c "$HOME/dotfiles/fish/.dir_colors")
 case Linux
+  source $HOME/.config/fish/conf.d/uname/Linux.fish
   eval (command dircolors -c "$HOME/dotfiles/fish/.dir_colors")
 end
 
