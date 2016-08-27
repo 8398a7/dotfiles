@@ -99,7 +99,7 @@ let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 
 " fzfの上に表示する
-let g:fzf_layout = { 'up': '~40%' }
+let g:fzf_layout = { 'up': '~40%',  'options': '--reverse' }
 " unite grepにhw(highway)を使う {{{
 if executable('hw')
   let g:unite_source_grep_command = 'hw'

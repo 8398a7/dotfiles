@@ -12,6 +12,9 @@ if [ -e $HOME/google-cloud-sdk ]
   bass source "$HOME/google-cloud-sdk/path.bash.inc"
   bass source "$HOME/google-cloud-sdk/completion.bash.inc"
 end
+
+set -x FZF_DEFAULT_OPTS "--extended --cycle --reverse"
+
 # alias {{{
 alias vi /usr/local/bin/vim
 alias vim nvim
