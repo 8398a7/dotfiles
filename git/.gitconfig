@@ -1,0 +1,46 @@
+[user]
+  name = 839
+  email = 8398a7@gmail.com
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+[i18n]
+  commitencoding = utf-8
+[color]
+  ui = true
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+  default = simple
+[alias]
+  st = status
+  ch = checkout
+  br = branch
+  ad = add -A
+  cm = commit -S -m
+  pm = push origin master
+  pd = push origin develop
+  po = push origin
+  remotes = remote -v
+  unstage = reset --hard HEAD
+  amend = commit --amend
+  ignores = ls-files --full-name -i --exclude-standard
+  nevermind = !git reset --hard HEAD && git clean -d -f
+  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  today = !sh -c 'git log --reverse --no-merges --branches=* --date=local --since=midnight --oneline --author=\"`git config --get user.name`\"'
+[push]
+  default = matching
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
+[diff]
+  compactionHeuristic = true
+[include]
+  path = ~/.config/git/.gitconfig.local
