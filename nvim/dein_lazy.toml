@@ -1,0 +1,67 @@
+[[plugins]]
+repo  = 'vim-coffee-script'
+on_ft = ['coffeescript']
+[[plugins]]
+repo = 'awetzel/elixir.nvim'
+on_ft = ['elixir']
+build = '''./install.sh'''
+[[plugins]]
+repo = 'basyura/unite-rails'
+on_cmd = ['Unite']
+[[plugins]]
+repo = 'chase/vim-ansible-yaml'
+on_ft = ['ansible']
+[[plugins]]
+repo = 'dag/vim-fish'
+on_ft = ['fish']
+[[plugins]]
+repo = 'elixir-lang/vim-elixir'
+on_ft = ['elixir']
+[[plugins]]
+repo  = 'fatih/vim-go'
+on_ft = ['go']
+[[plugins]]
+repo = 'itmammoth/run-rspec.vim'
+on_ft = ['ruby']
+[[plugins]]
+repo  = 'leafgarland/typescript-vim'
+on_ft = ['typescript']
+[[plugins]]
+repo = 'lervag/vimtex'
+on_ft = ['tex']
+[[plugins]]
+repo = 'lervag/vim-latex'
+on_ft = ['tex']
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
+repo  = 'rhysd/vim-crystal'
+on_ft = ['crystal']
+[[plugins]]
+repo  = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle']
+[[plugins]]
+repo  = 'Shougo/deoplete.nvim'
+on_i = 1
+[[plugins]]
+repo = 'Shougo/neosnippet'
+on_i = 1
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+[[plugins]]
+repo  = 'slim-template/vim-slim'
+on_ft = ['slim']
+[[plugins]]
+repo  = 'tpope/vim-endwise'
+on_ft = ['ruby']
+[[plugins]]
+repo  = 'tpope/vim-rails'
+on_ft = ['ruby']
+[[plugins]]
+repo  = 'elzr/vim-json'
+on_ft = ['json']

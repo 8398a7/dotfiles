@@ -10,61 +10,43 @@ if has('vim_starting') && has('reltime')
   augroup END
 endif
 " }}}
-" vim-plug {{{
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-call plug#begin('~/.config/nvim/plugged')
-Plug 'vim-coffee-script', { 'for': 'coffee' }
-Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-Plug 'basyura/unite-rails'
-Plug 'chase/vim-ansible-yaml', { 'for': 'ansible' }
-Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'easymotion/vim-easymotion'
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-migemo.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'itmammoth/run-rspec.vim', { 'for': 'ruby' }
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'jvirtanen/vim-cocoapods'
-Plug 'kassio/neoterm'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'lervag/vimtex', { 'for': 'tex' }
-Plug 'lervag/vim-latex', { 'for': 'tex' }
-Plug 'mattn/emmet-vim'
-Plug 'markcornick/vim-berks'
-" Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'neomake/neomake'
-Plug 'osyo-manga/unite-quickfix'
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
-Plug 'rhysd/clever-f.vim'
-Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
-Plug 'Rip-Rip/clang_complete'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc', { 'dir': '~/.vim/plugged/vimproc.vim', 'do': 'make' }
-Plug 'slim-template/vim-slim', { 'for': 'slim' }
-Plug 'soramugi/auto-ctags.vim'
-Plug 'thinca/vim-quickrun'
-Plug 'thinca/vim-ref'
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-if !filereadable( $HOME . "/dotfiles/fish/proxy.fish" )
-  Plug 'wakatime/vim-wakatime'
+" dein {{{
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('~/dotfiles/nvim/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
-Plug 'elzr/vim-json', { 'for': 'json' }
-call plug#end()
+
+" 設定開始
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  " call dein#add('MaxMEllon/vim-jsx-pretty')
+
+  let g:rc_dir    = expand('~/dotfiles/nvim')
+  let s:toml      = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  " TOML を読み込み、キャッシュしておく
+  call dein#load_toml(s:toml,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  " 設定終了
+  call dein#end()
+  call dein#save_state()
+endif
+
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
 " }}}
 " deoplete{{{
 let g:deoplete#enable_at_startup = 1

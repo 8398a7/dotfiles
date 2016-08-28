@@ -17,6 +17,8 @@ end
 
 set -x FZF_DEFAULT_OPTS "--extended --cycle --reverse"
 set -x EDITOR nvim
+set -x HISTSIZE 10000000
+set -x SAVEHIST 10000000
 
 # alias {{{
 alias vi /usr/local/bin/vim
