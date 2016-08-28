@@ -29,7 +29,7 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itmammoth/run-rspec.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'jvirtanen/vim-cocoapods'
 Plug 'kassio/neoterm'
@@ -61,7 +61,9 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-pathogen'
-Plug 'wakatime/vim-wakatime'
+if !filereadable( $HOME . "/dotfiles/fish/proxy.fish" )
+  Plug 'wakatime/vim-wakatime'
+endif
 Plug 'elzr/vim-json', { 'for': 'json' }
 call plug#end()
 " }}}

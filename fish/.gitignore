@@ -1,5 +1,6 @@
 fishd.*
 functions/fisher.fish
+proxy.fish
 
 # symlinks
 conf.d/__fzf_check.fish
