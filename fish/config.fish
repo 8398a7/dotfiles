@@ -15,6 +15,7 @@ if [ -e $HOME/google-cloud-sdk ]
 end
 
 set -x FZF_DEFAULT_OPTS "--extended --cycle --reverse"
+set -x EDITOR nvim
 
 # alias {{{
 alias vi /usr/local/bin/vim

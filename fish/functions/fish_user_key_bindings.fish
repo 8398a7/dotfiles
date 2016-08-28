@@ -1,6 +1,4 @@
 function fish_user_key_bindings
-    bind \cr 'peco_select_history (commandline -b)'
-    bind \cj 'peco_z_search (commandline -b)'
     ### fzf ###
     bind \ct '__fzf_ctrl_t'
     bind \cr '__fzf_ctrl_r'
@@ -13,4 +11,6 @@ function fish_user_key_bindings
         bind -M insert \ec '__fzf_alt_c'
     end
     ### fzf ###
+    bind \cr 'peco_select_history (commandline -b)'
+    bind \cj 'peco_z_search (commandline -b)'
 end
