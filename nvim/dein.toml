@@ -1,0 +1,62 @@
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+[[plugins]]
+repo = 'haya14busa/incsearch-migemo.vim'
+[[plugins]]
+repo = 'haya14busa/incsearch-fuzzy.vim'
+[[plugins]]
+repo = 'haya14busa/incsearch-easymotion.vim'
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+[[plugins]]
+repo = 'junegunn/fzf'
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+build = '''~/.fzf/install --all'''
+[[plugins]]
+repo = 'jvirtanen/vim-cocoapods'
+[[plugins]]
+repo = 'kassio/neoterm'
+[[plugins]]
+repo = 'mattn/emmet-vim'
+[[plugins]]
+repo = 'markcornick/vim-berks'
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+[[plugins]]
+repo = 'neomake/neomake'
+[[plugins]]
+repo = 'osyo-manga/unite-quickfix'
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+[[plugins]]
+repo = 'Rip-Rip/clang_complete'
+[[plugins]]
+repo = 'Shougo/unite.vim'
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  if dein#util#_is_windows()
+    let cmd = 'tools\\update-dll-mingw'
+  elseif dein#util#_is_cygwin()
+    let cmd = 'make -f make_cygwin.mak'
+  elseif executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+[[plugins]]
+repo = 'thinca/vim-ref'
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
+if = '''!filereadable($HOME . '/dotfiles/fish/proxy.fish')'''
