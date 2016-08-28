@@ -18,32 +18,32 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-coffee-script', { 'for': 'coffee' }
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 Plug 'basyura/unite-rails'
-Plug 'chase/vim-ansible-yaml'
-Plug 'dag/vim-fish'
+Plug 'chase/vim-ansible-yaml', { 'for': 'ansible' }
+Plug 'dag/vim-fish', { 'for': 'fish' }
 Plug 'easymotion/vim-easymotion'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-migemo.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'itchyny/lightline.vim'
-Plug 'itmammoth/run-rspec.vim'
+Plug 'itmammoth/run-rspec.vim', { 'for': 'ruby' }
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'jvirtanen/vim-cocoapods'
 Plug 'kassio/neoterm'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'lervag/vimtex'
-Plug 'lervag/vim-latex'
+Plug 'lervag/vimtex', { 'for': 'tex' }
+Plug 'lervag/vim-latex', { 'for': 'tex' }
 Plug 'mattn/emmet-vim'
 Plug 'markcornick/vim-berks'
 " Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'osyo-manga/unite-quickfix'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'Rip-Rip/clang_complete'
@@ -60,7 +60,6 @@ Plug 'thinca/vim-ref'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-pathogen'
 if !filereadable( $HOME . "/dotfiles/fish/proxy.fish" )
   Plug 'wakatime/vim-wakatime'
 endif
@@ -401,9 +400,6 @@ colorscheme theme
 
 " sudoつけ忘れ用
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
-
-" bundle以下のディレクトリも自動で読み込み
-execute pathogen#infect()
 
 " ステータス行に現在のgitブランチを表示する
 set statusline+=%{fugitive#statusline()}
