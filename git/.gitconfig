@@ -3,7 +3,7 @@
   email = 8398a7@gmail.com
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
+  editor = nvim
 [i18n]
   commitencoding = utf-8
 [color]
