@@ -9,6 +9,9 @@ build = '''./install.sh'''
 repo = 'basyura/unite-rails'
 on_cmd = ['Unite']
 [[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+[[plugins]]
 repo = 'chase/vim-ansible-yaml'
 on_ft = ['ansible']
 [[plugins]]
