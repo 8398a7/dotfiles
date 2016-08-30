@@ -25,14 +25,18 @@ set -x HISTSIZE 10000000
 set -x SAVEHIST 10000000
 
 # alias {{{
-alias vi /usr/local/bin/vim
-alias vim nvim
-alias py 'python'
+if type -qa vim
+  alias vi (which vim)
+end
+if type -qa vim
+  alias vim nvim
+end
+alias py python
 alias tailf 'tail -f'
 alias rmdocker 'docker rm (docker ps -aq)'
 
 alias lr 'ls -R'
-alias rb 'ruby'
+alias rb ruby
 # git {{{
 alias gst 'git status'
 alias gch 'git checkout'
