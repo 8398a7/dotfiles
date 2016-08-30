@@ -15,8 +15,12 @@ if [ -e $HOME/google-cloud-sdk ]
   bass source "$HOME/google-cloud-sdk/completion.bash.inc"
 end
 
-set -x FZF_DEFAULT_OPTS "--extended --cycle --reverse"
-set -x EDITOR nvim
+set -x FZF_DEFAULT_OPTS "--extended --cycle --reverse --exact"
+if type -qa nvim
+  set -x EDITOR nvim
+else if type -qa vim
+  set -x EDITOR vim
+end
 set -x HISTSIZE 10000000
 set -x SAVEHIST 10000000
 

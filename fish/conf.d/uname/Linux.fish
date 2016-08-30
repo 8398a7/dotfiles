@@ -1,2 +1,4 @@
 set -x GOPATH /usr/local/go
-set -x PATH $GOPATH/bin $PATH
+if [ -d $GOPATH/bin ]
+  set -x PATH $GOPATH/bin $PATH
+end
