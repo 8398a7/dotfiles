@@ -217,6 +217,8 @@ map m? <Plug>(incsearch-migemo-?)
 map mg/ <Plug>(incsearch-migemo-stay)
 " }}}
 " NERDTree {{{
+" .nameを表示する
+let NERDTreeShowHidden = 1
 " 短縮
 command Rt :NERDTree
 
