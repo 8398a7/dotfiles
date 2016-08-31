@@ -1,5 +1,5 @@
 set fish_greeting
-load_file $HOME/dotfiles/fish/proxy.fish
+load_file $HOME/dotfiles/fish/external.fish
 
 switch (uname)
 case Darwin

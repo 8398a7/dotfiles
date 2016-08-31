@@ -1,6 +1,6 @@
 fishd.*
 functions/fisher.fish
-proxy.fish
+external.fish
 
 # symlinks
 conf.d/__fzf_check.fish
