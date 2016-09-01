@@ -6,6 +6,12 @@
 #             (> <)
 # rm -f ~/.zcompdump; compinit
 
+# load functions {{{
+for function in $HOME/.zsh/functions/*.zsh; do
+  source $function
+done
+# }}}
+load_file $HOME/.zsh/external.zsh
 # zplug {{{
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
@@ -40,12 +46,6 @@ fi
 zplug load --verbose
 setupsolarized
 # }}}
-# load functions {{{
-for function in $HOME/.zsh/functions/*.zsh; do
-  source $function
-done
-# }}}
-load_file $HOME/.zsh/external.zsh
 # The next line updates PATH for the Google Cloud SDK.
 load_file $HOME/google-cloud-sdk/path.zsh.inc
 load_file $HOME/google-cloud-sdk/completion.zsh.inc
