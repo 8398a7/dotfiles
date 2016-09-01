@@ -237,39 +237,35 @@ hi Directory guifg=#FF0000 ctermfg=red
 " set {{{
 " インデント
 set cindent
-
 " 行数
 set number
 set relativenumber
-
 " タブは空白2文字
 set tabstop=2
-
 " タブは空白
 set expandtab
-
 " 常にステータスラインを出す
 set laststatus=2
-
 " 256色
 set t_Co=256
-
 " swapファイルを作らない
 set noswapfile
-
+set nobackup
 " backspace
 set backspace=indent,eol,start
-
 " ハイライトを使わない
 set nohlsearch
-
+" 検索/置換時に大文字小文字を区別する
+set noignorecase
+" 対応する括弧を表示
 set showmatch
+" shiftで挿入される幅
 set shiftwidth=2
-set ignorecase
-set nobackup
-set list
+" 見えない文字を可視化
 set listchars=tab:^\ ,trail:~
-set makeprg=php\ -l\ %
+" タブ文字を CTRL-I で表示し、行末に $ で表示
+set list
+" エラー時のフォーマット
 set errorformat=%m\ in\ %f\ on\ line\ %l
 " }}}
 " map {{{
