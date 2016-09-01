@@ -177,9 +177,9 @@ alias rs="rails s -b 0.0.0.0"
 alias rc="rails c"
 alias pdep="bundle exec cap production deploy"
 alias sdep="bundle exec cap staging deploy"
-alias -g B="$(git_current_branch_name)"
-alias gpl="git pull origin $(git_current_branch_name)"
-alias gps="git push origin $(git_current_branch_name)"
+alias -g B='"$(git_current_branch_name)"'
+alias gpl='git pull origin "$(git_current_branch_name)"'
+alias gps='git push origin "$(git_current_branch_name)"'
 if [ -x /usr/local/bin/vim ]; then
   alias vi=/usr/local/bin/vim
   export EDITOR=vim
