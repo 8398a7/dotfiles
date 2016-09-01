@@ -38,6 +38,7 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+setupsolarized
 # }}}
 # load functions {{{
 for function in $HOME/.zsh/functions/*.zsh; do
