@@ -194,7 +194,7 @@ alias py=python
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
-PROMPT_GIT="`git_current_branch`"
+PROMPT_GIT='`git_current_branch`'
 RBENV=" r:$(rbenv_version)"
 CRENV=" c:$(crenv_version)"
 NODENV=" n:$(nodenv_version)"
