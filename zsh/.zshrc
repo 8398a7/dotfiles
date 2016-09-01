@@ -195,15 +195,9 @@ autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
 PROMPT_GIT='`git_current_branch`'
-RBENV=" r:$(rbenv_version)"
-CRENV=" c:$(crenv_version)"
-NODENV=" n:$(nodenv_version)"
-# GOENV=" g:$(goenv_version)"
-# JENV=" j:$(jenv_version)"
-# EXENV=" e:$(exenv_version)"
 USER_HOST="$(fg256 075 '%n')${YELLOW_B}@${RESET}$(fg256 120 '%m')"
 PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
-PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}$(fg256 169 ${RBENV})$(fg256 003 ${CRENV})$(fg256 063 ${EXENV})$(fg256 222 ${GOENV})$(fg256 047 ${NODENV})$(fg256 012 ${JENV})
+PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
@@ -213,6 +207,7 @@ export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
 # bindkey {{{
-bindkey "^r" fzf_history_search
+# bindkey "^r" fzf_history_search
+bindkey "^r" peco_select_history
 bindkey "^j" peco_z_search
 # }}}
