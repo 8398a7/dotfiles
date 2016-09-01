@@ -60,8 +60,8 @@ case ${OSTYPE} in
     alias ctags=/usr/local/bin/ctags
     # postgres
     export PGDATA=/usr/local/var/postgres
-    alias psqlstart='pg_ctl -l /usr/local/var/postgres/server.log start'
-    alias psqlstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
+    alias psqlstart="pg_ctl -l /usr/local/var/postgres/server.log start"
+    alias psqlstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
     # show hidden-files
     alias hfon="defaults write com.apple.finder AppleShowAllFiles true|killall Finder"
     # # hidden hidden-files
@@ -76,7 +76,7 @@ case ${OSTYPE} in
   linux*)
     ;;
 esac
-# Basic Configure {{{
+# basic configure {{{
 # keybind
 bindkey -e
 # 256色対応
@@ -92,13 +92,12 @@ setopt PUSHD_IGNORE_DUPS
 # リンクへ移動するとき実際のディレクトリへ移動
 setopt CHASE_LINKS
 # 大文字小文字を区別しない
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ":completion:*" matcher-list "m:{a-z}={A-Z}"
 # }}}
-# Color {{{
+# color {{{
 # 色設定
 # $fg[色名]/$bg[色名]$reset_color で色表示
 autoload -U colors && colors
-
 # 色定数
 GREEN="%{$fg[green]%}"
 GREEN_B="%{$fg_bold[green]%}"
@@ -114,7 +113,7 @@ MAGENTA="%{$fg[magenta]%}"
 MAGENTA_B="%{$fg_bold[magenta]%}"
 RESET="%{$reset_color%}"
 # }}}
-# Complement {{{
+# complement {{{
 # コマンドの補完
 autoload -U compinit && compinit
 # 補完機能の拡張
@@ -134,11 +133,11 @@ setopt LIST_PACKED
 # 候補一覧選択を横進みにする
 setopt LIST_ROWS_FIRST
 # 補完対象の一覧を上下左右に移動できる
-zstyle ':completion:*:default' menu select=2
+zstyle ":completion:*:default" menu select=2
 # 補間対象一覧に色をつける
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}
 # }}}
-# History {{{
+# history {{{
 # ヒストリファイルの指定
 HISTFILE=$HOME/.zsh_histfile
 # 履歴件数の指定
@@ -157,13 +156,13 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 # }}}
-# Alias {{{
+# alias {{{
 alias ls="ls -F --color"
 alias ll="ls -l"
 alias la="ls -a"
 alias lla="ls -al"
 alias lr="ls -R"
-alias rb="ruby"
+alias rb=ruby
 alias gst="git status"
 alias gch="git checkout"
 alias gbr="git branch"
@@ -178,9 +177,9 @@ alias rs="rails s -b 0.0.0.0"
 alias rc="rails c"
 alias pdep="bundle exec cap production deploy"
 alias sdep="bundle exec cap staging deploy"
-alias -g B='"$(git_current_branch_name)"'
-alias gpl='git pull origin "$(git_current_branch_name)"'
-alias gps='git push origin "$(git_current_branch_name)"'
+alias -g B="$(git_current_branch_name)"
+alias gpl="git pull origin $(git_current_branch_name)"
+alias gps="git push origin $(git_current_branch_name)"
 if [ -x /usr/local/bin/vim ]; then
   alias vi=/usr/local/bin/vim
   export EDITOR=vim
@@ -191,11 +190,11 @@ if type nvim > /dev/null; then
 fi
 alias py=python
 # }}}
-# Prompt {{{
+# prompt {{{
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
-PROMPT_GIT='`git_current_branch`'
+PROMPT_GIT="`git_current_branch`"
 RBENV=" r:$(rbenv_version)"
 CRENV=" c:$(crenv_version)"
 NODENV=" n:$(nodenv_version)"
@@ -207,13 +206,13 @@ PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
 PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}$(fg256 169 ${RBENV})$(fg256 003 ${CRENV})$(fg256 063 ${EXENV})$(fg256 222 ${GOENV})$(fg256 047 ${NODENV})$(fg256 012 ${JENV})
 ${PROMPT_ROLE} "
 # }}}
-# Export {{{
+# export {{{
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
-# Bindkey {{{
-bindkey '^r' fzf_history_search
-bindkey '^j' peco_z_search
+# bindkey {{{
+bindkey "^r" fzf_history_search
+bindkey "^j" peco_z_search
 # }}}
