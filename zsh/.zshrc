@@ -4,6 +4,7 @@
 #      ^      (\_/)
 #      '----- (O.o)
 #             (> <)
+# rm -f ~/.zcompdump; compinit
 
 # zplug {{{
 if [[ ! -d ~/.zplug ]]; then
@@ -12,7 +13,7 @@ if [[ ! -d ~/.zplug ]]; then
 fi
 
 source ~/.zplug/init.zsh
-zplug "b4b4r07/emoji-cli", if:"which jq"
+zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 zplug "glidenote/hub-zsh-completion"
 [ -d /usr/local/opt/coreutils/libexec/gnubin ] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 zplug 'joel-porquet/zsh-dircolors-solarized'
@@ -22,7 +23,7 @@ zplug "mrowa44/emojify", as:command
 zplug "peco/peco", as:command, from:gh-r
 # zplug "rupa/z", use:z.sh
 zplug "knu/z", use:z.sh, nice:10
-zplug "stedolan/jq", as:command, from:gh-r, frozen:1
+zplug "stedolan/jq", from:gh-r, as:command
 zplug "tcnksm/docker-alias", use:zshrc
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
