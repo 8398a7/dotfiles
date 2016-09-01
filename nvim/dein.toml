@@ -59,4 +59,4 @@ repo = 'thinca/vim-ref'
 repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'wakatime/vim-wakatime'
-if = '''!filereadable($HOME . '/dotfiles/fish/proxy.fish')'''
+if = '''!filereadable($HOME . '/dotfiles/zsh/external.zsh')'''
