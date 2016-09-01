@@ -19,6 +19,18 @@ alias py='python'
 alias tailf='tail -f'
 alias rmdocker="docker rm $(docker ps -aq)"
 
-# z command
-function _Z_precmd { z --add "$(pwd -P)" 61 }
-precmd_functions=($precmd_functions _Z_precmd)
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "rupa/z", use:z.sh
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
