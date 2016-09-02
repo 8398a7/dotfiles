@@ -9,3 +9,4 @@ hi Statement term=bold ctermfg=130 gui=bold guifg=Brown
 hi PreProc term=underline ctermfg=5 gui=underline guifg=Purple
 hi Type term=underline ctermfg=2 gui=bold guifg=SeaGreen
 hi Identifier term=underline ctermfg=6 guifg=DarkCyan
+hi Normal ctermfg=white ctermbg=NONE guifg=grey guibg=NONE

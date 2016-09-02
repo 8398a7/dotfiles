@@ -383,6 +383,7 @@ cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
 
 " ステータス行に現在のgitブランチを表示する
 set statusline+=%{fugitive#statusline()}
+
 " jq {{{
 command! -nargs=? Jq call s:Jq(<f-args>)
 function! s:Jq(...)
@@ -418,4 +419,13 @@ if version >=703
   set foldlevel  =0
 endif
 " }}}
+" }}}
+" indent guides {{{
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
 " }}}
