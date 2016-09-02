@@ -370,7 +370,7 @@ syntax on
 nnoremap <silent> <C-n> :setlocal number! relativenumber!<CR>
 
 " yankをosのclipboardにcopy
-set clipboard+=unnamedplus
+set clipboard=unnamed,unnamedplus
 
 " 保存時に末尾の空白を除去
 autocmd BufWritePre * :%s/\s\+$//ge

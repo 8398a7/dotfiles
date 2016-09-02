@@ -14,7 +14,6 @@ repo = 'itchyny/lightline.vim'
 repo = 'junegunn/fzf'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
-build = '''~/.fzf/install --all'''
 [[plugins]]
 repo = 'jvirtanen/vim-cocoapods'
 [[plugins]]
@@ -60,3 +59,5 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'wakatime/vim-wakatime'
 if = '''!filereadable($HOME . '/dotfiles/zsh/external.zsh')'''
+[[plugins]]
+repo = 'zerowidth/vim-copy-as-rtf'
