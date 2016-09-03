@@ -1,0 +1,3 @@
+psp() {
+  ps -ef | peco
+}
