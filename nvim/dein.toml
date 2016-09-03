@@ -11,10 +11,6 @@ repo = 'haya14busa/incsearch-easymotion.vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 [[plugins]]
-repo = 'junegunn/fzf'
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-[[plugins]]
 repo = 'jvirtanen/vim-cocoapods'
 [[plugins]]
 repo = 'kassio/neoterm'
