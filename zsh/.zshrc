@@ -204,6 +204,7 @@ ${PROMPT_ROLE} "
 # export {{{
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
+export GREP_OPTIONS="--color=auto"
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
