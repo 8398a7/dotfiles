@@ -50,7 +50,7 @@ setupsolarized
 load_file $HOME/google-cloud-sdk/path.zsh.inc
 load_file $HOME/google-cloud-sdk/completion.zsh.inc
 
-case ${OSTYPE} in
+case $OSTYPE in
   # darwin {{{
   darwin*)
     if [ -d $HOME/.anyenv/bin ]; then
