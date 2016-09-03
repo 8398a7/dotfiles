@@ -224,7 +224,6 @@ export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
 # bindkey {{{
-# bindkey "^r" fzf_history_search
-bindkey "^r" peco_select_history
-bindkey "^j" peco_z_search
+bindkey "^r" fzf_select_history
+bindkey "^j" fzf_z_search
 # }}}
