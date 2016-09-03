@@ -11,6 +11,7 @@ if has('vim_starting') && has('reltime')
 endif
 " }}}
 " dein {{{
+set rtp+=~/.zplug/bin
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('~/dotfiles/nvim/dein')
 " dein.vim 本体
