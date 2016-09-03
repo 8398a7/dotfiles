@@ -144,18 +144,33 @@ HISTFILE=$HOME/.zsh_histfile
 # 履歴件数の指定
 HISTSIZE=10000000
 SAVEHIST=10000000
-# 重複した履歴を保存しない
-setopt HIST_IGNORE_DUPS
-# 履歴を共有
-setopt SHARE_HISTORY
-# 余分な空白を削除して履歴を保存
-setopt HIST_REDUCE_BLANKS
-# 入力の途中でもヒストリ検索
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
+# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
+setopt hist_ignore_all_dups
+
+# スペースで始まるコマンド行はヒストリリストから削除
+setopt hist_ignore_space
+
+# ヒストリを呼び出してから実行する間に一旦編集可能
+setopt hist_verify
+
+# 余分な空白は詰めて記録
+setopt hist_reduce_blanks
+
+# 古いコマンドと同じものは無視
+setopt hist_save_no_dups
+
+# historyコマンドは履歴に登録しない
+setopt hist_no_store
+
+# 補完時にヒストリを自動的に展開
+setopt hist_expand
+
+# 履歴をインクリメンタルに追加
+setopt inc_append_history
+
+# インクリメンタルからの検索
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
 # }}}
 # alias {{{
 alias ls="ls -F --color"
