@@ -64,7 +64,9 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'derekwyatt/vim-scala'
-Plug 'wakatime/vim-wakatime'
+if !filereadable($HOME . '/dotfiles/zsh/external.zsh')
+  Plug 'wakatime/vim-wakatime'
+end
 Plug 'elzr/vim-json', { 'for': 'json' }
 call plug#end()
 " }}}
