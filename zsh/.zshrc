@@ -209,6 +209,7 @@ fi
 alias py=python
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
 alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
+alias gr="cd_gitroot"
 # }}}
 # prompt {{{
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
