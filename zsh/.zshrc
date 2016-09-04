@@ -173,6 +173,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 # }}}
 # alias {{{
+alias grep="grep --color=auto"
 alias ls="ls -F --color"
 alias ll="ls -l"
 alias la="ls -a"
@@ -219,7 +220,6 @@ ${PROMPT_ROLE} "
 # export {{{
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
-export GREP_OPTIONS="--color=auto"
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
