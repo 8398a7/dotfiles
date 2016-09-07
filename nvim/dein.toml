@@ -29,6 +29,8 @@ repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+[[plugins]]
 repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
