@@ -6,9 +6,6 @@ repo = 'awetzel/elixir.nvim'
 on_ft = ['elixir']
 build = '''./install.sh'''
 [[plugins]]
-repo = 'basyura/unite-rails'
-on_cmd = ['Unite']
-[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
 [[plugins]]

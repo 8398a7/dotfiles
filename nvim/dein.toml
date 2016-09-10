@@ -33,6 +33,8 @@ repo = 'Shougo/denite.nvim'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 [[plugins]]
+repo = 'basyura/unite-rails'
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
   if dein#util#_is_windows()
