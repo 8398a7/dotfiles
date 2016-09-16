@@ -22,7 +22,7 @@ source ~/.zplug/init.zsh
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 zplug "github/hub", as:command, from:gh-r
 zplug "glidenote/hub-zsh-completion"
-[ -d /usr/local/opt/coreutils/libexec/gnubin ] && export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
@@ -61,6 +61,7 @@ case $OSTYPE in
       eval "$(anyenv init -)"
     fi
     expath /usr/local/sbin
+    expath /usr/local/opt/openssl/bin
     alias ctags=/usr/local/bin/ctags
     # postgres
     export PGDATA=/usr/local/var/postgres
