@@ -26,6 +26,7 @@ expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug "mackerelio/mkr", as:command, from:gh-r
 zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
 zplug "mrowa44/emojify", as:command
 zplug "peco/peco", as:command, from:gh-r
