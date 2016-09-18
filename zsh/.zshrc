@@ -21,7 +21,6 @@ fi
 source ~/.zplug/init.zsh
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 zplug "github/hub", as:command, from:gh-r
-zplug "glidenote/hub-zsh-completion"
 expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
