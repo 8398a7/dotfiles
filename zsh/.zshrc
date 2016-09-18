@@ -215,6 +215,7 @@ alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
 alias gr="cd_gitroot"
 # peco
 alias pss="peco_ssh"
+alias pgs="peco_git_show"
 # }}}
 # prompt {{{
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
