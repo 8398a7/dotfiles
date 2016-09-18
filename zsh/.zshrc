@@ -12,6 +12,7 @@ for function in $HOME/.zsh/functions/*.zsh; do
 done
 # }}}
 load_file $HOME/.zsh/external.zsh
+load_file $HOME/.zsh/secret.zsh
 # zplug {{{
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
