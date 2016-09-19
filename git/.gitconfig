@@ -14,6 +14,11 @@
   interactive = auto
   grep = auto
   default = simple
+[color "diff"]
+  old = 167 normal
+  new = 030 normal
+  context = 240
+  commit = 246 024
 [alias]
   d  = diff
   dc = diff --cached
