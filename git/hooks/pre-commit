@@ -2,5 +2,10 @@
 
 if [ -n ".rubcop.yml" ]; then
   git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs rubocop
-  exit $?
+  cop=$?
+  if [ $cop -eq 1 ]; then
+    git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs rubocop -a
+    git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs git add
+  fi
+  exit $cop
 fi
