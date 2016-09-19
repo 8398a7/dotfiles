@@ -204,7 +204,7 @@ bindkey "^S" history-incremental-search-forward
 # alias {{{
 alias grep="grep --color=auto"
 alias ls="ls -F --color"
-alias ll="k"
+alias ll="ls -al"
 alias la="ls -a"
 alias lr="ls -R"
 alias rb=ruby
