@@ -6,6 +6,8 @@
 #             (> <)
 # rm -f ~/.zcompdump; compinit
 
+# コマンド実行時にコメントを残せるようにする
+setopt interactivecomments
 # load functions {{{
 for function in $HOME/.zsh/functions/*.zsh; do
   source $function
@@ -261,4 +263,5 @@ export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 bindkey "^r" fzf_select_history
 bindkey "^j" fzf_z_search
 bindkey "^t" peco_tree_vim
+bindkey "^o" complete_mackerel_host_ip
 # }}}
