@@ -21,6 +21,7 @@ fi
 
 source ~/.zplug/init.zsh
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
+zplug "b4b4r07/enhancd", use:init.sh
 zplug "github/hub", as:command, from:gh-r
 expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
@@ -71,6 +72,7 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=blue,bold'
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
 # }}}
 setupsolarized
+export ENHANCD_FILTER=fzf
 # }}}
 # The next line updates PATH for the Google Cloud SDK.
 load_file $HOME/google-cloud-sdk/path.zsh.inc
