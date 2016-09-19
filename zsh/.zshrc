@@ -49,6 +49,27 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+# zsh-syntax-highlighting {{{
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+# エイリアスコマンドのハイライト
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+# 存在するパスのハイライト
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+# グロブ
+ZSH_HIGHLIGHT_STYLES[globbing]='none'
+# マッチしない括弧
+ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=red,bold'
+# 括弧の階層
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=blue,bold'
+# カーソルがある場所の括弧にマッチする括弧
+ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
+# }}}
 setupsolarized
 # }}}
 # The next line updates PATH for the Google Cloud SDK.
