@@ -4,6 +4,7 @@
 [core]
   excludesfile = ~/.config/git/ignore
   editor = nvim
+  hooksPath = ~/.config/git/hooks
 [i18n]
   commitencoding = utf-8
 [color]
