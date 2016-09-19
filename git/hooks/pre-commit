@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ -n ".rubcop.yml" ]; then
+  git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs rubocop
+  exit $?
+fi
