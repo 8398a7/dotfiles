@@ -8,5 +8,5 @@ export TMUX_POWERLINE_RCFILE="$HOME/.tmux-powerlinerc"
 export TMUX_POWERLINE_RCFILE_DEFAULT="$HOME/.tmux-powerlinerc.default"
 
 if [ ! -d "$TMUX_POWERLINE_DIR_TEMPORARY" ]; then
-	mkdir "$TMUX_POWERLINE_DIR_TEMPORARY"
+  mkdir "$TMUX_POWERLINE_DIR_TEMPORARY"
 fi
