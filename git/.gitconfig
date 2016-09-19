@@ -23,6 +23,7 @@
   pm = push origin master
   pd = push origin develop
   po = push origin
+  hard = reset --hard HEAD
   remotes = remote -v
   unstage = reset --hard HEAD
   amend = commit --amend
