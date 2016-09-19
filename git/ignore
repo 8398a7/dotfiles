@@ -1,0 +1,23 @@
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# zsh
+*.zwc
+
+# Vim swap files
+*~
+*.swp
+
+# Ruby
+/vendor/bundle
+/vendor/bin
+
+/.envrc
+
+# gtags (GNU Global)
+GTAGS
+GRTAGS
+GPATH
