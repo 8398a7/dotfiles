@@ -227,6 +227,7 @@ alias sdep="bundle exec cap staging deploy"
 alias -g B='"$(git_current_branch_name)"'
 alias gpl='git pull origin "$(git_current_branch_name)"'
 alias gps='git push origin "$(git_current_branch_name)"'
+alias gf="git_fzf"
 if [ -x /usr/local/bin/vim ]; then
   alias vi=/usr/local/bin/vim
   export EDITOR=vim
