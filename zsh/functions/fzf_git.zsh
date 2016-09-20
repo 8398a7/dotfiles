@@ -1,4 +1,4 @@
-git_fzf() {
+fzf_git() {
   if [ "$1" = 'show' ]; then
     # fshow - git commit browser
     # ref: https://github.com/junegunn/fzf/wiki/Examples
