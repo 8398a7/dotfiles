@@ -263,6 +263,6 @@ export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # bindkey {{{
 bindkey "^r" fzf_select_history
 bindkey "^j" fzf_z_search
-bindkey "^t" peco_tree_vim
+bindkey "^t" fzf_tree_vim
 bindkey "^o" complete_mackerel_host_ip
 # }}}
