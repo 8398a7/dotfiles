@@ -30,6 +30,7 @@
   pm = push origin master
   pd = push origin develop
   po = push origin
+  fe = fetch --prune
   hard = reset --hard
   soft = reset --soft
   remotes = remote -v
