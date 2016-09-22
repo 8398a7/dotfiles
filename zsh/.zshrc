@@ -241,6 +241,7 @@ alias py=python
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
 alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
 alias gr="cd_gitroot"
+alias cask_upgrade='for c in `brew cask list`; do ! brew cask info $c | grep -qF "Not installed" || brew cask install $c; done'
 # peco
 alias pss="peco_ssh"
 alias pgs="peco_git_show"
