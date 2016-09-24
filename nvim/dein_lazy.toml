@@ -1,6 +1,6 @@
 [[plugins]]
 repo  = 'vim-coffee-script'
-on_ft = ['coffeescript']
+on_ft = ['coffee']
 [[plugins]]
 repo = 'awetzel/elixir.nvim'
 on_ft = ['elixir']
