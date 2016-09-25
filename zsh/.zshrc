@@ -6,8 +6,6 @@
 #             (> <)
 # rm -f ~/.zcompdump; compinit
 
-# コマンド実行時にコメントを残せるようにする
-setopt interactivecomments
 # load functions {{{
 for function in $HOME/.zsh/functions/*.zsh; do
   source $function
@@ -24,6 +22,7 @@ fi
 source ~/.zplug/init.zsh
 zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
 zplug "b4b4r07/enhancd", use:init.sh
+zplug "b4b4r07/httpstat", as:command, use:'*.sh', rename-to:httpstat
 zplug "github/hub", as:command, from:gh-r
 expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
@@ -124,6 +123,8 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 # リンクへ移動するとき実際のディレクトリへ移動
 setopt CHASE_LINKS
+# コマンド実行時にコメントを残せるようにする
+setopt interactivecomments
 # 大文字小文字を区別しない
 zstyle ":completion:*" matcher-list "m:{a-z}={A-Z}"
 # }}}
