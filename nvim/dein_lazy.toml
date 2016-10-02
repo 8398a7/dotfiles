@@ -18,6 +18,9 @@ on_ft = ['fish']
 repo = 'elixir-lang/vim-elixir'
 on_ft = ['elixir']
 [[plugins]]
+repo  = 'elzr/vim-json'
+on_ft = ['json']
+[[plugins]]
 repo  = 'fatih/vim-go'
 on_ft = ['go']
 [[plugins]]
@@ -33,10 +36,13 @@ on_ft = ['tex']
 repo = 'lervag/vim-latex'
 on_ft = ['tex']
 [[plugins]]
-repo = 'othree/yajs.vim'
+repo = 'othree/es.next.syntax.vim'
 on_ft = ['javascript', 'javascript.jsx']
 [[plugins]]
-repo = 'othree/es.next.syntax.vim'
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
+repo = 'pangloss/vim-javascript'
 on_ft = ['javascript', 'javascript.jsx']
 [[plugins]]
 repo  = 'rhysd/vim-crystal'
@@ -63,5 +69,5 @@ on_ft = ['ruby']
 repo  = 'tpope/vim-rails'
 on_ft = ['ruby']
 [[plugins]]
-repo  = 'elzr/vim-json'
-on_ft = ['json']
+repo = '8398a7/vim-jsx-pretty'
+on_ft = ['javascript', 'javascript.jsx']
