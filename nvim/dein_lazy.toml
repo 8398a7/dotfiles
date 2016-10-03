@@ -69,5 +69,5 @@ on_ft = ['ruby']
 repo  = 'tpope/vim-rails'
 on_ft = ['ruby']
 [[plugins]]
-repo = '8398a7/vim-jsx-pretty'
+repo = 'maxmellon/vim-jsx-pretty'
 on_ft = ['javascript', 'javascript.jsx']
