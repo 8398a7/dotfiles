@@ -9,6 +9,8 @@ if [ "$2" == '' ]; then
       echo "[#${ISSUE_NUMBER}] \c" > $1
     elif echo $ORIGIN | grep -q 'spdly'; then
       echo "${JIRA_PREFIX}-${ISSUE_NUMBER} \c" > $1
+    else
+      echo "[#${ISSUE_NUMBER}] \c" > $1
     fi
   fi
   cat $1.tmp >> $1
