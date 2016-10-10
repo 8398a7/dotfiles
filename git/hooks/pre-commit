@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -r ".rubcop.yml" ]; then
+if [ -r ".rubocop.yml" ]; then
   git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs rubocop
   cop=$?
   if [ $cop -eq 1 ]; then
