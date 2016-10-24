@@ -259,6 +259,7 @@ ${PROMPT_ROLE} "
 # export {{{
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
+expath $HOME/.yarn/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 # }}}
