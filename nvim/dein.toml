@@ -31,6 +31,8 @@ repo = 'Rip-Rip/clang_complete'
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 [[plugins]]
+repo = 'Shougo/neoyank.vim'
+[[plugins]]
 repo = 'Shougo/unite.vim'
 [[plugins]]
 repo = 'basyura/unite-rails'
