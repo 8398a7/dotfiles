@@ -23,13 +23,14 @@ repo = 'nathanaelkane/vim-indent-guides'
 [[plugins]]
 repo = 'neomake/neomake'
 [[plugins]]
+repo = 'nixprime/cpsm'
+build = 'env PY3=ON ./install.sh'
+[[plugins]]
 repo = 'osyo-manga/unite-quickfix'
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
-[[plugins]]
-repo = 'Shougo/denite.nvim'
 [[plugins]]
 repo = 'Shougo/neoyank.vim'
 [[plugins]]
