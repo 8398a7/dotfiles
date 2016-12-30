@@ -25,6 +25,7 @@ repo = 'neomake/neomake'
 [[plugins]]
 repo = 'nixprime/cpsm'
 build = 'env PY3=ON ./install.sh'
+if = '''has('mac')'''
 [[plugins]]
 repo = 'osyo-manga/unite-quickfix'
 [[plugins]]
