@@ -29,6 +29,8 @@ if = '''has('mac')'''
 [[plugins]]
 repo = 'osyo-manga/unite-quickfix'
 [[plugins]]
+repo = 'posva/vim-vue'
+[[plugins]]
 repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
