@@ -216,24 +216,6 @@ map m/ <Plug>(incsearch-migemo-/)
 map m? <Plug>(incsearch-migemo-?)
 map mg/ <Plug>(incsearch-migemo-stay)
 " }}}
-" NERDTree {{{
-" .nameを表示する
-let NERDTreeShowHidden = 1
-" 短縮
-command Rt :NERDTree
-
-" F2でツリーの開閉
-nnoremap <C-f> :NERDTreeToggle<CR>
-
-" ツリーを綺麗に表示
-let g:NERDTreeDirArrows = 0
-
-" バッファがNERDTreeのみになったときNERDTreeをとじる
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" ツリーのディレクトリの色を変更
-hi Directory guifg=#FF0000 ctermfg=red
-" }}}
 " set {{{
 " インデント
 set cindent
@@ -441,4 +423,9 @@ if has('mac')
           \ call system(g:force_alphanumeric_input_command)
   endif
 endif
+" }}}
+" vaffle {{{
+nnoremap <C-f> :Vaffle<CR>
+hi Directory guifg=#FF0000 ctermfg=red
+let g:vaffle_show_hidden_files = 1
 " }}}
