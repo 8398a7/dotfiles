@@ -1,4 +1,4 @@
-git_current_branch() {
+git_current_branch_prompt() {
   local name st color gitdir action
   if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
     return
