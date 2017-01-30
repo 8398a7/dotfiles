@@ -20,26 +20,26 @@ if [[ ! -d ~/.zplug ]]; then
 fi
 
 source ~/.zplug/init.zsh
-zplug "b4b4r07/emoji-cli", on:"stedolan/jq"
+zplug "b4b4r07/emoji-cli", on:"junegunn/fzf-bin", if:'(( $+commands[jq] ))'
 zplug "b4b4r07/enhancd", use:init.sh
-zplug "b4b4r07/httpstat", as:command, use:'*.sh', rename-to:httpstat
+zplug 'b4b4r07/fzf-powertools', as:command, use:'re'
 zplug "github/hub", as:command, from:gh-r
 expath /usr/local/opt/coreutils/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "mackerelio/mkr", as:command, from:gh-r
 zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
 zplug "mrowa44/emojify", as:command
-zplug "peco/peco", as:command, from:gh-r
+zplug "peco/peco", as:command, from:gh-r, frozen:1
 # zplug "rupa/z", use:z.sh
+zplug "reorx/httpstat", as:command, use:'(httpstat).py', rename-to:'$1', if:'(( $+commands[python] ))'
 zplug "knu/z", use:z.sh, defer:2
 zplug "stedolan/jq", from:gh-r, as:command
 zplug "supercrabtree/k"
 zplug "tcnksm/docker-alias", use:zshrc
-zplug "zplug/zplug", hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
@@ -51,7 +51,7 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 # zsh-syntax-highlighting {{{
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # Declare the variable
