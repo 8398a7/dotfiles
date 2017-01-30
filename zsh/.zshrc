@@ -16,7 +16,7 @@ load_file $HOME/.zsh/secret.zsh
 # zplug {{{
 if [[ ! -d ~/.zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.zplug
-  source ~/.zplug/init.zsh && zplug update --self
+  source ~/.zplug/init.zsh
 fi
 
 source ~/.zplug/init.zsh
@@ -37,6 +37,7 @@ zplug "knu/z", use:z.sh, defer:2
 zplug "stedolan/jq", from:gh-r, as:command
 zplug "supercrabtree/k"
 zplug "tcnksm/docker-alias", use:zshrc
+zplug "zplug/zplug", hook-build:'zplug --self-manage'
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
