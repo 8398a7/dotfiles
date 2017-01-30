@@ -34,14 +34,14 @@ zplug "moul/advanced-ssh-config", as:command, from:gh-r, rename-to:assh
 zplug "mrowa44/emojify", as:command
 zplug "peco/peco", as:command, from:gh-r
 # zplug "rupa/z", use:z.sh
-zplug "knu/z", use:z.sh, nice:10
+zplug "knu/z", use:z.sh, defer:2
 zplug "stedolan/jq", from:gh-r, as:command
 zplug "supercrabtree/k"
 zplug "tcnksm/docker-alias", use:zshrc
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
