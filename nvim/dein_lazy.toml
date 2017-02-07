@@ -48,6 +48,9 @@ on_ft = ['javascript', 'javascript.jsx']
 repo  = 'rhysd/vim-crystal'
 on_ft = ['crystal']
 [[plugins]]
+repo  = 'scrooloose/nerdtree'
+on_cmd = ['NERDTreeToggle']
+[[plugins]]
 repo = 'Shougo/denite.nvim'
 on_event = 'BufRead'
 hook_add = '''
