@@ -1,6 +1,14 @@
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 [[plugins]]
+repo = 'glidenote/memolist.vim'
+hook_add = '''
+let g:memolist_gfixgrep             = 1
+let g:memolist_filename_prefix_none = 1
+nnoremap mn  :MemoNew<CR>
+nnoremap mg  :MemoGrep<CR>
+'''
+[[plugins]]
 repo = 'haya14busa/incsearch.vim'
 [[plugins]]
 repo = 'haya14busa/incsearch-migemo.vim'
@@ -29,13 +37,13 @@ if = '''has('mac')'''
 [[plugins]]
 repo = 'osyo-manga/unite-quickfix'
 [[plugins]]
+repo = 'othree/html5.vim'
+[[plugins]]
 repo = 'posva/vim-vue'
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 [[plugins]]
@@ -60,6 +68,8 @@ repo = 'soramugi/auto-ctags.vim'
 repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'thinca/vim-ref'
+[[plugins]]
+repo = 'tpope/vim-markdown'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 [[plugins]]

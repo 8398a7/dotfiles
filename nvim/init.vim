@@ -49,9 +49,6 @@ if dein#check_install()
   call dein#install()
 endif
 " }}}
-" deoplete{{{
-let g:deoplete#enable_at_startup = 1
-" }}}
 " neosnippet {{{
 " My snippets
 let g:neosnippet#snippets_directory = '~/.config/nvim/snippets/'
@@ -82,11 +79,12 @@ let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 
-" unite grepにhw(highway)を使う {{{
-if executable('hw')
-  let g:unite_source_grep_command = 'hw'
-  let g:unite_source_grep_default_opts = '--no-group --no-color'
+" unite grepにpt(the_platinum_searcher)を使う {{{
+if executable('pt')
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
   let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_encoding = 'utf-8'
 endif
 " }}}
 " unite-rails key-mappings {{{
