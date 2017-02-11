@@ -229,6 +229,7 @@ nmap <Down> gj
 nmap <Up> gk
 nmap <Space> <PageDown>
 nmap <C-j> :w<CR>
+nmap <C-j><C-j> :wq<CR>
 
 " tabnew
 nmap <C-b> :tabnew<CR>
@@ -243,10 +244,6 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 imap <C-a> <Home>
 imap <C-e> <End>
-" }}}
-" command {{{
-" vim-rails
-command  Rm :Rmodel
 " }}}
 " filetype {{{
 filetype on
