@@ -56,29 +56,29 @@ depends = ['neomru.vim']
 on_event = 'BufRead'
 hook_add = '''
 hi deniteMatchedChar ctermfg=5 guifg=SlateBlue
+nmap <silent> ,r :<C-u>Denite file_rec<CR>
+nmap <silent> ,g :<C-u>Denite grep<CR>
+nmap <silent> ,y :<C-u>Denite neoyank<CR>
 nmap <silent> <C-u><C-t> :<C-u>Denite filetype<CR>
-nmap <silent> <C-u><C-p> :<C-u>Denite file_rec<CR>
 nmap <silent> <C-u><C-j> :<C-u>Denite line<CR>
-nmap <silent> <C-u><C-g> :<C-u>Denite grep<CR>
 nmap <silent> <C-u><C-]> :<C-u>DeniteCursorWord grep<CR>
 nmap <silent> <C-u><C-u> :<C-u>Denite file_mru<CR>
-nmap <silent> <C-u><C-y> :<C-u>Denite neoyank<CR>
 nmap <silent> <C-u><C-r> :<C-u>Denite -resume<CR>
 nmap <silent> <C-u><C-b> :<C-u>Denite buffer<CR>
 nmap <silent> <C-u>; :<C-u>Denite -resume -immediately -select=+1<CR>
 nmap <silent> <C-u>- :<C-u>Denite -resume -immediately -select=-1<CR>
 nmap <silent> <C-u><C-d> :<C-u>call denite#start([{'name': 'file_rec', 'args': ['~/dotfiles']}])<CR>
 nmap ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
-nmap <silent> ,dc :<C-u>Denite -path=`getcwd()`/app/controllers        file_rec<CR>
-nmap <silent> ,dd :<C-u>Denite -path=`getcwd()`/db                     file_rec<CR>
-nmap <silent> ,dh :<C-u>Denite -path=`getcwd()`/app/helpers            file_rec<CR>
-nmap <silent> ,di :<C-u>Denite -path=`getcwd()`/config/initializers    file_rec<CR>
-nmap <silent> ,dj :<C-u>Denite -path=`getcwd()`/app/assets/javascripts file_rec<CR>
-nmap <silent> ,dm :<C-u>Denite -path=`getcwd()`/app/models             file_rec<CR>
-nmap <silent> ,ds :<C-u>Denite -path=`getcwd()`/app/assets/stylesheets file_rec<CR>
-nmap <silent> ,dt :<C-u>Denite -path=`getcwd()`/spec                   file_rec<CR>
-nmap <silent> ,dv :<C-u>Denite -path=`getcwd()`/app/views              file_rec<CR>
-nmap <silent> ,dg :<C-u>Denite                                         file_rec/git<CR>
+nmap <silent> ,rc :<C-u>Denite -path=`getcwd()`/app/controllers        file_rec<CR>
+nmap <silent> ,rd :<C-u>Denite -path=`getcwd()`/db                     file_rec<CR>
+nmap <silent> ,rh :<C-u>Denite -path=`getcwd()`/app/helpers            file_rec<CR>
+nmap <silent> ,ri :<C-u>Denite -path=`getcwd()`/config/initializers    file_rec<CR>
+nmap <silent> ,rj :<C-u>Denite -path=`getcwd()`/app/assets/javascripts file_rec<CR>
+nmap <silent> ,rm :<C-u>Denite -path=`getcwd()`/app/models             file_rec<CR>
+nmap <silent> ,rs :<C-u>Denite -path=`getcwd()`/app/assets/stylesheets file_rec<CR>
+nmap <silent> ,rt :<C-u>Denite -path=`getcwd()`/spec                   file_rec<CR>
+nmap <silent> ,rv :<C-u>Denite -path=`getcwd()`/app/views              file_rec<CR>
+nmap <silent> ,git :<C-u>Denite                                         file_rec/git<CR>
 '''
 hook_post_source = '''
 call denite#custom#option('default', 'prompt', '>')

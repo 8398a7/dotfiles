@@ -71,51 +71,6 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 " }}}
-" Unite {{{
-" insert modeで開始
-let g:unite_enable_start_insert = 1
-
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-
-" unite grepにpt(the_platinum_searcher)を使う {{{
-if executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
-  let g:unite_source_grep_encoding = 'utf-8'
-endif
-" }}}
-" unite-rails key-mappings {{{
-nnoremap ,rc :<C-u>Unite rails/controller<CR>
-nnoremap ,rm :<C-u>Unite rails/model<CR>
-nnoremap ,rv :<C-u>Unite rails/view<CR>
-nnoremap ,rh :<C-u>Unite rails/helper<CR>
-nnoremap ,rs :<C-u>Unite rails/stylesheet<CR>
-nnoremap ,rj :<C-u>Unite rails/javascript<CR>
-nnoremap ,rg :<C-u>Unite rails/gemfile<CR>
-nnoremap ,rd :<C-u>Unite rails/db<CR>
-" }}}
-let ignorepattern = 'bundle/\|node_modules/\|bower_components/'
-call unite#custom#source('file_rec/async', 'ignore_pattern', ignorepattern)
-call unite#custom#source('file_rec/neovim', 'ignore_pattern', ignorepattern)
-call unite#custom#source('file_rec/git', 'ignore_pattern', ignorepattern)
-" カーソル位置の単語をgrep検索
-nmap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
-" grep検索結果の再呼出
-nmap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
-" ファイル検索
-nmap <silent> ,e  :<C-u>Unite file_rec/async<CR>
-" neovim検索
-nmap <silent> ,n  :<C-u>Unite file_rec/neovim<CR>
-" git検索
-nmap <silent> ,i  :<C-u>Unite file_rec/git:--cached:--others:--exclude-standard<CR>
-" grep検索
-nmap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-" location_list
-nmap <silent>,l :<C-u>Unite location_list<CR>
-" }}}
 " golang {{{
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
