@@ -35,8 +35,6 @@ repo = 'nixprime/cpsm'
 build = 'env PY3=ON ./install.sh'
 if = '''has('mac')'''
 [[plugins]]
-repo = 'osyo-manga/unite-quickfix'
-[[plugins]]
 repo = 'othree/html5.vim'
 [[plugins]]
 repo = 'posva/vim-vue'
@@ -44,10 +42,6 @@ repo = 'posva/vim-vue'
 repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
-[[plugins]]
-repo = 'Shougo/unite.vim'
-[[plugins]]
-repo = 'basyura/unite-rails'
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
