@@ -273,6 +273,7 @@ nmap k gk
 nmap <Down> gj
 nmap <Up> gk
 nmap <Space> <PageDown>
+nmap <C-j> :w<CR>
 
 " tabnew
 nmap <C-b> :tabnew<CR>
