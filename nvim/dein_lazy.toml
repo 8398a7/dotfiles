@@ -69,15 +69,15 @@ nmap <silent> <C-u>; :<C-u>Denite -resume -immediately -select=+1<CR>
 nmap <silent> <C-u>- :<C-u>Denite -resume -immediately -select=-1<CR>
 nmap <silent> <C-u><C-d> :<C-u>call denite#start([{'name': 'file_rec', 'args': ['~/dotfiles']}])<CR>
 nmap ml :<C-u>call denite#start([{'name': 'file_rec', 'args': [g:memolist_path]}])<CR>
-nmap <silent> ,rc :<C-u>Denite -path=`getcwd()`/app/controllers        file_rec<CR>
-nmap <silent> ,rd :<C-u>Denite -path=`getcwd()`/db                     file_rec<CR>
-nmap <silent> ,rh :<C-u>Denite -path=`getcwd()`/app/helpers            file_rec<CR>
-nmap <silent> ,ri :<C-u>Denite -path=`getcwd()`/config/initializers    file_rec<CR>
-nmap <silent> ,rj :<C-u>Denite -path=`getcwd()`/app/assets/javascripts file_rec<CR>
-nmap <silent> ,rm :<C-u>Denite -path=`getcwd()`/app/models             file_rec<CR>
-nmap <silent> ,rs :<C-u>Denite -path=`getcwd()`/app/assets/stylesheets file_rec<CR>
-nmap <silent> ,rt :<C-u>Denite -path=`getcwd()`/spec                   file_rec<CR>
-nmap <silent> ,rv :<C-u>Denite -path=`getcwd()`/app/views              file_rec<CR>
+nmap <silent> ,rc :<C-u>Denite -path=`husq#git#root()`/app/controllers        file_rec<CR>
+nmap <silent> ,rd :<C-u>Denite -path=`husq#git#root()`/db                     file_rec<CR>
+nmap <silent> ,rh :<C-u>Denite -path=`husq#git#root()`/app/helpers            file_rec<CR>
+nmap <silent> ,ri :<C-u>Denite -path=`husq#git#root()`/config/initializers    file_rec<CR>
+nmap <silent> ,rj :<C-u>Denite -path=`husq#git#root()`/app/assets/javascripts file_rec<CR>
+nmap <silent> ,rm :<C-u>Denite -path=`husq#git#root()`/app/models             file_rec<CR>
+nmap <silent> ,rs :<C-u>Denite -path=`husq#git#root()`/app/assets/stylesheets file_rec<CR>
+nmap <silent> ,rt :<C-u>Denite -path=`husq#git#root()`/spec                   file_rec<CR>
+nmap <silent> ,rv :<C-u>Denite -path=`husq#git#root()`/app/views              file_rec<CR>
 nmap <silent> ,git :<C-u>Denite                                         file_rec/git<CR>
 '''
 hook_post_source = '''
