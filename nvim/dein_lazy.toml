@@ -105,6 +105,9 @@ let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'tag']
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.ruby = ['[^. *\t]\.\w*','\h\w*::']
+imap <expr><tab> pumvisible() ? "\<C-n>" :
+  \ neosnippet#expandable_or_jumpable() ?
+  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
 '''
 [[plugins]]
 repo = 'Shougo/neomru.vim'
@@ -114,7 +117,17 @@ let g:neomru#file_mru_limit = 10000
 '''
 [[plugins]]
 repo = 'Shougo/neosnippet'
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
 on_i = 1
+hook_source = '''
+  imap <C-k> <Plug>(neosnippet_expand_or_jump)
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k> <Plug>(neosnippet_expand_target)
+  if has('conceal')
+    set conceallevel=2 concealcursor=niv
+  endif
+'''
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 on_i = 1
