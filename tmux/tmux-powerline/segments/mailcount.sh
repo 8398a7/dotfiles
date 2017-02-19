@@ -153,7 +153,7 @@ __count_gmail() {
 	count=$(cat $tmp_file)
 	echo "$count"
 	return 0;
-} 
+}
 
 __count_maildir() {
 	if [ ! -d "$TMUX_POWERLINE_SEG_MAILCOUNT_MAILDIR_INBOX" ]; then
