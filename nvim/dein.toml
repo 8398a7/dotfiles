@@ -39,6 +39,8 @@ repo = 'othree/html5.vim'
 [[plugins]]
 repo = 'posva/vim-vue'
 [[plugins]]
+repo = 'prabirshrestha/async.vim'
+[[plugins]]
 repo = 'rhysd/clever-f.vim'
 [[plugins]]
 repo = 'Rip-Rip/clang_complete'
