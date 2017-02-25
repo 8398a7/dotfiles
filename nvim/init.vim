@@ -383,17 +383,19 @@ hi IndentGuidesEven ctermbg=darkgrey
 " switch to alphanumeric character when leaving insert mode(osx only) {{{
 " brew tap lutzifer/homebrew-tap
 " brew install keyboardSwitcher
-if executable('keyboardSwitcher')
-  augroup SwitchIME
-    autocmd!
-    autocmd InsertLeave * call async#job#start(system('keyboardSwitcher select ABC'), {})
-  augroup END
-else
-  let s:keycode_jis_eisuu = 102
-  let g:cmd = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "'"
-  augroup SwitchIME
-    autocmd!
-    autocmd InsertLeave * call async#job#start(system(s:cmd), {})
-  augroup END
+if has('mac')
+  if executable('keyboardSwitcher')
+    augroup SwitchIME
+      autocmd!
+      autocmd InsertLeave * call async#job#start(system('keyboardSwitcher select ABC'), {})
+    augroup END
+  else
+    let s:keycode_jis_eisuu = 102
+    let g:cmd = "osascript -e 'tell application \"System Events\" to key code " . s:keycode_jis_eisuu . "'"
+    augroup SwitchIME
+      autocmd!
+      autocmd InsertLeave * call async#job#start(system(s:cmd), {})
+    augroup END
+  endif
 endif
 " }}}
