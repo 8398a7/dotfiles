@@ -263,6 +263,7 @@ expath $GOPATH/bin
 expath $HOME/.yarn/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
+eval "$(direnv hook zsh)"
 # }}}
 # bindkey {{{
 bindkey "^r" fzf_select_history
