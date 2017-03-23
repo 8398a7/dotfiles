@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+config = File.read("#{ENV['HOME']}/.ssh/config")
+
+hash = {}
+flag = false
+key = nil
+config.each_line do |line|
+  next if !flag && !line.include?('Host')
+  if line.include?('HostName')
+    value = line.split[1].chomp
+    hash[key] = value
+    flag = false
+    next
+  end
+
+  if line.include?('Host')
+    key = line.split[1].chomp
+    flag = true
+  end
+end
+
+hash.each { |k, v| puts "#{k} ##{v}" }

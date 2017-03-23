@@ -5,6 +5,8 @@
 #      '----- (O.o)
 #             (> <)
 # rm -f ~/.zcompdump; compinit
+stty stop undef
+stty start undef
 
 # load functions {{{
 for function in $HOME/.zsh/functions/*.zsh; do
@@ -258,6 +260,7 @@ PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
+export PATH=$HOME/.zsh/bin:$PATH
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
 expath $HOME/.yarn/bin
@@ -270,4 +273,6 @@ bindkey "^r" fzf_select_history
 bindkey "^j" fzf_z_search
 bindkey "^t" fzf_tree_vim
 bindkey "^o" complete_mackerel_host_ip
+bindkey "^s" fzf_ssh
+bindkey "^e" emoji::cli
 # }}}
