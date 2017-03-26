@@ -274,5 +274,5 @@ bindkey "^j" fzf_z_search
 bindkey "^t" fzf_tree_vim
 bindkey "^o" complete_mackerel_host_ip
 bindkey "^s" fzf_ssh
-bindkey "^e" emoji::cli
+# bindkey "^e" emoji::cli
 # }}}
