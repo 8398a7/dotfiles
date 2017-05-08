@@ -24,6 +24,9 @@ on_ft = ['json']
 repo  = 'fatih/vim-go'
 on_ft = ['go']
 [[plugins]]
+repo = 'flowtype/vim-flow'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
 repo = 'itmammoth/run-rspec.vim'
 on_ft = ['ruby']
 [[plugins]]
