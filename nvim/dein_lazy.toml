@@ -26,6 +26,9 @@ on_ft = ['go']
 [[plugins]]
 repo = 'flowtype/vim-flow'
 on_ft = ['javascript', 'javascript.jsx']
+hook_add = '''
+let g:flow#flowpath = '/usr/local/bin/flow'
+'''
 [[plugins]]
 repo = 'itmammoth/run-rspec.vim'
 on_ft = ['ruby']
