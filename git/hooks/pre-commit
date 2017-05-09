@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if [ -r ".rubocop.yml" ]; then
-  git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs bundle exec rubocop
-  cop=$?
-  if [ $cop -eq 1 ]; then
-    cached=`git diff --cached --name-only --diff-filter=AM | grep '\.rb$'`
-    echo $cached | xargs bundle exec rubocop -a
-    echo $cached | xargs git add
-  fi
-  exit $cop
-fi
+# if [ -r ".rubocop.yml" ]; then
+#   git diff --cached --name-only --diff-filter=AM | grep '\.rb$' | xargs bundle exec rubocop
+#   cop=$?
+#   if [ $cop -eq 1 ]; then
+#     cached=`git diff --cached --name-only --diff-filter=AM | grep '\.rb$'`
+#     echo $cached | xargs bundle exec rubocop -a
+#     echo $cached | xargs git add
+#   fi
+#   exit $cop
+# fi
