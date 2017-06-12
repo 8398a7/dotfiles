@@ -1,0 +1,49 @@
+{
+    "workbench.colorTheme": "Material Night Eighties",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-e>": false,
+        "<C-f>": false,
+        "<C-b>": false,
+        "<C-n>": false,
+        "<C-p>": false
+    },
+    "vim.statusBarColorControl": true,
+    "vim.statusBarColors": {
+        "normal": "#005f5f",
+        "insert": "#5f0000",
+        "visual": "#5f00af",
+        "visualline": "#005f87",
+        "visualblock": "#86592d",
+        "replace": "#000000"
+    },
+    "vim.insertModeKeyBindings": [],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#5f0000",
+        "statusBar.noFolderBackground": "#5f0000",
+        "statusBar.debuggingBackground": "#5f0000"
+    },
+    "editor.lineNumbers": "relative",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.welcome.enabled": false,
+    "files.trimTrailingWhitespace": true
+}
