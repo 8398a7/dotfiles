@@ -22,7 +22,6 @@
       ]
     disabledPackages: [
       "japanese-wrap"
-      "tree-view"
     ]
     telemetryConsent: "limited"
     themes: [
@@ -36,11 +35,59 @@
     userId: "73458d85-4cdc-5577-5847-7005986ff883"
   "japanese-wrap":
     characterWidth: {}
+  "linter-flow": {}
+  "linter-ui-default":
+    panelHeight: 64
+    showPanel: true
+    showProviderName: true
   nuclide:
+    "nuclide-buck":
+      compileErrorDiagnostics: false
+      suggestTaskRunner: false
+    "nuclide-clang":
+      enableDefaultFlags: false
+    "nuclide-ctags":
+      disableWithHack: false
+    "nuclide-diagnostics-ui":
+      showDiagnosticTraces: true
+    "nuclide-file-tree":
+      allowKeyboardPrefixNavigation: false
+      hideIgnoredNames: false
+      showOpenFiles: false
+      showUncommittedChanges: false
+    "nuclide-flow":
+      canUseFlowBin: true
+      enableReferencesHighlight: true
+    "nuclide-hack": {}
     "nuclide-home":
+      showChangelogs: false
       showHome: false
-  "relative-numbers":
-    showAbsoluteNumbers: true
+    "nuclide-notifications":
+      onlyNativeFriendly: false
+    "nuclide-objc":
+      enableAutomaticSquareBracketInsertion: false
+    "nuclide-ocaml":
+      enableDiagnostics: false
+    "nuclide-python":
+      autocompleteArguments: false
+      enableLinting: false
+    "nuclide-quick-open":
+      useSelection: false
+    "nuclide-related-files":
+      openInNextPane: false
+    "nuclide-remote-atom":
+      shouldNotifyWhenCommandLineIsWaitingOnFile: false
+    "nuclide-remote-projects":
+      confirmServerActionOnLastProject: false
+      shutdownServerAfterDisconnection: false
+    "nuclide-type-coverage": {}
+    "nuclide-vcs-log":
+      showDifferentialRevision: false
+  "relative-numbers": {}
   "tree-view": {}
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
   welcome:
     showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
