@@ -1,0 +1,12 @@
+WakaTime.vscode-wakatime
+alefragnani.project-manager
+dbaeumer.vscode-eslint
+eamodio.gitlens
+joshpeng.sublime-babel-vscode
+misogi.ruby-rubocop
+ms-vscode.Theme-MaterialKit
+rebornix.Ruby
+robertohuertasm.vscode-icons
+saikou9901.evilinspector
+shardulm94.trailing-spaces
+vscodevim.vim
