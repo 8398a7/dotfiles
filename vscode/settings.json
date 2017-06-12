@@ -38,12 +38,14 @@
     },
     "vim.insertModeKeyBindings": [],
     "workbench.colorCustomizations": {
-        "statusBar.background": "#5f0000",
-        "statusBar.noFolderBackground": "#5f0000",
-        "statusBar.debuggingBackground": "#5f0000"
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f"
     },
     "editor.lineNumbers": "relative",
     "workbench.iconTheme": "vscode-icons",
     "workbench.welcome.enabled": false,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "editor.renderIndentGuides": true,
+    "terminal.integrated.fontFamily": "'Ricty For Powerline'"
 }
