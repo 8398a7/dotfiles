@@ -52,5 +52,6 @@
   diff = diff-highlight | less
 [diff]
   compactionHeuristic = true
+  algorithm = histogram
 [include]
   path = ~/.config/git/.gitconfig.local
