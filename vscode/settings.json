@@ -30,7 +30,7 @@
     "vim.statusBarColorControl": true,
     "vim.insertModeKeyBindings": [],
     "editor.lineNumbers": "relative",
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
     "workbench.welcome.enabled": false,
     "files.trimTrailingWhitespace": true,
     "editor.renderIndentGuides": true,
