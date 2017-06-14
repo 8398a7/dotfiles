@@ -34,5 +34,8 @@
     "workbench.welcome.enabled": false,
     "files.trimTrailingWhitespace": true,
     "editor.renderIndentGuides": true,
-    "terminal.integrated.fontFamily": "'Ricty For Powerline'"
+    "terminal.integrated.fontFamily": "'Ricty For Powerline'",
+    "window.zoomLevel": 0,
+    "eslint.autoFixOnSave": true,
+    "editor.tabSize": 2
 }
