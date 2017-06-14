@@ -26,6 +26,8 @@
   ch = checkout
   br = branch
   ad = add -A
+  coa = commit -S --amend
+  reco = rebase --continue
   cm = commit -S -m
   pm = push origin master
   pd = push origin develop
