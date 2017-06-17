@@ -19,9 +19,9 @@ endif
 " }}}
 " vim-plug {{{
 call plug#begin('~/.vim/plugged')
-Plug 'L9'
-Plug 'FuzzyFinder'
-Plug 'vim-coffee-script', { 'for': 'coffee' }
+Plug 'vim-scripts/L9'
+Plug 'vim-scripts/FuzzyFinder'
+Plug 'vim-scripts/vim-coffee-script', { 'for': 'coffee' }
 Plug 'basyura/unite-rails'
 Plug 'bfontaine/Brewfile.vim'
 Plug 'cespare/vim-toml'
