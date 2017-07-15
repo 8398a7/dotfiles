@@ -37,5 +37,7 @@
     "terminal.integrated.fontFamily": "'Ricty For Powerline'",
     "window.zoomLevel": 0,
     "eslint.autoFixOnSave": true,
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "tslint.autoFixOnSave": true,
+    "editor.autoIndent": true
 }
