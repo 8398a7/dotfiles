@@ -1,6 +1,6 @@
 [user]
-  name = 839
-  email = 8398a7@gmail.com
+	name = 839
+	email = 8398a7@gmail.com
 [core]
   excludesfile = ~/.config/git/ignore
   editor = nvim
@@ -45,9 +45,10 @@
 [push]
   default = matching
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
+  process = git-lfs filter-process
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
