@@ -264,6 +264,7 @@ export PATH=$HOME/.zsh/bin:$PATH
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
 expath $HOME/.yarn/bin
+expath $HOME/flutter/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 eval "$(direnv hook zsh)"
@@ -275,3 +276,10 @@ bindkey "^o" complete_mackerel_host_ip
 bindkey "^s" fzf_ssh
 # bindkey "^e" emoji::cli
 # }}}
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/sls.zsh
