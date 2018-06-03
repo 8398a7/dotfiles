@@ -1,8 +1,2 @@
 // Place your key bindings in this file to overwrite the defaults
-[
-    {
-        "key": "ctrl+j",
-        "command": "extension.vim_escape",
-        "when": "editorTextFocus"
-    }
-]
+[]

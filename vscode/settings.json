@@ -39,5 +39,22 @@
     "eslint.autoFixOnSave": true,
     "editor.tabSize": 2,
     "tslint.autoFixOnSave": true,
-    "editor.autoIndent": true
+    "editor.autoIndent": true,
+    "extensions.ignoreRecommendations": true,
+    "material-icon-theme.showUpdateMessage": false,
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": false
+    },
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.keymap": "chorded",
+    "gitlens.historyExplorer.enabled": true
 }
