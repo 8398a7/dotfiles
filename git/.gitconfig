@@ -1,6 +1,6 @@
 [user]
-	name = 839
-	email = 8398a7@gmail.com
+  name = 839
+  email = 8398a7@gmail.com
 [core]
   excludesfile = ~/.config/git/ignore
   editor = nvim
