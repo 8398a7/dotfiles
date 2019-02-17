@@ -3,7 +3,7 @@
   email = 8398a7@gmail.com
 [core]
   excludesfile = ~/.config/git/ignore
-  editor = nvim
+  editor = vim
   hooksPath = ~/.config/git/hooks
 [i18n]
   commitencoding = utf-8
