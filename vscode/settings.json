@@ -54,6 +54,9 @@
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": false
     },
+    "files.associations": {
+        ".envrc": "shellscript"
+    },
     "explorer.confirmDragAndDrop": false,
     "gitlens.keymap": "chorded",
     "gitlens.historyExplorer.enabled": true
