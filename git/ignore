@@ -28,3 +28,4 @@ Keyboard
 yarn-error.log
 
 .idea/
+.vscode/
