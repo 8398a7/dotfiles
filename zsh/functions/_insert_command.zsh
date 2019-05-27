@@ -1,4 +1,4 @@
-_peco_insert_command() {
+_insert_command() {
   if zle; then
     BUFFER=$1
     CURSOR=$#BUFFER
