@@ -58,3 +58,5 @@
   algorithm = histogram
 [include]
   path = ~/.config/git/.gitconfig.local
+[diff "sopsdiffer"]
+  textconv = sops -d
