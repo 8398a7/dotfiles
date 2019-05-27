@@ -55,7 +55,8 @@
         "suppressWelcomeNotice": false
     },
     "files.associations": {
-        ".envrc": "shellscript"
+        ".envrc": "shellscript",
+        ".envrc.local": "shellscript"
     },
     "explorer.confirmDragAndDrop": false,
     "gitlens.keymap": "chorded",
