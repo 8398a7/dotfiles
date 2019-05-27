@@ -45,6 +45,9 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "jonmosco/kube-ps1"
+zplug "ahmetb/kubectx", as:command, use:kubectx
+zplug "ahmetb/kubectx", as:command, use:kubens
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -52,7 +55,6 @@ if ! zplug check --verbose; then
     echo; zplug install
   fi
 fi
-
 # Then, source plugins and add commands to $PATH
 zplug load
 # zsh-syntax-highlighting {{{
@@ -250,13 +252,15 @@ alias pss="peco_ssh"
 alias pgs="peco_git_show"
 # }}}
 # prompt {{{
+source $HOME/.zplug/repos/jonmosco/kube-ps1/kube-ps1.sh
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
 PROMPT_GIT='`git_current_branch_prompt`'
 USER_HOST="$(fg256 075 '%n')${YELLOW_B}@${RESET}$(fg256 120 '%m')"
 PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
-PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}
+K8S_PROMPT='$(kube_ps1)'
+PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} ${K8S_PROMPT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
