@@ -27,6 +27,7 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug 'b4b4r07/fzf-powertools', as:command, use:'re'
 zplug "github/hub", as:command, from:gh-r
 expath /usr/local/opt/coreutils/libexec/gnubin
+expath $HOME/.go/src/github.com/8398a7/tools/bin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
