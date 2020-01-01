@@ -9,6 +9,6 @@ environment
   clean       clean dotfiles
 
 vscode
-  install-vscode-extensions  install vscode extensions
-  export-vscode-extensions  export vscode extensions
+  install-extensions  install vscode extensions
+  export-extensions  export vscode extensions
 ```
