@@ -1,7 +1,10 @@
 # dotfiles
 
-## install
+```bash
+$ > make
+Usage: make <target>
 
-```sh
-$ make install
+environment
+  install     install dotfiles
+  clean       clean dotfiles
 ```
