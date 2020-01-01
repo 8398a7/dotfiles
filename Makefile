@@ -9,3 +9,8 @@ install: ## install dotfiles
 	./scripts/install.sh
 clean: ## clean dotfiles
 	./scripts/clean.sh
+##@ vscode
+install-vscode-extensions: ## install vscode extensions
+	./scripts/install-vscode-extensions.sh
+export-vscode-extensions: ## export vscode extensions
+	./scripts/export-vscode-extensions.sh
