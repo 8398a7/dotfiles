@@ -265,7 +265,6 @@ PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} ${K8S_PROMPT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
-export PATH=$HOME/.zsh/bin:$PATH
 export GOPATH=$HOME/.go
 expath $GOPATH/bin
 expath $HOME/.yarn/bin
