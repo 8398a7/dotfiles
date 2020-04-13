@@ -33,7 +33,7 @@ zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "mackerelio/mkr", as:command, from:gh-r
 zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:'pt'
-zplug "motemen/ghq", as:command, from:gh-r, rename-to:ghq
+zplug "x-motemen/ghq", as:command, from:gh-r, rename-to:ghq
 zplug "mrowa44/emojify", as:command
 zplug "peco/peco", as:command, from:gh-r, frozen:1
 # zplug "rupa/z", use:z.sh
@@ -89,8 +89,7 @@ load_file $HOME/google-cloud-sdk/completion.zsh.inc
 case $OSTYPE in
   # darwin {{{
   darwin*)
-    if [ -d $HOME/.anyenv/bin ]; then
-      export PATH=$HOME/.anyenv/bin:$PATH
+    if [ -d $HOME/.anyenv ]; then
       eval "$(anyenv init -)"
     fi
     expath /usr/local/sbin
@@ -272,6 +271,7 @@ expath $HOME/flutter/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 eval "$(direnv hook zsh)"
+export CLOUDSDK_PYTHON=python3
 # }}}
 # bindkey {{{
 bindkey "^r" fzf_select_history
@@ -280,10 +280,3 @@ bindkey "^o" complete_mackerel_host_ip
 bindkey "^s" fzf_ssh
 # bindkey "^e" emoji::cli
 # }}}
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/husq/.ghq/github.com/8398a7/skch/serverless/skchCrawl/node_modules/tabtab/.completions/sls.zsh
