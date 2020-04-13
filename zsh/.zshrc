@@ -265,7 +265,7 @@ PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} ${K8S_PROMPT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
-export GOPATH=$HOME/.go
+export GOPATH=$HOME/go
 expath $GOPATH/bin
 expath $HOME/.yarn/bin
 expath $HOME/flutter/bin
