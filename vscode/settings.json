@@ -2,6 +2,7 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "editor.lineNumbers": "relative",
+  "editor.renderWhitespace": "boundary",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.trimFinalNewlines": true,
