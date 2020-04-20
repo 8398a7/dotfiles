@@ -23,3 +23,7 @@ ln -s $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 rm -f $HOME/.zsh $HOME/.zshrc
 ln -s $HOME/dotfiles/zsh $HOME/.zsh
 ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
+
+# for vscode
+rm -f $HOME/Library/Application\ Support/Code/User/settings.json
+ln -s $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
