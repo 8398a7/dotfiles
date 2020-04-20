@@ -2,7 +2,12 @@
 
 # for git
 rm -rf $HOME/.config/git
+mkdir $HOME/.config || true
 ln -s $HOME/dotfiles/git $HOME/.config/git
+rm -f $HOME/.gitconfig
+ln -s $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
+rm -f /usr/local/bin/diff-highlight
+ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
 
 # for tmux
 rm -f $HOME/.tmux $HOME/.tmux.conf
