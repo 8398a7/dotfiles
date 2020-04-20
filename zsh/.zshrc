@@ -27,7 +27,6 @@ zplug "b4b4r07/enhancd", use:init.sh
 zplug 'b4b4r07/fzf-powertools', as:command, use:'re'
 zplug "github/hub", as:command, from:gh-r
 expath /usr/local/opt/coreutils/libexec/gnubin
-expath $HOME/go/src/github.com/8398a7/tools/bin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
@@ -39,6 +38,7 @@ zplug "peco/peco", as:command, from:gh-r, frozen:1
 # zplug "rupa/z", use:z.sh
 zplug "reorx/httpstat", as:command, use:'(httpstat).py', rename-to:'$1', if:'(( $+commands[python] ))'
 zplug "knu/z", use:z.sh, defer:2
+zplug "sharkdp/bat", from:gh-r, as:command
 zplug "stedolan/jq", from:gh-r, as:command
 zplug "supercrabtree/k"
 zplug "tcnksm/docker-alias", use:zshrc
@@ -82,6 +82,7 @@ ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
 setupsolarized
 export ENHANCD_FILTER=fzf
 # }}}
+
 # The next line updates PATH for the Google Cloud SDK.
 load_file $HOME/google-cloud-sdk/path.zsh.inc
 load_file $HOME/google-cloud-sdk/completion.zsh.inc
@@ -94,7 +95,6 @@ case $OSTYPE in
     fi
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
-    alias ctags=/usr/local/bin/ctags
     # postgres
     export PGDATA=/usr/local/var/postgres
     alias psqlstart="pg_ctl -l /usr/local/var/postgres/server.log start"
@@ -103,11 +103,6 @@ case $OSTYPE in
     alias hfon="defaults write com.apple.finder AppleShowAllFiles true|killall Finder"
     # # hidden hidden-files
     alias hfoff="defaults write com.apple.finder AppleShowAllFiles false|killall Finder"
-    alias tailf='tail -f'
-    ### Added by the Heroku Toolbelt
-    expath /usr/local/heroku/bin
-    # added by travis gem
-    [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
     ;;
   # }}}
   linux*)
@@ -211,12 +206,16 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 # }}}
 # alias {{{
+alias rb=ruby
+alias vi=vim
+alias py=python
+alias cat='bat -p'
+alias tailf='tail -f'
 alias grep="grep --color=auto"
 alias ls="ls -F --color"
 alias ll="ls -al"
 alias la="ls -a"
 alias lr="ls -R"
-alias rb=ruby
 alias gst="git status"
 alias gch="git checkout"
 alias gbr="git branch"
@@ -235,15 +234,6 @@ alias -g B='"$(git_current_branch_name)"'
 alias gpl="git_pull_and_pull"
 alias gps='git push origin "$(git_current_branch_name)"'
 alias gf="fzf_git"
-if [ -x /usr/local/bin/vim ]; then
-  alias vi=/usr/local/bin/vim
-  export EDITOR=vim
-fi
-if type nvim > /dev/null; then
-  alias vim=nvim
-  export EDITOR=nvim
-fi
-alias py=python
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
 alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
 alias gr="cd_gitroot"
@@ -252,7 +242,7 @@ alias pss="peco_ssh"
 alias pgs="peco_git_show"
 # }}}
 # prompt {{{
-source $HOME/.zplug/repos/jonmosco/kube-ps1/kube-ps1.sh
+load_file $HOME/.zplug/repos/jonmosco/kube-ps1/kube-ps1.sh
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
@@ -266,12 +256,15 @@ ${PROMPT_ROLE} "
 # export {{{
 export GOPATH=$HOME/go
 expath $GOPATH/bin
+expath $GOPATH/$(cat $HOME/.anyenv/envs/goenv/version)/bin
+expath $GOPATH/src/github.com/8398a7/tools/bin
 expath $HOME/.yarn/bin
 expath $HOME/flutter/bin
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 eval "$(direnv hook zsh)"
 export CLOUDSDK_PYTHON=python3
+export EDITOR=vim
 # }}}
 # bindkey {{{
 bindkey "^r" fzf_select_history
@@ -280,11 +273,5 @@ bindkey "^o" complete_mackerel_host_ip
 bindkey "^s" fzf_ssh
 # bindkey "^e" emoji::cli
 # }}}
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 if [ -f "/usr/local/bin/kubectl" ]; then source <(kubectl completion zsh); fi
