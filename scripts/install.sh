@@ -27,3 +27,7 @@ ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
 # for vscode
 rm -f $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+
+# for idea
+rm -f $HOME/.ideavimrc
+ln -s $HOME/dotfiles/idea/.ideavimrc $HOME/.ideavimrc
