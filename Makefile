@@ -6,6 +6,7 @@ help:
 
 ##@ environment
 install: ## install dotfiles
+	$(MAKE) setup-gem
 	./scripts/install.sh
 clean: ## clean dotfiles
 	./scripts/clean.sh
@@ -14,3 +15,6 @@ install-extensions: ## install vscode extensions
 	./scripts/install-vscode-extensions.sh
 export-extensions: ## export vscode extensions
 	./scripts/export-vscode-extensions.sh
+##@ ruby
+setup-gem: ## setup gem
+	./scripts/setup-gem.sh

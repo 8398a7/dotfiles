@@ -2,7 +2,7 @@
 
 # for git
 rm -rf $HOME/.config/git
-mkdir $HOME/.config || true
+mkdir -p $HOME/.config
 ln -s $HOME/dotfiles/git $HOME/.config/git
 rm -f $HOME/.gitconfig
 ln -s $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
