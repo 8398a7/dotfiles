@@ -60,3 +60,5 @@
   path = ~/.config/git/.gitconfig.local
 [diff "sopsdiffer"]
   textconv = sops -d
+[pull]
+  rebase = false
