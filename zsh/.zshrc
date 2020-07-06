@@ -90,9 +90,7 @@ load_file $HOME/google-cloud-sdk/completion.zsh.inc
 case $OSTYPE in
   # darwin {{{
   darwin*)
-    if [ -d $HOME/.anyenv ]; then
-      eval "$(anyenv init -)"
-    fi
+    . $(brew --prefix asdf)/asdf.sh
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
     # postgres
@@ -256,7 +254,6 @@ ${PROMPT_ROLE} "
 # export {{{
 export GOPATH=$HOME/go
 expath $GOPATH/bin
-expath $GOPATH/$(cat $HOME/.anyenv/envs/goenv/version)/bin
 expath $GOPATH/src/github.com/8398a7/tools/bin
 expath $HOME/.yarn/bin
 expath $HOME/.cargo
