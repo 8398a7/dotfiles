@@ -91,6 +91,7 @@ case $OSTYPE in
   # darwin {{{
   darwin*)
     . $(brew --prefix asdf)/asdf.sh
+    expath $HOME/.asdf/installs/ruby/$(asdf current ruby | cut -d' ' -f1)/bin
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
     # postgres
