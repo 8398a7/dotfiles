@@ -259,6 +259,7 @@ expath $GOPATH/bin
 expath $GOPATH/$(cat $HOME/.anyenv/envs/goenv/version)/bin
 expath $GOPATH/src/github.com/8398a7/tools/bin
 expath $HOME/.yarn/bin
+expath $HOME/.cargo
 export FZF_COMPLETION_TRIGGER="~~"
 export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
 eval "$(direnv hook zsh)"
