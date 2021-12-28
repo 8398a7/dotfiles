@@ -8,7 +8,7 @@ felipecaputo.git-project-manager
 kaiwood.endwise
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
-ms-vscode.Go
+golang.go
 PKief.material-icon-theme
 rebornix.ruby
 redhat.vscode-yaml
