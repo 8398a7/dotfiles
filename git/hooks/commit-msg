@@ -4,9 +4,15 @@ if [ "$NO_TEMPLATE" = "true" ]; then
   exit 0
 fi
 
+BRANCH=`git rev-parse --abbrev-ref @`
+case "$BRANCH" in
+  v*)
+    exit 0
+esac
+
 if [ "$2" = '' ]; then
   mv $1 $1.tmp
-  ISSUE_NUMBER=`git rev-parse --abbrev-ref @ | sed -e 's/^[^0-9]*\([0-9]*\).*/\1/'`
+  ISSUE_NUMBER=`echo $BRANCH | sed -e 's/^[^0-9]*\([0-9]*\).*/\1/'`
   if [ ! -z $ISSUE_NUMBER ]; then
     ORIGIN=`git remote get-url origin`
     BRANCH=`git branch --show-current`
