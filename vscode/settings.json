@@ -1,6 +1,4 @@
 {
-  "editor.formatOnSave": true,
-  "editor.tabSize": 2,
   "editor.lineNumbers": "relative",
   "editor.renderWhitespace": "boundary",
   "files.insertFinalNewline": true,
@@ -25,5 +23,18 @@
     "<C-p>": false
   },
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "One Monokai"
+  "workbench.colorTheme": "One Monokai",
+  "go.formatTool": "goimports",
+  "files.eol": "\n",
+  "editor.cursorStyle": "line",
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  },
+  "editor.formatOnSave": true
 }
