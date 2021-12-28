@@ -6,8 +6,8 @@ mkdir -p $HOME/.config
 ln -s $HOME/dotfiles/git $HOME/.config/git
 rm -f $HOME/.gitconfig
 ln -s $HOME/dotfiles/git/.gitconfig $HOME/.gitconfig
-rm -f /usr/local/bin/diff-highlight
-ln -s /usr/local/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin
+sudo rm -f /usr/local/bin/diff-highlight
+sudo ln -s $(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
 
 # for tmux
 rm -f $HOME/.tmux $HOME/.tmux.conf
