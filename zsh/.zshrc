@@ -21,12 +21,13 @@ if [[ ! -d ~/.zplug ]]; then
   source ~/.zplug/init.zsh
 fi
 
+expath /opt/homebrew/bin
 source ~/.zplug/init.zsh
 zplug "b4b4r07/emoji-cli", on:"junegunn/fzf-bin", if:'(( $+commands[jq] ))'
 zplug "b4b4r07/enhancd", use:init.sh
 zplug 'b4b4r07/fzf-powertools', as:command, use:'re'
 zplug "github/hub", as:command, from:gh-r
-expath /usr/local/opt/coreutils/libexec/gnubin
+expath $(brew --prefix coreutils)/libexec/gnubin
 zplug 'joel-porquet/zsh-dircolors-solarized'
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
