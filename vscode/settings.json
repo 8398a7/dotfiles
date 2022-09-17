@@ -13,6 +13,11 @@
   "[markdown]": {
     "files.trimTrailingWhitespace": false
   },
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file"
+  },
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
     "<C-a>": false,
