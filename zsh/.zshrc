@@ -36,8 +36,6 @@ zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:'
 zplug "x-motemen/ghq", as:command, from:gh-r, rename-to:ghq
 zplug "mrowa44/emojify", as:command
 zplug "peco/peco", as:command, from:gh-r, frozen:1
-# zplug "rupa/z", use:z.sh
-zplug "reorx/httpstat", as:command, use:'(httpstat).py', rename-to:'$1', if:'(( $+commands[python] ))'
 zplug "knu/z", use:z.sh, defer:2
 zplug "sharkdp/bat", from:gh-r, as:command
 zplug "stedolan/jq", from:gh-r, as:command
