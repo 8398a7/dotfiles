@@ -15,48 +15,13 @@ done
 # }}}
 load_file $HOME/.zsh/external.zsh
 load_file $HOME/.zsh/secret.zsh
-# zplug {{{
-if [[ ! -d ~/.zplug ]]; then
-  git clone https://github.com/zplug/zplug ~/.zplug
-  source ~/.zplug/init.zsh
-fi
 
 expath /opt/homebrew/bin
-source ~/.zplug/init.zsh
-zplug "b4b4r07/emoji-cli", on:"junegunn/fzf-bin", if:'(( $+commands[jq] ))'
-zplug "b4b4r07/enhancd", use:init.sh
-zplug 'b4b4r07/fzf-powertools', as:command, use:'re'
-zplug "github/hub", as:command, from:gh-r
 expath $(brew --prefix coreutils)/libexec/gnubin
-zplug 'joel-porquet/zsh-dircolors-solarized'
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf", frozen:1
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-zplug "mackerelio/mkr", as:command, from:gh-r
-zplug "monochromegane/the_platinum_searcher", as:command, from:gh-r, rename-to:'pt'
-zplug "x-motemen/ghq", as:command, from:gh-r, rename-to:ghq
-zplug "mrowa44/emojify", as:command
-zplug "peco/peco", as:command, from:gh-r, frozen:1
-zplug "knu/z", use:z.sh, defer:2
-zplug "sharkdp/bat", from:gh-r, as:command
-zplug "stedolan/jq", from:gh-r, as:command
-zplug "supercrabtree/k"
-zplug "tcnksm/docker-alias", use:zshrc
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search", defer:3
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "jonmosco/kube-ps1"
-zplug "ahmetb/kubectx", as:command, use:kubectx
-zplug "ahmetb/kubectx", as:command, use:kubens
+# コマンドの補完
+autoload -U compinit && compinit
+eval "$(sheldon source)"
 
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-# Then, source plugins and add commands to $PATH
-zplug load
 # zsh-syntax-highlighting {{{
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 # Declare the variable
@@ -84,7 +49,9 @@ export ENHANCD_FILTER=fzf
 
 # The next line updates PATH for the Google Cloud SDK.
 load_file $HOME/google-cloud-sdk/path.zsh.inc
+# The next line enables shell command completion for gcloud.
 load_file $HOME/google-cloud-sdk/completion.zsh.inc
+
 
 case $OSTYPE in
   # darwin {{{
@@ -145,8 +112,6 @@ MAGENTA_B="%{$fg_bold[magenta]%}"
 RESET="%{$reset_color%}"
 # }}}
 # complement {{{
-# コマンドの補完
-autoload -U compinit && compinit
 # 補完機能の拡張
 setopt EXTENDED_GLOB
 # TAB1回でリスト表示
@@ -234,12 +199,9 @@ alias gf="fzf_git"
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
 alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
 alias gr="cd_gitroot"
-# peco
-alias pss="peco_ssh"
-alias pgs="peco_git_show"
+alias fgs="fzf_git_show"
 # }}}
 # prompt {{{
-load_file $HOME/.zplug/repos/jonmosco/kube-ps1/kube-ps1.sh
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
 # プロンプトが表示されるたびにプロンプト文字列を評価、置換する
 setopt PROMPT_SUBST
