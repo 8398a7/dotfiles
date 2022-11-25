@@ -14,7 +14,6 @@ for function in $HOME/.zsh/functions/*.zsh; do
 done
 # }}}
 load_file $HOME/.zsh/external.zsh
-load_file $HOME/.zsh/secret.zsh
 
 expath /opt/homebrew/bin
 expath $(brew --prefix coreutils)/libexec/gnubin
