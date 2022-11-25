@@ -23,6 +23,8 @@ ln -s $HOME/dotfiles/vim/.vimrc $HOME/.vimrc
 rm -f $HOME/.zsh $HOME/.zshrc
 ln -s $HOME/dotfiles/zsh $HOME/.zsh
 ln -s $HOME/dotfiles/zsh/.zshrc $HOME/.zshrc
+rm -rf $HOME/.config/sheldon
+ln -s $HOME/dotfiles/zsh/plugins.toml $HOME/.config/sheldon/plugins.toml
 
 # for vscode
 rm -f $HOME/Library/Application\ Support/Code/User/settings.json
