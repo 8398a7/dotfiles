@@ -55,7 +55,7 @@ load_file $HOME/google-cloud-sdk/completion.zsh.inc
 case $OSTYPE in
   # darwin {{{
   darwin*)
-    . $(brew --prefix asdf)/libexec/asdf.sh
+    eval "$(mise activate zsh)"
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
     # postgres
