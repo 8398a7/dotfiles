@@ -41,5 +41,7 @@
     "configurations": [],
     "compounds": []
   },
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "update.showReleaseNotes": false,
+  "go.toolsManagement.autoUpdate": true
 }
