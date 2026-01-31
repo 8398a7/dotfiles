@@ -35,7 +35,7 @@ function __my_preexec_end_timetrack() {
     command="<UNKNOWN>"
   fi
 
-  message='display notification "'"${command} done : ${exec_time}sec"'" with title "zsh" sound name "Purr"'
+  message='display notification "'"${exec_time}sec : ${command} done"'" with title "zsh" sound name "Purr"'
 
 
   if [ "$exec_time" -ge "$__timetrack_threshold" ]; then
