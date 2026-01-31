@@ -47,4 +47,5 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "update.showReleaseNotes": false,
+  "editor.inlineSuggest.suppressSuggestions": true,
 }
