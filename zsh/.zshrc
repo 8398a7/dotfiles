@@ -175,27 +175,19 @@ alias ls="ls -F --color"
 alias ll="ls -al"
 alias la="ls -a"
 alias lr="ls -R"
-alias gst="git status"
-alias gch="git checkout"
-alias gbr="git branch"
+alias gr="cd_gitroot"
+alias fgs="fzf_git_show"
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
 alias gla="git log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
+alias gpl="git_pull_and_pull"
+alias gps='git push origin "$(git_current_branch_name)"'
+alias gf="fzf_git"
 alias at="tmux attach -t"
 alias ks="tmux kill-session -t"
 alias tls="tmux ls"
 alias trs="tmux rename -t"
-alias be="bundle exec"
-alias rs="rails s -b 0.0.0.0"
-alias rc="rails c"
-alias pdep="bundle exec cap production deploy"
-alias sdep="bundle exec cap staging deploy"
 alias -g B='"$(git_current_branch_name)"'
-alias gpl="git_pull_and_pull"
-alias gps='git push origin "$(git_current_branch_name)"'
-alias gf="fzf_git"
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
-alias gr="cd_gitroot"
-alias fgs="fzf_git_show"
 # }}}
 # prompt {{{
 autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
