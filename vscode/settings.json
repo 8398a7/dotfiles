@@ -47,5 +47,4 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "update.showReleaseNotes": false,
-  "go.toolsManagement.autoUpdate": true
 }
