@@ -48,4 +48,5 @@
   "editor.formatOnSave": true,
   "update.showReleaseNotes": false,
   "editor.inlineSuggest.suppressSuggestions": true,
+  "docker.extension.enableComposeLanguageServer": false,
 }
