@@ -56,6 +56,7 @@ case $OSTYPE in
   # darwin {{{
   darwin*)
     eval "$(~/.local/bin/mise activate zsh)"
+    eval "$(~/.local/share/mise/shims/git-wt --init zsh)"
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
     # postgres
