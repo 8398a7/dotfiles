@@ -204,8 +204,7 @@ setopt PROMPT_SUBST
 PROMPT_GIT='`git_current_branch_prompt`'
 USER_HOST="$(fg256 075 '%n')${YELLOW_B}@${RESET}$(fg256 120 '%m')"
 PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
-K8S_PROMPT='$(kube_ps1)'
-PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT} ${K8S_PROMPT}
+PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}
 ${PROMPT_ROLE} "
 # }}}
 # export {{{
@@ -228,4 +227,3 @@ bindkey "^s" fzf_ssh
 # bindkey "^e" emoji::cli
 # }}}
 
-if [ -f "/usr/local/bin/kubectl" ]; then source <(kubectl completion zsh); fi
