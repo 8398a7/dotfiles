@@ -34,7 +34,10 @@
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "One Monokai",
-  "go.formatTool": "goimports",
+  "go.formatTool": "gofmt",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+  },
   "files.eol": "\n",
   "editor.cursorStyle": "line",
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
