@@ -18,6 +18,11 @@
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file"
   },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "off"
+  },
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
     "<C-a>": false,
