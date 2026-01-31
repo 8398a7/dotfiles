@@ -4,7 +4,15 @@
 [core]
   excludesfile = ~/.config/git/ignore
   editor = vim
+  pager = delta
   hooksPath = ~/.config/git/hooks
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # n/N で diff セクション間を移動
+  dark = true        # ダークテーマ
+[merge]
+  conflictStyle = zdiff3
 [i18n]
   commitencoding = utf-8
 [color]
@@ -49,10 +57,6 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
 [diff]
   compactionHeuristic = true
   algorithm = histogram
