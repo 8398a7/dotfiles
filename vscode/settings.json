@@ -7,21 +7,21 @@
   "files.associations": {
     ".envrc": "shellscript",
     ".envrc.local": "shellscript",
-    "*.tmpl": "gogo"
+    "*.tmpl": "gogo",
   },
   "terminal.integrated.fontFamily": "Ricty for Powerline",
   "[markdown]": {
-    "files.trimTrailingWhitespace": false
+    "files.trimTrailingWhitespace": false,
   },
   "[terraform]": {
     "editor.defaultFormatter": "hashicorp.terraform",
     "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "file"
+    "editor.formatOnSaveMode": "file",
   },
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.formatOnSave": true,
-    "editor.inlayHints.enabled": "off"
+    "editor.inlayHints.enabled": "off",
   },
   "vim.useSystemClipboard": true,
   "vim.handleKeys": {
@@ -30,7 +30,7 @@
     "<C-b>": false,
     "<C-f>": false,
     "<C-n>": false,
-    "<C-p>": false
+    "<C-p>": false,
   },
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "One Monokai",
