@@ -22,10 +22,6 @@ use = ["init.sh"]
 github = "junegunn/fzf"
 use = ["shell/completion.zsh", "shell/key-bindings.zsh"]
 
-[plugins.kube-ps1]
-github = "jonmosco/kube-ps1"
-use = ["kube-ps1.sh"]
-
 [plugins.z]
 github = "knu/z"
 use = ["z.sh"]
