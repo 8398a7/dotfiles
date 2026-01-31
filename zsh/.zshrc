@@ -60,10 +60,6 @@ case $OSTYPE in
     source <(~/.local/share/mise/shims/fzf --zsh)
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
-    # postgres
-    export PGDATA=/usr/local/var/postgres
-    alias psqlstart="pg_ctl -l /usr/local/var/postgres/server.log start"
-    alias psqlstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
     # show hidden-files
     alias hfon="defaults write com.apple.finder AppleShowAllFiles true|killall Finder"
     # # hidden hidden-files
