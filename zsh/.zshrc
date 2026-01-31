@@ -194,7 +194,6 @@ alias gpl="git_pull_and_pull"
 alias gps='git push origin "$(git_current_branch_name)"'
 alias gf="fzf_git"
 alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
-alias gh='hub browse $(ghq list | fzf --no-sort | cut -d "/" -f 2,3)'
 alias gr="cd_gitroot"
 alias fgs="fzf_git_show"
 # }}}
