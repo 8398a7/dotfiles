@@ -13,7 +13,6 @@ for function in $HOME/.zsh/functions/*.zsh; do
   source $function
 done
 # }}}
-load_file $HOME/.zsh/external.zsh
 
 expath /opt/homebrew/bin
 expath $(brew --prefix coreutils)/libexec/gnubin
@@ -228,3 +227,5 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Antigravity
 export PATH="/Users/husq/.antigravity/antigravity/bin:$PATH"
+
+load_file $HOME/.zsh/external.zsh
