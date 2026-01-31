@@ -45,10 +45,6 @@
   "security.workspace.trust.untrustedFiles": "open",
   "editor.tabSize": 2,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "launch": {
-    "configurations": [],
-    "compounds": []
-  },
   "editor.formatOnSave": true,
   "update.showReleaseNotes": false,
   "go.toolsManagement.autoUpdate": true
