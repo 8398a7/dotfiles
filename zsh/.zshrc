@@ -48,13 +48,13 @@ load_file $HOME/google-cloud-sdk/path.zsh.inc
 # The next line enables shell command completion for gcloud.
 load_file $HOME/google-cloud-sdk/completion.zsh.inc
 
+eval "$(~/.local/bin/mise activate zsh)"
+eval "$(~/.local/share/mise/shims/git-wt --init zsh)"
+source <(~/.local/share/mise/shims/fzf --zsh)
 
 case $OSTYPE in
   # darwin {{{
   darwin*)
-    eval "$(~/.local/bin/mise activate zsh)"
-    eval "$(~/.local/share/mise/shims/git-wt --init zsh)"
-    source <(~/.local/share/mise/shims/fzf --zsh)
     expath /opt/homebrew/bin
     expath $(brew --prefix coreutils)/libexec/gnubin
     expath /usr/local/sbin
