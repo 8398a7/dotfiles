@@ -16,7 +16,6 @@ done
 
 # コマンドの補完
 autoload -U compinit && compinit
-eval "$(sheldon source)"
 
 # zsh-syntax-highlighting {{{
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
@@ -39,7 +38,6 @@ ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=blue,bold'
 # カーソルがある場所の括弧にマッチする括弧
 ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
 # }}}
-setupsolarized
 export ENHANCD_FILTER=fzf
 # }}}
 
@@ -68,6 +66,9 @@ case $OSTYPE in
   linux*)
     ;;
 esac
+
+eval "$(sheldon source)"
+setupsolarized
 # basic configure {{{
 # keybind
 bindkey -e
