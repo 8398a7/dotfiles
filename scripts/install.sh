@@ -27,6 +27,14 @@ rm -rf $HOME/.config/sheldon
 mkdir -p $HOME/.config/sheldon
 ln -s $HOME/dotfiles/zsh/plugins.toml $HOME/.config/sheldon/plugins.toml
 
-# for vscode
-rm -f $HOME/Library/Application\ Support/Code/User/settings.json
-ln -s $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+case $OSTYPE in
+  # darwin {{{
+  darwin*)
+    # for vscode
+    rm -f $HOME/Library/Application\ Support/Code/User/settings.json
+    ln -s $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+    ;;
+  # }}}
+  linux*)
+    ;;
+esac
