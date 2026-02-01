@@ -60,6 +60,10 @@
 [diff]
   compactionHeuristic = true
   algorithm = histogram
+[gpg]
+  format = ssh
+[user]
+  signingkey = ~/.ssh/id_ed25519.pub
 [include]
   path = ~/.config/git/.gitconfig.local
 [diff "sopsdiffer"]
