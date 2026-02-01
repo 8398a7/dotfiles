@@ -14,8 +14,6 @@ for function in $HOME/.zsh/functions/*.zsh; do
 done
 # }}}
 
-expath /opt/homebrew/bin
-expath $(brew --prefix coreutils)/libexec/gnubin
 # コマンドの補完
 autoload -U compinit && compinit
 eval "$(sheldon source)"
@@ -57,6 +55,8 @@ case $OSTYPE in
     eval "$(~/.local/bin/mise activate zsh)"
     eval "$(~/.local/share/mise/shims/git-wt --init zsh)"
     source <(~/.local/share/mise/shims/fzf --zsh)
+    expath /opt/homebrew/bin
+    expath $(brew --prefix coreutils)/libexec/gnubin
     expath /usr/local/sbin
     expath /usr/local/opt/openssl/bin
     # show hidden-files
