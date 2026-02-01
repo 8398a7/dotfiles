@@ -1,3 +1,3 @@
 psk() {
-  ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill -9
+  ps ax -o pid,time,command | fzf --query "$LBUFFER" | awk '{print $1}' | xargs kill -9
 }

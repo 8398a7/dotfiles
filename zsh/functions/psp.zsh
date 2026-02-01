@@ -1,3 +1,3 @@
 psp() {
-  ps -ef | peco
+  ps -ef | fzf
 }
