@@ -30,7 +30,3 @@ ln -s $HOME/dotfiles/zsh/plugins.toml $HOME/.config/sheldon/plugins.toml
 # for vscode
 rm -f $HOME/Library/Application\ Support/Code/User/settings.json
 ln -s $HOME/dotfiles/vscode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
-
-# for idea
-rm -f $HOME/.ideavimrc
-ln -s $HOME/dotfiles/idea/.ideavimrc $HOME/.ideavimrc
