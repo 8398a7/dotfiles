@@ -179,7 +179,7 @@ alias gr="cd_gitroot"
 alias fgs="fzf_git_show"
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
 alias gla="git log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
-alias gpl="git_pull_and_pull"
+alias gpl="git_pull_and_prune"
 alias gps='git push origin "$(git_current_branch_name)"'
 alias gf="fzf_git"
 alias at="tmux attach -t"
