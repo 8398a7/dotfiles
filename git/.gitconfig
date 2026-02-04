@@ -10,7 +10,10 @@
   diffFilter = delta --color-only
 [delta]
   navigate = true    # n/N で diff セクション間を移動
-  dark = true        # ダークテーマ
+  plus-color = "#012800"
+  minus-color = "#340001"
+  line-numbers = true
+  syntax-theme = "Monokai Extended"
 [merge]
   conflictStyle = zdiff3
 [i18n]
