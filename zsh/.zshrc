@@ -214,7 +214,6 @@ export EDITOR=vim
 # bindkey {{{
 bindkey "^r" fzf_select_history
 bindkey "^j" fzf_z_search
-bindkey "^o" complete_mackerel_host_ip
 bindkey "^s" fzf_ssh
 # bindkey "^e" emoji::cli
 # }}}
