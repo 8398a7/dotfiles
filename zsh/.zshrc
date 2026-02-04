@@ -214,7 +214,6 @@ export EDITOR=vim
 bindkey "^r" fzf_select_history
 bindkey "^j" fzf_z_search
 bindkey "^s" fzf_ssh
-# bindkey "^e" emoji::cli
 # }}}
 
 # bun completions
