@@ -227,6 +227,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Added by Antigravity
-export PATH="/Users/husq/.antigravity/antigravity/bin:$PATH"
+expath $HOME/.antigravity/antigravity/bin
 
 load_file $HOME/.zsh/external.zsh
