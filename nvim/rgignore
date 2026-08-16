@@ -1,0 +1,23 @@
+# nvim内のファイル検索・grepから外すディレクトリ
+#
+# rgの --ignore-file に渡す。.gitignore と同じ書式。
+# fzf-luaのファイル検索とgrepの両方で使う (lua/plugins/finder.lua)。
+#
+# ここに書いたものは alt-i (fzf-luaのtoggle_ignore) で一時的に戻せる。
+# 一方 rg_opts に -g '!vendor' と書く方式では alt-i を押しても
+# vendorが出てこない (実測: --no-ignore はglobを打ち消さない) ので、
+# 除外はグロブではなくこのファイルに集める。
+
+# vendor が git 追跡されているリポジトリでは .gitignore で除外できず、
+# ファイル検索と grep の候補が大幅に増えるため、ここで除外する。
+vendor/
+
+# gitignoreされているので普段は効かないが、alt-iで.gitignoreを
+# 無効にしたときに巻き込まれないように書いておく
+node_modules/
+.yarn/
+
+# .git/ はここに書かない。alt-i で戻ってきてしまうため、
+# alt-i でも出したくないものは
+# lua/plugins/finder.lua の rg_opts のグロブ (-g '!.git') に置く
+# (グロブは --no-ignore で打ち消されない)。

@@ -1,0 +1,91 @@
+#!/bin/sh
+# herdr のワークスペースを git wt 経由で作る
+#
+# herdr 組み込みの new_worktree (prefix+shift+G) は、remote に同名ブランチが
+# あってもそれを見ずに「実行時の HEAD から新規ブランチを切る」だけで、
+# upstream も張らない (herdr 0.7.5 / 0.8.0 で実測)。
+#   herdr worktree create --branch feature/hoge
+#     -> HEAD の commit / upstream 無し
+#   git wt feature/hoge
+#     -> origin/feature/hoge の commit / upstream = origin/feature/hoge
+# 普通の checkout と挙動が揃うのは後者なので、ブランチ作成は git wt に任せ、
+# herdr には出来上がった worktree を open させるだけにする。
+#
+# git wt の worktree は herdr が普通に認識する (worktree open --path で
+# ワークスペースになる)。herdr 側の [worktrees] directory は使わない。
+#
+# config.toml の [[keys.command]] から popup として呼ばれる前提。
+# 失敗時はメッセージを読む間もなく popup が閉じるので、明示的に待つ。
+
+set -u
+
+die() {
+  printf '%s\n' "$1" >&2
+  printf '\n続けるには Enter を押してください: ' >&2
+  read -r _ || true
+  exit 1
+}
+
+# popup は起動元ペインの cwd を継ぐが、herdr が渡す値を明示的に優先する。
+cwd="${HERDR_ACTIVE_PANE_CWD:-$PWD}"
+cd "$cwd" 2>/dev/null || die "ディレクトリに移動できません: $cwd"
+
+git rev-parse --is-inside-work-tree >/dev/null 2>&1 ||
+  die "git のリポジトリ内ではありません: $cwd"
+
+# remote のブランチを候補に出すのがこのスクリプトの主目的なので、
+# 候補が古いと意味がない。1〜2 秒の待ちは許容して必ず取り直す。
+# remote が無いリポジトリでも動くよう、失敗は無視する。
+printf 'origin を fetch しています...\n'
+git fetch --quiet --prune origin 2>/dev/null || true
+
+# ローカルと remote のブランチを混ぜる。remote は origin/ を剥がして
+# ローカルと重複排除する (git wt にはどちらでも同じ名前を渡せる)。
+# origin/HEAD はブランチではないので除く。
+branches=$(
+  {
+    git for-each-ref --format='%(refname:short)' refs/heads
+    git for-each-ref --format='%(refname:short)' refs/remotes/origin |
+      sed -n 's|^origin/||p' | grep -v '^HEAD$'
+  } | awk '!seen[$0]++'
+)
+
+# --print-query で、候補に無い名前もそのまま新規ブランチ名として扱える。
+# 出力は 1 行目が query、2 行目が選択された候補 (未選択なら無し)。
+selection=$(
+  printf '%s\n' "$branches" |
+    fzf --print-query --prompt='worktree > ' \
+      --header='Enter で作成/切り替え (候補に無い名前は新規ブランチ)' \
+      --no-multi
+)
+fzf_rc=$?
+# fzf の終了コード: 0 = 選択あり, 1 = マッチ無し (新規ブランチ名の入力),
+# 130 = 中断 (Esc/Ctrl-C), その他 = fzf 自体のエラー。
+# 2 以上をまとめて中断扱いにすると tty が無いときなどに黙って終わるので分ける。
+case $fzf_rc in
+  0 | 1) ;;
+  130) exit 0 ;;
+  *) die "fzf が失敗しました (exit $fzf_rc)" ;;
+esac
+
+query=$(printf '%s\n' "$selection" | sed -n 1p)
+picked=$(printf '%s\n' "$selection" | sed -n 2p)
+branch=${picked:-$query}
+[ -n "$branch" ] || exit 0
+
+# GIT_WT_SHELL_INTEGRATION=1 で最終行が worktree のパスになる。
+# このスクリプトは sh なので zsh 側の git() ラッパは効かず、cd もしないが、
+# --nocd を明示して wt.nocd の設定値に依存しないようにしておく。
+output=$(GIT_WT_SHELL_INTEGRATION=1 git wt --nocd "$branch" 2>&1) ||
+  die "git wt が失敗しました:
+$output"
+
+printf '%s\n' "$output"
+path=$(printf '%s\n' "$output" | tail -n 1)
+[ -d "$path" ] || die "git wt の出力から worktree のパスを取れませんでした:
+$output"
+
+# --path だけでは not_git_worktree になる。どのリポジトリの worktree かを
+# --cwd で示す必要がある (実測)。
+herdr worktree open --cwd "$cwd" --path "$path" --focus >/dev/null ||
+  die "herdr worktree open が失敗しました: $path"
