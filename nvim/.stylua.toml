@@ -1,0 +1,10 @@
+# stylua の設定
+#
+# これが無いとstyluaのデフォルト (タブインデント + ダブルクォート) が使われ、
+# nvim/ 配下の既存コードすべてが保存した瞬間に書き換わる (実測)。
+# 既存の書き方 (2スペース + シングルクォート) に合わせる。
+column_width = 100
+indent_type = "Spaces"
+indent_width = 2
+quote_style = "AutoPreferSingle"
+call_parentheses = "Always"

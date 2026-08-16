@@ -1,0 +1,7 @@
+# nvim が設定ディレクトリ内に生成するもの
+# (プラグイン本体やキャッシュは ~/.local/share/nvim ・ ~/.cache/nvim 側に出るので対象外)
+.netrwhist
+spell/
+
+# lazy-lock.json は意図的に追跡する (プラグインのバージョン固定)
+!lazy-lock.json
