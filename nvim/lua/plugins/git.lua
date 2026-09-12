@@ -56,8 +56,18 @@ return {
         end, '前の変更へ')
 
         -- hunk操作。<leader>g で始める
-        map({ 'n', 'v' }, '<leader>gs', gs.stage_hunk, 'hunkをステージする')
-        map({ 'n', 'v' }, '<leader>gr', gs.reset_hunk, 'hunkを元に戻す')
+        map('n', '<leader>gs', gs.stage_hunk, 'hunkをステージする')
+        map('n', '<leader>gr', gs.reset_hunk, 'hunkを元に戻す')
+        local function visual_range()
+          local first, last = vim.fn.line('v'), vim.fn.line('.')
+          return { math.min(first, last), math.max(first, last) }
+        end
+        map('x', '<leader>gs', function()
+          gs.stage_hunk(visual_range())
+        end, '選択範囲をステージする')
+        map('x', '<leader>gr', function()
+          gs.reset_hunk(visual_range())
+        end, '選択範囲を元に戻す')
         map('n', '<leader>gS', gs.stage_buffer, 'バッファ全体をステージする')
         map('n', '<leader>gR', gs.reset_buffer, 'バッファ全体を元に戻す')
         map('n', '<leader>gp', gs.preview_hunk, 'hunkの差分をプレビューする')

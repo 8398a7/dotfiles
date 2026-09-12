@@ -45,8 +45,14 @@ map('i', '<C-p>', '<Up>', { desc = '上へ' })
 -- }}}
 
 -- sudoを付け忘れたときの保存 {{{
--- nvimでもtee経由の書き込みは通る (W10警告は出るが内容は保存される)
-map('c', 'w!!', 'w !sudo tee > /dev/null %<CR>:e!<CR>', { desc = 'sudoで保存し直す' })
+-- sudo/teeが失敗したときは再読込せず、未保存の編集を残す。
+-- %:Sでファイル名をシェル用にエスケープし、--でオプション解釈を防ぐ。
+map(
+  'c',
+  'w!!',
+  'w !sudo tee -- %:S > /dev/null<CR>:if v:shell_error == 0 | edit! | endif<CR>',
+  { desc = 'sudoで保存し直す' }
+)
 -- }}}
 
 -- 検索ハイライトを消す {{{

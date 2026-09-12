@@ -54,6 +54,8 @@ leader は `<Space>`、localleader は `\`。
 | --- | --- |
 | `w!!` | sudo を付け忘れたときに `tee` 経由で保存し直す |
 
+保存に成功したときだけファイルを再読込する。sudo の認証や書き込みに失敗した場合は、未保存の編集内容をバッファに残す。
+
 ### leader 系
 
 `<leader>f` = finder、`<leader>g` = Git、`<leader>d` = デバッグ、`<leader>e` = 診断。

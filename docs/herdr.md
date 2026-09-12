@@ -16,7 +16,9 @@ prefix は `Ctrl+T`（tmux の設定に合わせている）。
 
 - 候補にはローカルブランチと `origin/*` が混ざって出る（`origin/` は剥がして重複排除）
 - 候補に無い名前をそのまま入力すれば新規ブランチになる
-- 開くたびに `git fetch --prune origin` する（remote の候補が古いと意味がないため）
+- `origin` が設定されている場合は、開くたびに `git fetch --prune origin` する
+- fetch に失敗した場合は詳細を表示して Enter を待ち、ブランチ選択・worktree 作成を中止する（未取得の remote ブランチを新規名と誤認しないため）
+- `origin` が無いリポジトリでは fetch を省略し、ローカルブランチの選択・新規作成を続けられる
 - 既に worktree があるブランチを選ぶと、そのワークスペースにフォーカスが移るだけ
 
 ### 組み込みの new_worktree を使っていない理由
