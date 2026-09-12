@@ -166,7 +166,9 @@ bindkey "^S" history-incremental-search-forward
 # }}}
 # alias {{{
 alias rb=ruby
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
+alias cx='codex --dangerously-bypass-approvals-and-sandbox'
 alias py=python
 alias cat='bat -p'
 alias tailf='tail -f'
