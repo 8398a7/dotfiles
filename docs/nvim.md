@@ -334,7 +334,7 @@ git リポジトリのバッファに自動でアタッチする。
 
 公開プラグイン（herdr-splits.nvim など）は使わず、herdr の CLI と環境変数だけで実装している（`nvim/lua/local/herdr/init.lua`）。
 
-**herdr 配下かどうかは `HERDR_ENV` で判定する。** 未設定なら委譲しないので、素の WSL ターミナルでも tmux 内でも「nvim 内のウィンドウ移動だけ」に自動的に倒れる。tmux 側は prefix 付きのままなので二重発火しない（`tmux/.tmux.conf` に手を入れる必要はない）。
+**herdr 配下かどうかは `HERDR_ENV` で判定する。** 未設定なら委譲せず、nvim内のウィンドウ移動だけを行う。
 
 移動先が無いとき（`no_neighbor`）は何も通知しない。`herdr` が PATH に無いときやソケットに繋がらないときだけ警告が出る。
 
@@ -355,11 +355,13 @@ git リポジトリのバッファに自動でアタッチする。
 
 ---
 
-## クリップボード（WSL）
+## クリップボード
 
-`clipboard = 'unnamedplus'` + **OSC 52**。ヤンクした内容は端末経由で Windows 側のクリップボードに渡る。
+`clipboard = 'unnamedplus'`。通常はNeovim標準のネイティブproviderを使う。macOS、Linuxの `wl-copy` / `xclip` / `xsel`、WSLの `win32yank.exe` などは各環境で導入する。
 
-**逆方向（Windows → nvim）は OSC 52 では取れない。** 応答を返さない端末が多いので、`"+p` は nvim 内の無名レジスタを返すようにしてある。Windows のクリップボードから貼るときは端末側のペースト（`Ctrl+Shift+V` など）を使う。
+SSH接続時、またはネイティブproviderがないWSLではOSC 52で端末へヤンクを送る。OSC 52モードの `"+p` は内部の無名レジスタを行データとレジスタ種別付きで返す。端末側のクリップボードからは `Ctrl+Shift+V` 等で貼り付ける。
+
+`DOTFILES_CLIPBOARD=auto` が既定。`native` で標準providerを使い、`osc52` でOSC 52を明示できる。端末のOSC 52対応やネイティブproviderの動作は `:checkhealth vim.provider` で確認する。
 
 ---
 

@@ -10,9 +10,7 @@
 -- コミット一覧・ブランチ一覧の閲覧だけは lua/plugins/finder.lua の
 -- fzf-lua (<leader>fc / <leader>fB) 側にある。
 --
--- fugitiveは入れない。旧 vim/_config/100-lightline.vim が MyFugitive で
--- ブランチ名を出すために依存していたが、lualineはgitsignsのbranch情報を
--- 使えるので不要になる。
+-- lualineのブランチ表示にはgitsignsの情報を使う。
 
 return {
   {

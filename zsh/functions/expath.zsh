@@ -1,5 +1,5 @@
 expath() {
-  if [ -d $1 ]; then
-    export PATH=$1:$PATH
-  fi
+  [[ -d "$1" ]] || return 0
+  typeset -gU path
+  path=("$1" $path)
 }

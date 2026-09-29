@@ -1,5 +1,4 @@
 -- エディタの基本挙動
--- 旧 vim/_config/003-set.vim からの移植 + VSCode (vscode/settings.json) の挙動再現
 
 local opt = vim.opt
 
@@ -27,20 +26,16 @@ opt.smartcase = true -- 大文字を含む検索語なら大文字小文字を�
 -- 対応する括弧を表示
 opt.showmatch = true
 
--- 折りたたみはマーカ方式 (旧設定の {{{ }}} を維持)
+-- 折りたたみはマーカ方式 ({{{ }}})
 opt.foldenable = true
 opt.foldmethod = 'marker'
 opt.foldcolumn = '0'
 opt.foldlevel = 0
 
--- syntax highlightの打ち切り列。
--- treesitterはこの値を見ないため、1行26万文字のJSONでも描画速度は
--- 変わらなかった (実測)。パーサが無いfiletype (.slimなど) が
--- 正規表現syntaxにフォールバックしたときの保険として残す。
+-- 正規表現syntaxの打ち切り列。Treesitterには適用されない。
 opt.synmaxcol = 200
 
--- 24bitカラー (旧 t_Co=256 の置き換え)
--- t_Coはnvimでもエラーにならず黙って無視されるため明示的に廃止する
+-- 24bitカラー
 opt.termguicolors = true
 
 -- 診断サインの表示でテキストが左右にずれないよう常に確保する
@@ -66,28 +61,29 @@ opt.wrap = false
 opt.scrolloff = 3
 
 -- クリップボード {{{
--- WSLからWindows側のクリップボードへは端末のOSC 52で渡す。
--- 旧設定はclipboard=exclude:.*と+=unnamedが併存して矛盾していた。
--- exclude:.*はnvimではE474になるので移植できない。
+-- ローカル環境はネイティブprovider、SSHなどはOSC 52を使う。
 opt.clipboard = 'unnamedplus'
 
-local osc52 = require('vim.ui.clipboard.osc52')
-
--- copy/pasteはレジスタ名を受け取って関数を返すファクトリ
--- pasteはOSC 52の応答を返さない端末が多いため、nvim内のレジスタで代替する
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = osc52.copy('+'),
-    ['*'] = osc52.copy('*'),
-  },
-  paste = {
-    ['+'] = function()
-      return vim.split(vim.fn.getreg('"'), '\n')
-    end,
-    ['*'] = function()
-      return vim.split(vim.fn.getreg('"'), '\n')
-    end,
-  },
-}
+-- Prefer the native provider on macOS, Linux desktops and WSL with clipboard
+-- tools. Use OSC 52 for SSH and WSL without a native provider. Paste falls back
+-- to the internal register because many terminals cannot answer OSC 52 reads.
+local wsl = vim.env.WSL_DISTRO_NAME or vim.env.WSL_INTEROP
+local remote = vim.env.SSH_CONNECTION or vim.env.SSH_TTY
+local native = vim.fn.executable('win32yank.exe') == 1
+  or vim.fn.executable('wl-copy') == 1
+  or vim.fn.executable('xclip') == 1
+  or vim.fn.executable('xsel') == 1
+  or vim.fn.has('macunix') == 1
+local mode = vim.env.DOTFILES_CLIPBOARD or 'auto'
+if mode == 'osc52' or (mode == 'auto' and (remote or (wsl and not native))) then
+  local osc52 = require('vim.ui.clipboard.osc52')
+  local function internal_paste()
+    return { vim.fn.getreg('"', 1, true), vim.fn.getregtype('"') }
+  end
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = { ['+'] = osc52.copy('+'), ['*'] = osc52.copy('*') },
+    paste = { ['+'] = internal_paste, ['*'] = internal_paste },
+  }
+end
 -- }}}

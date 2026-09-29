@@ -1,6 +1,10 @@
-/vendor/bundle
-.bundle
-Vagrantfile
-.vagrant
-capitan.box
-vim/.netrwhist
+# Generated state stays outside the repository.
+__pycache__/
+*.pyc
+vscode/extensions.txt.*
+.mise.local.toml
+mise.local.toml
+
+# Optional personal overrides must never be distributed.
+git/.gitconfig.local
+zsh/external.zsh

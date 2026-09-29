@@ -1,231 +1,133 @@
-#  .------------------.
-#  |  My zsh config   |
-#  '------------------'
-#      ^      (\_/)
-#      '----- (O.o)
-#             (> <)
-# rm -f ~/.zcompdump; compinit
-stty stop undef
-stty start undef
-
-# load functions {{{
-for function in $HOME/.zsh/functions/*.zsh; do
-  source $function
+# Interactive configuration. Locate this checkout through the .zshrc symlink.
+[[ -o interactive ]] || return 0
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
+typeset -U path fpath
+typeset dotfiles_zsh_dir=${${(%):-%N}:A:h}
+for dotfiles_function in "$dotfiles_zsh_dir"/functions/*.zsh(N); do
+  source "$dotfiles_function"
 done
-# }}}
+unset dotfiles_function
 
-# コマンドの補完
-autoload -U compinit && compinit
+# Put tool entry points on PATH before activating integrations.
+expath "$HOME/.local/bin"
+export BUN_INSTALL=${BUN_INSTALL:-$HOME/.bun}
+expath "$BUN_INSTALL/bin"
+expath "${GOPATH:-$HOME/go}/bin"
+load_file "$HOME/.cargo/env"
+expath "$HOME/.antigravity/antigravity/bin"
+if [[ "$OSTYPE" == darwin* ]]; then
+  expath /opt/homebrew/bin
+  expath /usr/local/bin
+  if command -v brew >/dev/null; then
+    expath "$(brew --prefix coreutils)/libexec/gnubin"
+  fi
+  alias hfon='defaults write com.apple.finder AppleShowAllFiles true && killall Finder'
+  alias hfoff='defaults write com.apple.finder AppleShowAllFiles false && killall Finder'
+fi
+if command -v mise >/dev/null; then
+  eval "$(mise activate zsh)"
+fi
+load_file "$HOME/google-cloud-sdk/path.zsh.inc"
+load_file "$HOME/google-cloud-sdk/completion.zsh.inc"
+load_file "$dotfiles_zsh_dir/external.zsh"
 
-# zsh-syntax-highlighting {{{
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-# Declare the variable
-typeset -A ZSH_HIGHLIGHT_STYLES
-# エイリアスコマンドのハイライト
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-# 存在するパスのハイライト
-ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
-# グロブ
-ZSH_HIGHLIGHT_STYLES[globbing]='none'
-# マッチしない括弧
-ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=red,bold'
-# 括弧の階層
-ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=cyan,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=green,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=blue,bold'
-# カーソルがある場所の括弧にマッチする括弧
-ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
-# }}}
-export ENHANCD_FILTER=fzf
-# }}}
-
-# The next line updates PATH for the Google Cloud SDK.
-load_file $HOME/google-cloud-sdk/path.zsh.inc
-# The next line enables shell command completion for gcloud.
-load_file $HOME/google-cloud-sdk/completion.zsh.inc
-
-eval "$(~/.local/bin/mise activate zsh)"
-eval "$(~/.local/share/mise/shims/git-wt --init zsh)"
-source <(~/.local/share/mise/shims/fzf --zsh)
-
-case $OSTYPE in
-  # darwin {{{
-  darwin*)
-    expath /opt/homebrew/bin
-    expath $(brew --prefix coreutils)/libexec/gnubin
-    expath /usr/local/sbin
-    expath /usr/local/opt/openssl/bin
-    # show hidden-files
-    alias hfon="defaults write com.apple.finder AppleShowAllFiles true|killall Finder"
-    # # hidden hidden-files
-    alias hfoff="defaults write com.apple.finder AppleShowAllFiles false|killall Finder"
-    ;;
-  # }}}
-  linux*)
-    ;;
-esac
-
-eval "$(sheldon source)"
-setupsolarized
-# basic configure {{{
-# keybind
 bindkey -e
-# 256色対応
-export TERM=xterm-256color
-# 言語・文字コード設定
-export LANG=ja_JP.UTF-8
-# ビープ音を鳴らさない
-setopt NO_BEEP
-# 最近行ったディレクトリを記憶
-setopt AUTO_PUSHD
-# pushdの履歴を残さない
-setopt PUSHD_IGNORE_DUPS
-# リンクへ移動するとき実際のディレクトリへ移動
-setopt CHASE_LINKS
-# コマンド実行時にコメントを残せるようにする
-setopt interactivecomments
-# 大文字小文字を区別しない
-zstyle ":completion:*" matcher-list "m:{a-z}={A-Z}"
-# }}}
-# color {{{
-# 色設定
-# $fg[色名]/$bg[色名]$reset_color で色表示
-autoload -U colors && colors
-# 色定数
-GREEN="%{$fg[green]%}"
-GREEN_B="%{$fg_bold[green]%}"
-BLUE="%{$fg[blue]%}"
-BLUE_B="%{$fg_bold[blue]%}"
-RED="%{$fg[red]%}"
-RED_B="%{$fg_bold[red]%}"
-CYAN="%{$fg[cyan]%}"
-CYAN_B="%{$fg_bold[cyan]%}"
-YELLOW="%{$fg[yellow]%}"
-YELLOW_B="%{$fg_bold[yellow]%}"
-MAGENTA="%{$fg[magenta]%}"
-MAGENTA_B="%{$fg_bold[magenta]%}"
-RESET="%{$reset_color%}"
-# }}}
-# complement {{{
-# 補完機能の拡張
-setopt EXTENDED_GLOB
-# TAB1回でリスト表示
-setopt AUTO_LIST
-# TAB連打でメニュー表示
-setopt AUTO_MENU
-# ドットファイルも対象に含める
-setopt GLOBDOTS
-# 語の途中でもカーソル位置で補完
-setopt COMPLETE_IN_WORD
-# =の後のパス名なども補完
-setopt MAGIC_EQUAL_SUBST
-# 補完候補を詰めて表示
-setopt LIST_PACKED
-# 候補一覧選択を横進みにする
-setopt LIST_ROWS_FIRST
-# 補完対象の一覧を上下左右に移動できる
-zstyle ":completion:*:default" menu select=2
-# 補間対象一覧に色をつける
-zstyle ":completion:*" list-colors ${(s.:.)LS_COLORS}
-# }}}
-# history {{{
-# ヒストリファイルの指定
-HISTFILE=$HOME/.zsh_histfile
-# 履歴件数の指定
-HISTSIZE=10000000
-SAVEHIST=10000000
-# ヒストリに追加されるコマンド行が古いものと同じなら古いものを削除
-setopt hist_ignore_all_dups
+setopt NO_BEEP AUTO_PUSHD PUSHD_IGNORE_DUPS CHASE_LINKS INTERACTIVE_COMMENTS
+setopt EXTENDED_GLOB AUTO_LIST AUTO_MENU GLOBDOTS COMPLETE_IN_WORD MAGIC_EQUAL_SUBST
+setopt LIST_PACKED LIST_ROWS_FIRST
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Preserve the terminal's TERM and the user's locale.
+if [[ -z "${LANG:-}" ]]; then
+  if locale -a 2>/dev/null | command grep -qi '^C\.utf'; then
+    export LANG=C.UTF-8
+  elif locale -a 2>/dev/null | command grep -qi '^en_US\.utf'; then
+    export LANG=en_US.UTF-8
+  else
+    export LANG=C
+  fi
+fi
 
-# スペースで始まるコマンド行はヒストリリストから削除
-setopt hist_ignore_space
+export FZF_COMPLETION_TRIGGER='~~'
+export FZF_DEFAULT_OPTS='--extended --cycle --reverse --exact'
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='standout'
+# plugins.toml adds completion directories, runs compinit, then loads plugins.
+if command -v sheldon >/dev/null; then
+  eval "$(sheldon source)"
+fi
+if (( ! $+functions[compdef] )); then
+  autoload -Uz compinit
+  compinit
+fi
+if command -v fzf >/dev/null; then
+  source <(fzf --zsh)
+fi
+if command -v git-wt >/dev/null; then
+  eval "$(git-wt --init zsh)"
+fi
+if command -v direnv >/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
-# ヒストリを呼び出してから実行する間に一旦編集可能
-setopt hist_verify
+HISTFILE=${HISTFILE:-$HOME/.zsh_histfile}
+HISTSIZE=${DOTFILES_HISTSIZE:-200000}
+SAVEHIST=${DOTFILES_SAVEHIST:-100000}
+setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_VERIFY HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS HIST_NO_STORE INC_APPEND_HISTORY
+# Ctrl-R is provided by fzf, falling back to zsh's search when fzf is absent.
+command -v fzf >/dev/null || bindkey '^r' history-incremental-search-backward
+bindkey '^j' fzf_z_search
+bindkey '^s' fzf_ssh
+bindkey '^n' fzf-fd
 
-# 余分な空白は詰めて記録
-setopt hist_reduce_blanks
-
-# 古いコマンドと同じものは無視
-setopt hist_save_no_dups
-
-# historyコマンドは履歴に登録しない
-setopt hist_no_store
-
-# 補完時にヒストリを自動的に展開
-setopt hist_expand
-
-# 履歴をインクリメンタルに追加
-setopt inc_append_history
-
-# インクリメンタルからの検索
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
-# }}}
-# alias {{{
 alias rb=ruby
 alias vi=nvim
 alias vim=nvim
 alias cx='codex --dangerously-bypass-approvals-and-sandbox'
-alias py=python
-alias cat='bat -p'
+alias py=python3
+command -v bat >/dev/null && alias cat='bat -p'
 alias tailf='tail -f'
-alias grep="grep --color=auto"
-alias ls="ls -F --color"
-alias ll="ls -al"
-alias la="ls -a"
-alias lr="ls -R"
-alias gr="cd_gitroot"
-alias fgs="fzf_git_show"
+if [[ "$OSTYPE" == darwin* ]] && ! command -v gls >/dev/null; then
+  alias ls='ls -FG'
+else
+  alias ls='ls -F --color=auto'
+fi
+alias ll='ls -al'
+alias la='ls -a'
+alias lr='ls -R'
+alias gr=cd_gitroot
+alias fgs=fzf_git_show
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
 alias gla="git log --graph --all --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset' --abbrev-commit --date=relative"
-alias gpl="git_pull_and_prune"
-alias gps='git push origin "$(git_current_branch_name)"'
-alias gf="fzf_git"
-alias at="tmux attach -t"
-alias ks="tmux kill-session -t"
-alias tls="tmux ls"
-alias trs="tmux rename -t"
+alias gpl=git_pull_and_prune
+alias gps='git push'
+alias gf=fzf_git
+alias g=ghq_cd
 alias -g B='"$(git_current_branch_name)"'
-alias g='cd $(ghq root)/$(ghq list | fzf --no-sort)'
-# }}}
-# prompt {{{
-autoload -Uz VCS_INFO_get_data_git && VCS_INFO_get_data_git 2> /dev/null
-# プロンプトが表示されるたびにプロンプト文字列を評価、置換する
-setopt PROMPT_SUBST
-PROMPT_GIT='`git_current_branch_prompt`'
-USER_HOST="$(fg256 075 '%n')${YELLOW_B}@${RESET}$(fg256 120 '%m')"
-PROMPT_ROLE="${CYAN_B}%(!.#.$) >${RESET}"
-PROMPT="${USER_HOST} $(fg256 214 '%~')${PROMPT_GIT}
-${PROMPT_ROLE} "
-# }}}
-# export {{{
-export GOPATH=$HOME/go
-expath $GOPATH/bin
-expath $GOPATH/src/github.com/8398a7/tools/bin
-expath $HOME/.cargo
-export FZF_COMPLETION_TRIGGER="~~"
-export FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact"
-eval "$(direnv hook zsh)"
+export EDITOR=nvim
+export VISUAL=nvim
 export CLOUDSDK_PYTHON=python3
-export EDITOR=vim
-# }}}
-# bindkey {{{
-bindkey "^r" fzf_select_history
-bindkey "^j" fzf_z_search
-bindkey "^s" fzf_ssh
-# }}}
+load_file "$BUN_INSTALL/_bun"
 
-# bun completions
-[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Added by Antigravity
-expath $HOME/.antigravity/antigravity/bin
-
-load_file $HOME/.zsh/external.zsh
+# Compute Git status once per command, not whenever the prompt is redrawn.
+GREEN='%F{green}' YELLOW='%F{yellow}' RED='%F{red}' RESET='%f'
+__dotfiles_prompt_git() { DOTFILES_GIT_PROMPT=$(git_current_branch_prompt); }
+autoload -Uz add-zsh-hook
+add-zsh-hook -d precmd __dotfiles_prompt_git
+add-zsh-hook precmd __dotfiles_prompt_git
+setopt PROMPT_SUBST
+PROMPT='%F{75}%n%f%F{yellow}@%f%F{120}%m%f %F{214}%~%f${DOTFILES_GIT_PROMPT}'$'\n''%F{cyan}%(!.#.$) >%f '
+# Syntax highlighting must see the final widget definitions.
+for dotfiles_highlighter in ${dotfiles_highlight_files[@]}; do
+  source "$dotfiles_highlighter"
+done
+unset dotfiles_highlighter dotfiles_highlight_files

@@ -51,7 +51,7 @@ new_cwd = "follow"
 # manifest_check = true
 
 [keys]
-# Prefix key: tmux の C-t に合わせる
+# Prefix key: Ctrl+T
 prefix = "ctrl+t"
 
 # Prefix-mode actions
@@ -132,7 +132,7 @@ resize_mode = "prefix+shift+r"
 [[keys.command]]
 key = "prefix+shift+g"
 type = "popup"
-command = "~/.config/herdr/bin/herdr-wt"
+command = '"${XDG_CONFIG_HOME:-$HOME/.config}/herdr/bin/herdr-wt"'
 width = "70%"
 height = "60%"
 

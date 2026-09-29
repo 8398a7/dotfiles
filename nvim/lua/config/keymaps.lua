@@ -1,5 +1,4 @@
 -- キーマップ
--- 旧 vim/_config/001-mappings.vim の習慣を保持する
 -- leader は init.lua で <Space> に設定済み
 
 local map = vim.keymap.set

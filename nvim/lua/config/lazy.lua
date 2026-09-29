@@ -15,7 +15,7 @@ if not vim.uv.fs_stat(lazypath) then
   })
   if vim.v.shell_error ~= 0 then
     -- プロキシ環境では git の http.proxy 設定が必要
-    -- (git/.gitconfig.local を参照)
+    -- ($XDG_CONFIG_HOME/git/.gitconfig.local を参照)
     vim.api.nvim_echo({
       { 'lazy.nvim の clone に失敗しました:\n', 'ErrorMsg' },
       { out, 'WarningMsg' },

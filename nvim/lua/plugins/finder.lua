@@ -2,11 +2,7 @@
 --
 -- zsh側がfzfベース (FZF_DEFAULT_OPTS="--extended --cycle --reverse --exact") なので
 -- telescopeではなくfzf-luaを使い、検索の操作感を揃える。
--- 旧 zsh/functions/fzf_tree_vim.zsh (tree + fzf でファイルを選んでvimで開く) の
--- nvim内での置き換え。zsh側の関数はそのまま残す。
---
--- fdが入っていないのでfzf-luaはrgにフォールバックする
--- (providers/files.luaの fdfind → fd → rg → find の順、実測)。
+-- Shell file selection uses fd + fzf; editor selection uses fzf-lua.
 
 -- 検索から外すディレクトリの一覧。rgの --ignore-file に渡す。
 -- ファイル検索とgrepの両方で使う。

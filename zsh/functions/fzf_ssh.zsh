@@ -1,11 +1,9 @@
 fzf_ssh() {
-  local res=$(awk '/^Host / && !/\*/ {print $2}' ~/.ssh/config | fzf --no-sort)
-  if [ -n "$res" ]; then
-    BUFFER+="ssh $res"
-    zle accept-line
-  else
-    zle clear-screen
-    return 1
-  fi
+  local selected
+  [[ -r "$HOME/.ssh/config" ]] || return 0
+  selected=$(awk 'tolower($1) == "host" { for (i=2; i<=NF; i++) if ($i ~ /^#/) break; else if ($i !~ /[*?!]/) print $i }' "$HOME/.ssh/config" | fzf --no-sort) || return 0
+  [[ -n "$selected" ]] || return 0
+  BUFFER="ssh -- ${(q)selected}"
+  zle accept-line
 }
 zle -N fzf_ssh
