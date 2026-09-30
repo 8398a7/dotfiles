@@ -1,5 +1,4 @@
 -- autocmd と filetype 検出
--- 旧 vim/_config/000-filetype.vim と 102-fullspace.vim からの移植
 
 -- filetype検出 {{{
 -- 旧設定の6件のうち、nvim 0.12のデフォルトで足りないものだけを移植する。
@@ -51,7 +50,17 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter' }, {
   group = fullspace,
   callback = function()
-    vim.fn.matchadd('FullSpace', '　')
+    local id = vim.w.fullspace_match
+    local present = id
+      and vim.tbl_contains(
+        vim.tbl_map(function(m)
+          return m.id
+        end, vim.fn.getmatches()),
+        id
+      )
+    if not present then
+      vim.w.fullspace_match = vim.fn.matchadd('FullSpace', '　')
+    end
   end,
   desc = '全角スペースをハイライトする',
 })
@@ -72,4 +81,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- 旧設定にあった全ファイル無条件の末尾空白除去は移植しない。
 -- VSCodeが [markdown] で trimTrailingWhitespace = false にしている通り
 -- Markdownの意図的な2スペース改行を壊すため。
--- 末尾空白除去・最終改行の付与はU7のconform.nvimにfiletype単位で任せる。

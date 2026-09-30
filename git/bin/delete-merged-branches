@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Preserve current/default branches and every branch checked out in a worktree.
+set -euo pipefail
+current=$(git symbolic-ref --quiet --short HEAD) || { printf 'detached HEAD: 中止します\n' >&2; exit 1; }
+protected=("$current" main master develop)
+# Resolve every remote default before deleting anything. Fail closed when a
+# remote is unreachable and its cached HEAD is missing.
+remotes=$(git remote)
+while IFS= read -r remote; do
+  [[ -n "$remote" ]] || continue
+  default=$(git symbolic-ref --quiet "refs/remotes/$remote/HEAD" || true)
+  if [[ -n "$default" ]]; then
+    default=${default#refs/remotes/"$remote"/}
+  else
+    default=$(git ls-remote --symref "$remote" HEAD | sed -n 's|^ref: refs/heads/\([^[:space:]]*\).*|\1|p')
+    [[ -n "$default" ]] || { printf '既定ブランチを取得できません: %s\n' "$remote" >&2; exit 1; }
+  fi
+  protected+=("$default")
+done <<< "$remotes"
+branches=$(git for-each-ref --merged=HEAD --format='%(refname:strip=2)' refs/heads)
+while IFS= read -r branch; do
+  [[ -n "$branch" ]] || continue
+  skip=false
+  for name in "${protected[@]}"; do
+    [[ "$branch" == "$name" ]] && skip=true
+  done
+  $skip && continue
+  checked=$(git for-each-ref --format='%(worktreepath)' "refs/heads/$branch")
+  [[ -z "$checked" ]] || continue
+  git branch -d -- "$branch"
+done <<< "$branches"

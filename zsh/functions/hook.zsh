@@ -1,53 +1,29 @@
-autoload -U add-zsh-hook 2>/dev/null || return
+autoload -Uz add-zsh-hook
+__timetrack_threshold=${__timetrack_threshold:-10}
+__timetrack_ignore_progs=(nvim zsh exec source git ssh herdr)
 
-__timetrack_threshold=10
-
-export __timetrack_threshold
-export __timetrack_ignore_progs=(
-  vim zsh tmux exec source git ssh
-)
-
-function __my_preexec_start_timetrack() {
-  local command=$1
-  export __timetrack_start=`date +%s`
-  export __timetrack_command="$command"
+__my_preexec_start_timetrack() {
+  __timetrack_start=$SECONDS
+  __timetrack_command=$1
 }
-
-function __my_preexec_end_timetrack() {
-  local exec_time
-  local command=$__timetrack_command
-  local prog=$(echo $command|awk '{print $1}')
-  local notify_method
-  local message
-
-  export __timetrack_end=`date +%s`
-
-  if [ -z "$__timetrack_start" ] || [ -z "$__timetrack_threshold" ]; then
-    return
-  fi
-
-  for ignore_prog in $(echo $__timetrack_ignore_progs); do
-    [ "$prog" = "$ignore_prog" ] && return
-  done
-
-  exec_time=$((__timetrack_end-__timetrack_start))
-  if [ -z "$command" ]; then
-    command="<UNKNOWN>"
-  fi
-
-  message='display notification "'"${exec_time}sec : ${command} done"'" with title "zsh" sound name "Purr"'
-
-
-  if [ "$exec_time" -ge "$__timetrack_threshold" ]; then
-    osascript -e $message
-  fi
-
-  unset __timetrack_start
-  unset __timetrack_command
+__my_preexec_end_timetrack() {
+  [[ -n "${__timetrack_start:-}" ]] || return 0
+  local elapsed=$((SECONDS - __timetrack_start))
+  local line=${__timetrack_command:-} prog
+  unset __timetrack_start __timetrack_command
+  prog=${${(z)line}[1]}
+  [[ ${__timetrack_ignore_progs[(Ie)$prog]} -ne 0 ]] && return 0
+  (( elapsed >= __timetrack_threshold )) || return 0
+  # argv carries arbitrary quotes/backslashes without compiling the command as AppleScript.
+  osascript - "$elapsed" "$line" <<'APPLESCRIPT'
+on run argv
+  display notification ((item 1 of argv) & "sec : " & (item 2 of argv) & " done") with title "zsh" sound name "Purr"
+end run
+APPLESCRIPT
 }
-
-case $OSTYPE in
-  darwin*)
-    add-zsh-hook preexec __my_preexec_start_timetrack
-    add-zsh-hook precmd __my_preexec_end_timetrack
-esac
+if [[ "$OSTYPE" == darwin* ]] && command -v osascript >/dev/null; then
+  add-zsh-hook -d preexec __my_preexec_start_timetrack
+  add-zsh-hook -d precmd __my_preexec_end_timetrack
+  add-zsh-hook preexec __my_preexec_start_timetrack
+  add-zsh-hook precmd __my_preexec_end_timetrack
+fi

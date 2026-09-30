@@ -1,5 +1,4 @@
 load_file() {
-  if [ -r $1 ]; then
-    source $1
-  fi
+  [[ -r "$1" ]] && source "$1"
+  return 0
 }

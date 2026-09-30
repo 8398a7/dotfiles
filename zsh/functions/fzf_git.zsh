@@ -1,58 +1,19 @@
-# fbr - checkout git branch
-fbr() {
-  local branches branch
-  branches=$(git --no-pager branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+_fzf_git_ref() {
+  local selected ref kind
+  local -a options=(--no-multi --delimiter=$'\t' --with-nth=1,2)
+  [[ "${1:-}" == preview ]] && options+=(--preview='git --no-pager log -150 --oneline {2} --')
+  selected=$(git for-each-ref --sort=-committerdate \
+    --format='%(if)%(symref)%(then)%(else)%(refname:strip=1)%09%(refname)%(end)' \
+    refs/heads refs/remotes refs/tags | sed '/^$/d' | fzf "${options[@]}") || return 0
+  [[ -n "$selected" ]] || return 0
+  ref=${selected#*$'\t'}
+  case "$ref" in
+    refs/heads/*) git switch -- "${ref#refs/heads/}" ;;
+    refs/remotes/*) git switch --track -- "$ref" ;;
+    refs/tags/*) git switch --detach -- "$ref" ;;
+  esac
 }
-
-# fbr - checkout git branch (including remote branches)
-fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fbr() {
-  local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-# fco - checkout git branch/tag
-fco() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi) || return
-  git checkout $(awk '{print $2}' <<<"$target" )
-}
-
-
-# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
-fco_preview() {
-  local tags branches target
-  branches=$(
-    git --no-pager branch --all \
-      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
-    | sed '/^$/d') || return
-  tags=$(
-    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
-  target=$(
-    (echo "$branches"; echo "$tags") |
-    fzf --no-hscroll --no-multi -n 2 \
-        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
-  git checkout $(awk '{print $2}' <<<"$target" )
-}
+fzf_git() { _fzf_git_ref; }
+fbr() { _fzf_git_ref; }
+fco() { _fzf_git_ref; }
+fco_preview() { _fzf_git_ref preview; }

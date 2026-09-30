@@ -1,25 +1,20 @@
 git_current_branch_prompt() {
-  local name st color gitdir action
-  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-    return
+  local name changes color gitdir action=''
+  gitdir=$(git rev-parse --git-dir 2>/dev/null) || return 0
+  name=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) ||
+    name=$(git rev-parse --short HEAD 2>/dev/null) || return 0
+  changes=$(git status --porcelain=v1 2>/dev/null) || return 0
+  color=${GREEN:-'%F{green}'}
+  [[ -n "$changes" ]] && color=${YELLOW:-'%F{yellow}'}
+  [[ "$changes" == *$'\n?? '* || "$changes" == '?? '* ]] && color=${RED:-'%F{red}'}
+  if [[ -d "$gitdir/rebase-merge" || -d "$gitdir/rebase-apply" ]]; then
+    action='(rebase)'
+  elif [[ -f "$gitdir/MERGE_HEAD" ]]; then
+    action='(merge)'
+  elif [[ -f "$gitdir/CHERRY_PICK_HEAD" ]]; then
+    action='(cherry-pick)'
   fi
-  name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
-  if [[ -z $name ]]; then
-    return
-  fi
-
-  gitdir=`git rev-parse --git-dir 2> /dev/null`
-  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
-
-  st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    color=${GREEN}
-  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-    color=${YELLOW}
-  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-    color=${RED_B}
-  else
-    color=${RED}
-  fi
-  echo "${color} \uE0A0 ${name}${action}${RESET}"
+  # Percent signs in refs must be literal in zsh's prompt language.
+  name=${name//\%/%%}
+  print -r -- "${color} git:${name}${action}${RESET:-'%f'}"
 }

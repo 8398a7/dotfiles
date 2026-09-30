@@ -1,26 +1,21 @@
 #!/bin/sh
-
-if [ "$NO_TEMPLATE" = "true" ]; then
-  exit 0
+# Optional issue prefix. Enable per repository; do not install globally.
+set -eu
+[ "${NO_TEMPLATE:-false}" = true ] && exit 0
+[ "$(git config --bool --get dotfiles.issuePrefix || true)" = true ] || exit 0
+message=${1:?commit message file is required}
+branch=$(git symbolic-ref --quiet --short HEAD) || exit 0
+case "$branch" in v*) exit 0 ;; esac
+issue=$(printf '%s\n' "$branch" | sed -n 's/^[^0-9]*\([0-9][0-9]*\).*/\1/p')
+[ -n "$issue" ] || exit 0
+if [ -n "${JIRA_PREFIX:-}" ]; then
+  prefix="${JIRA_PREFIX}-${issue} "
+else
+  prefix="[#${issue}] "
 fi
-
-BRANCH=`git rev-parse --abbrev-ref @`
-case "$BRANCH" in
-  v*)
-    exit 0
-esac
-
-if [ "$2" = '' ]; then
-  mv $1 $1.tmp
-  ISSUE_NUMBER=`echo $BRANCH | sed -e 's/^[^0-9]*\([0-9]*\).*/\1/'`
-  if [ ! -z $ISSUE_NUMBER ]; then
-    ORIGIN=`git remote get-url origin`
-    BRANCH=`git branch --show-current`
-    if [ ! -z $JIRA_PREFIX ]; then
-      echo "${JIRA_PREFIX}-${ISSUE_NUMBER} \c" > $1
-    else
-      echo "[#${ISSUE_NUMBER}] \c" > $1
-    fi
-  fi
-  cat $1.tmp >> $1
-fi
+first=$(head -n 1 "$message")
+case "$first" in "$prefix"*) exit 0 ;; esac
+temporary=$(mktemp "${message}.XXXXXX")
+trap 'rm -f "$temporary"' EXIT HUP INT TERM
+{ printf '%s' "$prefix"; cat "$message"; } > "$temporary"
+cat "$temporary" > "$message"

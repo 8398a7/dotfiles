@@ -87,8 +87,7 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         per_filetype = {
-          -- VSCodeが [go] で editor.snippetSuggestions = "none" にしている
-          -- のと揃える。goplsの候補にスニペットが混ざると邪魔になる。
+          -- Go uses gopls completion without the generic snippet collection.
           go = { 'lsp', 'path', 'buffer' },
         },
       },

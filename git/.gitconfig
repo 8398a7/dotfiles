@@ -2,10 +2,8 @@
   name = 839
   email = 8398a7@gmail.com
 [core]
-  excludesfile = ~/.config/git/ignore
-  editor = vim
+  editor = nvim
   pager = delta
-  hooksPath = ~/.config/git/hooks
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -25,7 +23,6 @@
   branch = auto
   interactive = auto
   grep = auto
-  default = simple
 [color "diff"]
   old = 167 normal
   new = 030 normal
@@ -40,36 +37,35 @@
   coa = commit -S --amend
   reco = rebase --continue
   cm = commit -S -m
-  pm = push origin master
-  pd = push origin develop
   po = push origin
   fe = fetch --prune
   hard = reset --hard
   soft = reset --soft
   remotes = remote -v
-  unstage = reset --hard HEAD
+  unstage = restore --staged --
   amend = commit --amend
-  ignores = ls-files --full-name -i --exclude-standard
+  ignores = ls-files --full-name -ci --exclude-standard
   nevermind = !git reset --hard HEAD && git clean -d -f
-  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  delete-merged-branches = "!f() { \"${XDG_CONFIG_HOME:-$HOME/.config}/git/bin/delete-merged-branches\"; }; f"
   today = !sh -c 'git log --reverse --no-merges --branches=* --date=local --since=midnight --oneline --author=\"`git config --get user.name`\"'
 [push]
-  default = matching
+  default = simple
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
 [diff]
-  compactionHeuristic = true
   algorithm = histogram
 [gpg]
   format = ssh
 [user]
   signingkey = ~/.ssh/id_ed25519.pub
-[include]
-  path = ~/.config/git/.gitconfig.local
 [diff "sopsdiffer"]
   textconv = sops -d
 [pull]
   rebase = false
+[credential "https://github.com"]
+  helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+  helper = !gh auth git-credential

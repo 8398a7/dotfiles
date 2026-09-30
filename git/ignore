@@ -1,33 +1,8 @@
-# Mac
+# Machine-generated files only; project settings belong in each repository.
 .DS_Store
-
-# Windows
 Thumbs.db
-
-# zsh
 *.zwc
-
-# Vim swap files
 *~
 *.swp
-
-# Ruby
-/vendor/bundle
-/vendor/bin
-
-/.envrc
-
-# gtags (GNU Global)
-GTAGS
-GRTAGS
-GPATH
-
-Input
-Keyboard
-
-yarn-error.log
-
-.idea/
-.vscode/
-
+*.swo
 **/.claude/settings.local.json

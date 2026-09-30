@@ -2,7 +2,7 @@
 
 `herdr/` のカスタマイズ部分だけをまとめたもの。herdr 標準の操作は `prefix+?` のヘルプを見る。
 
-prefix は `Ctrl+T`（tmux の設定に合わせている）。
+prefix は `Ctrl+T`。
 
 - [worktree の作成](#worktree-の作成)
 - [nvim ペイン連携](#nvim-ペイン連携)

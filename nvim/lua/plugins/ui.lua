@@ -2,15 +2,11 @@
 
 return {
   -- colorscheme {{{
-  -- 旧 vim/colors/theme.vim の個別 hi 12行は廃棄する。
-  -- treesitter・LSP・診断のハイライトグループに対応した配色が必要で、
-  -- 手書きのhiではU4のパーサが出すグループを網羅できない。
+  -- treesitter・LSP・診断のハイライトグループに対応した配色を使う。
   --
   -- catppuccinを選ぶ理由は herdr/config.toml が [theme] name = "catppuccin"、
   -- accent = "#a6e3a1" (mochaのgreen) を指定していること。
   -- ペインの枠とnvimの色が揃う。
-  -- (VSCodeは One Monokai、tmux-powerlineとzshのsetupsolarizedは
-  --  solarized系だったが、tmuxはherdrへ移行するので合わせる相手はherdr)
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -42,10 +38,7 @@ return {
       },
       custom_highlights = function(colors)
         return {
-          -- 旧 vim/_config/101-nerdtree.vim は
-          -- hi Directory guifg=#FF0000 でディレクトリを赤くしていた。
-          -- 赤はcatppuccinでは削除・エラーの色なので踏襲しない。
-          -- 代わりにaccentと同じgreenで目立たせる
+          -- ディレクトリはaccentと同じgreenで目立たせる
           Directory = { fg = colors.green, bold = true },
         }
       end,
@@ -58,12 +51,8 @@ return {
   -- }}}
 
   -- statusline {{{
-  -- 旧 vim/_config/100-lightline.vim (62行) の置き換え。
-  -- 旧設定は MyModified / MyReadonly / MyFilename などを手書きし、
-  -- しかも colorscheme: 'solarized' が実際のcolorschemeと一致していなかった。
   --
-  -- 旧設定が左に出していたのは mode / paste / fugitive(branch) / filename。
-  -- これを引き継ぎ、右に診断件数・LSP名・filetype・エンコーディングを足す。
+  -- Show editing mode, filename, Git status, diagnostics and LSP information.
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -97,7 +86,6 @@ return {
             { 'filename', path = 1, symbols = { modified = '[+]', readonly = '[RO]' } },
           },
           lualine_x = {
-            -- 診断件数。U5のLSPとU7のnvim-lintの両方がここに出る
             {
               'diagnostics',
               sources = { 'nvim_diagnostic' },
@@ -177,7 +165,6 @@ return {
     },
     cmd = 'Neotree',
     keys = {
-      -- 旧 vim/_config/101-nerdtree.vim の nnoremap <C-f> :NERDTreeToggle<CR>
       { '<C-f>', '<Cmd>Neotree toggle<CR>', desc = 'ファイルツリーを開閉する' },
       {
         '<leader>fe',
@@ -186,10 +173,7 @@ return {
       },
     },
     opts = {
-      -- 旧設定の
-      --   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") ...) | q | endif
-      -- (ツリーだけが残ったらnvimを閉じる) と同じ意図。
-      -- neo-treeは自前のオプションで同じことをする
+      -- Close the editor when the tree is the last window.
       close_if_last_window = true,
       filesystem = {
         filtered_items = {

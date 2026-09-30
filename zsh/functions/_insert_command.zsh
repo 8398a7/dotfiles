@@ -1,9 +1,9 @@
 _insert_command() {
-  if zle; then
+  if [[ -o zle ]] && zle; then
     BUFFER=$1
     CURSOR=$#BUFFER
-    zle clear-screen
+    zle reset-prompt
   else
-    print -z $1
+    print -z -- "$1"
   fi
 }

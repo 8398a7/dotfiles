@@ -1,3 +1,3 @@
 git_current_branch_name() {
-  git rev-parse --abbrev-ref HEAD
+  git symbolic-ref --quiet --short HEAD
 }

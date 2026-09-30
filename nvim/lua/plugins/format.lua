@@ -8,7 +8,6 @@
 
 -- markdownは行末2スペースが意図的な改行なので末尾空白を消さない。
 -- vscode/settings.json の [markdown].trimTrailingWhitespace=false と同じ扱い。
--- (旧 vim/_config/002-cmd.vim も同じ理由でmarkdownを除外していた)
 local no_trim_filetypes = { markdown = true }
 
 -- 保存時フォーマットの有効・無効。生成ファイルや他人のコードを触るときに切る。
@@ -19,9 +18,6 @@ local format_on_save_enabled = true
 -- 保存するだけで無関係な差分が混ざるため、保存時は末尾空白の除去だけにして
 -- prettier本体は :Format を叩いたときにだけ走らせる。
 --
--- (VSCodeは editor.defaultFormatter = prettier + formatOnSave = true だったので
---  保存時にも走っていたはずだが、上記の差分が残っているとおり
---  これらのファイルは実際にはVSCodeで保存されていない)
 local trim_only_on_save_filetypes = { json = true, jsonc = true, yaml = true }
 
 return {
@@ -39,18 +35,9 @@ return {
       formatters_by_ft = {
         -- goplsのformatだとimportの追加が遅いのでgoimportsを使う
         --
-        -- VSCodeは editor.codeActionsOnSave で source.organizeImports も
-        -- 走らせていたが、こちらには移植しない。標準ライブラリと外部パッケージが
-        -- 混ざったimportブロックで両者の出力を比べると完全に一致し、
-        -- 未使用importの削除もgoimportsだけで足りる (実測)。
         go = { 'goimports' },
         lua = { 'stylua' },
-        -- terraform CLIはこのマシンに入っていない (mise installs/terraformは空)。
-        -- terraform-lsは documentFormattingProvider=true と申告するが
-        -- 内部でterraform fmtを呼ぶだけなので、CLIが無いと何も整形しない (実測)。
-        -- つまりVSCode時代も terraform 整形は動いていなかった。
-        -- conformはavailable=falseのフォーマッタを黙って飛ばすので、
-        -- CLIを入れた時点で有効になるようマッピングだけ先に置いておく。
+        -- Terraform formatting calls the project-selected terraform CLI.
         terraform = { 'terraform_fmt' },
         hcl = { 'terraform_fmt' },
         ['terraform-vars'] = { 'terraform_fmt' },
@@ -84,7 +71,6 @@ return {
 
         -- 全filetype共通。VSCodeの files.trimTrailingWhitespace /
         -- files.trimFinalNewlines 相当。
-        -- U2でautocmdから外した末尾空白除去の正しい置き場所。
         --
         -- '*' はfiletype固有の指定があっても必ず追加で走る
         -- (conform/init.luaのlist_formatters_for_buffer)。

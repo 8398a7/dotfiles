@@ -1,13 +1,8 @@
-function fzf-fd() {
-  local target_dir=$(fd -t d -I -H -E ".git"| fzf-tmux --reverse --query="$LBUFFER")
-  local current_dir=$(pwd)
-
-  if [ -n "$target_dir" ]; then
-    BUFFER="cd ${current_dir}/${target_dir}"
-    zle accept-line
-  fi
-
-  zle reset-prompt
+fzf-fd() {
+  local selected
+  IFS= read -r -d '' selected < <(fd --type d --hidden --exclude .git --print0 | fzf --read0 --print0 --query="$LBUFFER") || return 0
+  [[ -n "$selected" ]] || return 0
+  BUFFER="cd -- ${(q)selected}"
+  zle accept-line
 }
 zle -N fzf-fd
-bindkey "^n" fzf-fd
