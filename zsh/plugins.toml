@@ -10,7 +10,8 @@ rev = "b5e8e0a22deb05a807bb8655aef809a29f3cffed"
 apply = ["completions"]
 
 [plugins.compinit]
-inline = 'autoload -Uz compinit; compinit'
+# -i excludes insecure completions while keeping the permission audit.
+inline = 'autoload -Uz compinit; compinit -i'
 
 # One directory-history provider; fzf and history search use the installed fzf CLI.
 [plugins.z]

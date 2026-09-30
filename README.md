@@ -70,6 +70,8 @@ mise exec -- make check
 
 Python 3.11以上、bash、zsh、Git、Neovimとjqが必要。`make check` は設定の構文と、一時HOMEを使うインストール／復元・Git・zsh・Neovimの動作を検証する。実ユーザーの設定を書き換えず、プラグインやツールの自動インストールも行わない。GitHub ActionsでもUbuntuとmacOSで同じチェックを行う。
 
+補完は `compinit -i` で権限監査を行い、不安全なファイル・ディレクトリを除外する。端末がない場合も確認入力を要求しない。除外対象は `compaudit` で確認できる（[zsh公式説明](https://zsh.sourceforge.io/Doc/Release/Completion-System.html#Use-of-compinit)）。
+
 miseのバージョンは `mise.toml`、zshプラグインのコミットは `zsh/plugins.toml`、Neovimプラグインは `nvim/lazy-lock.json` で固定する。更新後は `make check` と対話起動、必要な言語のLSP／フォーマッタを確認する。zshプラグイン更新後は `sheldon lock`、Neovimは `:Lazy update` で固定情報を更新する。Homebrewの古いロックは配布せず、Brewfileを正本とする。
 
 `make export-extensions` は取得成功時だけ一覧をソートして置き換える。更新差分をレビューしてからコミットする。

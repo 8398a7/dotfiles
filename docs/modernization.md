@@ -21,7 +21,7 @@
 | 15 | 旧DB・protobuf等 | 常駐サービス・プロジェクト依存をBrewfileから除き、プロジェクト側へ管理を移す |
 | 16 | 任意ツール未導入での起動失敗 | mise・sheldon・fzf・git-wt・direnv等に存在チェックを追加 |
 | 17 | fzfの多重導入・読み込み | miseのCLIと `fzf --zsh` に集約 |
-| 18 | compinitの順序 | 補完のfpathを追加してからcompinit。ハイライトはwidget定義後に読む |
+| 18 | compinitの順序 | 補完のfpathを追加してからcompinit。不安全な補完は監査で除外し、確認入力を要求しない。ハイライトはwidget定義後に読む |
 | 19 | TERM上書き | 呼び出し元のTERMを保持 |
 | 20 | LANG固定 | 既存LANGを保持。未設定時は利用可能なlocaleを選ぶ |
 | 21 | gf/fbrの重複 | 一つのref選択実装へ集約 |
@@ -73,7 +73,7 @@
 
 ## 検証の範囲
 
-`make check` は構文検証と一時HOME／一時リポジトリでの30件の回帰テストを実行する。ShellCheckで配布シェルスクリプト、actionlintでCI設定、StyLuaで変更したLuaファイルを検証した。新規HOMEへのmiseからのNeovim/jq導入とチェックも実行した。sheldonの実バイナリでも固定revの取得、補完の順序、ハイライトの読み込みを一時環境で確認した。
+`make check` は構文検証と一時HOME／一時リポジトリでの32件の回帰テストを実行する。ShellCheckで配布シェルスクリプト、actionlintでCI設定、StyLuaで変更したLuaファイルを検証した。新規HOMEへのmiseからのNeovim/jq導入とチェックも実行した。sheldonの実バイナリでも固定revの取得、補完の順序、ハイライトの読み込みを一時環境で確認した。
 
 macOS固有パスの設置・復元はLinux上の隔離テストでも確認する。macOSの実機起動、GUIアプリ、デスクトップ通知、端末のOSC 52／ネイティブクリップボード、全言語のMason導入は実機確認が必要。Ubuntu/macOSのCIはpush後に動作する。
 

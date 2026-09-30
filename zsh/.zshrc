@@ -66,7 +66,8 @@ if command -v sheldon >/dev/null; then
 fi
 if (( ! $+functions[compdef] )); then
   autoload -Uz compinit
-  compinit
+  # Keep the permission audit; exclude insecure completions without prompting.
+  compinit -i
 fi
 if command -v fzf >/dev/null; then
   source <(fzf --zsh)

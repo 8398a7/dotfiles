@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
+import tomllib
 import tempfile
 import unittest
 from contextlib import redirect_stdout
@@ -20,7 +22,8 @@ class Sandbox(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory(prefix='dotfiles tests ')
         self.addCleanup(self.temporary.cleanup)
-        self.base = Path(self.temporary.name)
+        # macOS exposes its temporary directory through /var -> /private/var.
+        self.base = Path(self.temporary.name).resolve()
         self.home = self.base / 'home with spaces'
         self.home.mkdir()
         self.env = dict(os.environ, HOME=str(self.home), XDG_CONFIG_HOME=str(self.home / 'config with spaces'),
@@ -77,7 +80,9 @@ class LinkTests(Sandbox):
             self.assertEqual(result.returncode, 0, result.stderr)
         self.assertTrue((config / 'nvim').is_symlink())
         self.assertTrue((self.home / '.ideavimrc').is_symlink())
-        self.assertTrue((config / 'Code/User/settings.json').is_symlink())
+        code = (self.home / 'Library/Application Support/Code/User/settings.json'
+                if sys.platform == 'darwin' else config / 'Code/User/settings.json')
+        self.assertTrue(code.is_symlink())
         self.assertTrue((config / 'mise/config.toml').is_symlink())
         result = self.clean()
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -199,6 +204,24 @@ class LinkTests(Sandbox):
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual((config / 'sheldon').resolve(), newer)
         self.assertEqual(list(newer.iterdir()), [])
+
+    def test_platform_settings_install_and_restore(self):
+        for platform in ['linux', 'darwin']:
+            with self.subTest(platform=platform):
+                home = self.home / platform
+                config, state = home / 'config', home / 'state'
+                state.mkdir(parents=True)
+                code = (home / 'Library/Application Support/Code/User/settings.json'
+                        if platform == 'darwin' else config / 'Code/User/settings.json')
+                code.parent.mkdir(parents=True)
+                code.write_text('original vscode settings')
+                journal, entries = state / 'links.json', []
+                with redirect_stdout(io.StringIO()):
+                    links.install(home, config, state, journal, entries, platform)
+                    self.assertTrue(code.is_symlink())
+                    self.assertTrue(links.clean(journal, entries))
+                self.assertEqual(code.read_text(), 'original vscode settings')
+                self.assertFalse(code.is_symlink())
 
     def test_legacy_owned_links_only(self):
         (self.home / '.vim').symlink_to(ROOT / 'vim')
@@ -402,6 +425,26 @@ class ShellTests(Sandbox):
         code.write_text("#!/bin/sh\nprintf '%s\\n' z.ext a.ext a.ext\n")
         self.assertEqual(self.run_command('bash', command).returncode, 0)
         self.assertEqual(extensions.read_text(), 'a.ext\nz.ext\n')
+
+    def test_completion_ignores_insecure_directory_without_tty(self):
+        safe = self.base / 'safe completions'
+        unsafe = self.base / 'insecure completions'
+        for directory, command in [(safe, 'dotfiles_safe'), (unsafe, 'dotfiles_unsafe')]:
+            directory.mkdir()
+            (directory / ('_' + command)).write_text('#compdef ' + command + '\n_arguments "*:value:"\n')
+        unsafe.chmod(0o777)
+        # Exercise both the missing-sheldon fallback and sheldon's inline setup.
+        inline = tomllib.loads((ROOT / 'zsh/plugins.toml').read_text())['plugins']['compinit']['inline']
+        for setup in ['source "$1"', inline]:
+            with self.subTest(setup=setup):
+                script = 'fpath=("$2" "$3" $fpath); ' + setup
+                script += '; (( $+functions[compdef] && ${+_comps[dotfiles_safe]} && ! ${+_comps[dotfiles_unsafe]} )) || exit 1'
+                env = dict(self.env, PATH='/usr/bin:/bin')
+                result = self.run_command('zsh', '-f', '-i', '-c', script,
+                                          'test', str(ROOT / 'zsh/.zshrc'), str(safe), str(unsafe),
+                                          env=env, timeout=20)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stderr, '')
 
     def test_interactive_start_without_optional_tools_and_preserve_term(self):
         # Stub integrations to avoid installing plugins or modifying real state.
